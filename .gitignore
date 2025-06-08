@@ -5,5 +5,5 @@
 expo-env.d.ts
 *.apk
 .env
-/node_modules
+# /node_modules
 # @end expo-cli
