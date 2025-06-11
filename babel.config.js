@@ -6,27 +6,30 @@ module.exports = function (api) {
       "nativewind/babel",
     ],
     plugins: [
-      {
-        root: ['./'],
-        alias: {
-          '@': './src'
-          '@utils': './src/utils',
-          '@components': './src/components',
-          '@ui': './src/components/ui'
+      [
+        "module-resolver", 
+        {
+          root: ["./"], 
+          alias: {
+            "@": "./src",
+            "@utils": "./src/utils",
+            "@components": "./src/components",
+            "@ui": "./src/components/ui",
+          },
+          extensions: [
+            ".ios.ts",
+            ".android.ts",
+            ".ts",
+            ".ios.tsx",
+            ".android.tsx",
+            ".tsx",
+            ".jsx",
+            ".js",
+            ".json",
+          ],
         },
-        extensions: [
-          '.ios.ts',
-          '.android.ts',
-          '.ts',
-          '.ios.tsx',
-          '.android.tsx',
-          '.tsx',
-          '.jsx',
-          '.js',
-          '.json',
-        ],
-      },
-      'react-native-reanimated/plugin',
+      ],
+      "react-native-reanimated/plugin", 
     ],
   };
 };
