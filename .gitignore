@@ -4,6 +4,7 @@
 
 expo-env.d.ts
 *.apk
+.expo
 .env
 node_modules
 ios
