@@ -1,15 +1,9 @@
-import React, { memo } from "react";
-import Svg, { ClipPath, Defs, G, Path, SvgProps } from "react-native-svg";
+import React, { memo } from 'react';
+import Svg, { ClipPath, Defs, G, Path, type SvgProps } from 'react-native-svg';
 
 export const FortyTwoLogo = memo((props: SvgProps) => {
   return (
-    <Svg
-      width={201}
-      height={191}
-      viewBox="0 0 201 191"
-      fill="none"
-      {...props}
-    >
+    <Svg width={201} height={191} viewBox="0 0 201 191" fill="none" {...props}>
       <Path
         d="M188.497 52.619c39.507 72.967-29.94 155.296-112.73 135.198-37.164-8.864-67.039-39.761-73.222-76.026-7.03-36.078 9.958-74.84 41.72-95.25C87.808-12.172 148.143-2.622 179.32 38.45c.195.187.13.499-.13.686-.196.188-.521.125-.716-.125-4.296-5.305-9.178-10.111-14.515-14.418-8.786-7.178-19.07-12.796-29.939-16.603C78.696-11.235 17.97 20.723 5.864 76.213c-13.668 62.168 41.46 119.406 107.198 110.855 50.702-6.117 88.387-50.996 84.222-99.807-.912-11.797-4.166-23.47-9.568-34.205-.13-.188 0-.437.195-.562a.435.435 0 01.586.125z"
         fill="#000"

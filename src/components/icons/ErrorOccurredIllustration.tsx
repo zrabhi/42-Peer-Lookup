@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import Svg, { ClipPath, Defs, G, Path, SvgProps } from "react-native-svg";
+import React, { memo } from 'react';
+import Svg, { ClipPath, Defs, G, Path, type SvgProps } from 'react-native-svg';
 
 export const ErrorOccurredIllustration = memo((props: SvgProps) => {
   return (

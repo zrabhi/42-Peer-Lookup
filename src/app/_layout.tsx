@@ -1,25 +1,28 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import '../../global.css';
+
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
-import '../../global.css'
 import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from 'react-native';
 
-
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  
+
   const [loaded] = useFonts({
-    LexendMega_100Thin : require('@assets/fonts/LexendMega-Thin.ttf'), 
-    LexendMega_200ExtraLight : require('@assets/fonts/LexendMega-ExtraLight.ttf'), 
-    LexendMega_300Light : require('@assets/fonts/LexendMega-Light.ttf'), 
-    LexendMega_500Medium : require('@assets/fonts/LexendMega-Medium.ttf'), 
-    LexendMega_600SemiBold : require('@assets/fonts/LexendMega-SemiBold.ttf'), 
-    LexendMega_700Bold : require('@assets/fonts/LexendMega-Bold.ttf'), 
-    LexendMega_800ExtraBold : require('@assets/fonts/LexendMega-ExtraBold.ttf'), 
-    LexendMega_900Black : require('@assets/fonts/LexendMega-Black.ttf'),
+    LexendMega_100Thin: require('@assets/fonts/LexendMega-Thin.ttf'),
+    LexendMega_200ExtraLight: require('@assets/fonts/LexendMega-ExtraLight.ttf'),
+    LexendMega_300Light: require('@assets/fonts/LexendMega-Light.ttf'),
+    LexendMega_500Medium: require('@assets/fonts/LexendMega-Medium.ttf'),
+    LexendMega_600SemiBold: require('@assets/fonts/LexendMega-SemiBold.ttf'),
+    LexendMega_700Bold: require('@assets/fonts/LexendMega-Bold.ttf'),
+    LexendMega_800ExtraBold: require('@assets/fonts/LexendMega-ExtraBold.ttf'),
+    LexendMega_900Black: require('@assets/fonts/LexendMega-Black.ttf'),
     LexendMega_400Regular: require('@assets/fonts/LexendMega-Regular.ttf'),
-    
   });
 
   if (!loaded) {

@@ -1,6 +1,5 @@
-import { useColorScheme } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
-
+import { useColorScheme } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -8,7 +7,6 @@ export function useThemeColor(
 ) {
   const theme = useColorScheme() ?? 'light';
   const colorFromProps = props[theme];
-
   if (colorFromProps) {
     return colorFromProps;
   } else {
