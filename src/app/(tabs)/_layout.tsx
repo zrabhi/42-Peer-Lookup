@@ -4,6 +4,7 @@ import { Platform, useColorScheme } from 'react-native';
 import { HapticTab } from '@components/HapticTab';
 import { IconSymbol } from '@components/ui/IconSymbol.ios';
 import { ThemeColors } from '@utils/ThemeColors';
+import colors from '@/utils/colors';
 
 
 export default function TabLayout() {
@@ -14,16 +15,27 @@ export default function TabLayout() {
         tabBarActiveTintColor: ThemeColors[colorScheme ?? 'light'].tint,
         headerShown: false,
         tabBarButton: HapticTab,
-        
+          tabBarLabelStyle:{
+          fontFamily: 'LexendMega_700Bold',
+          fontSize: 12,
+        },
+        tabBarIconStyle :{
+           marginBottom:10, 
+           marginTop: 8,
+        },
          tabBarStyle: Platform.select({
           ios: {
             // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-            backgroundColor: ThemeColors[colorScheme ?? 'light'].background, 
-            borderTopWidth: 0,
+
+            backgroundColor: ThemeColors[colorScheme ?? 'dark'].background, 
+            borderTopWidth: 2,
+            borderTopColor: colors.black,
+            height: 80,
           },
           default: {
-            height: 60,
+            borderTopWidth: 2,
+            borderTopColor: colors.black,
+            height: 80,
             backgroundColor: ThemeColors[colorScheme ?? 'light'].background, 
           },
         })
@@ -32,9 +44,11 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
+      
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
+      
     </Tabs>
   );
 }
