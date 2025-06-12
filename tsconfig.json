@@ -9,7 +9,8 @@
       "@api/*": ["./src/api/*"],
       "@assets/*": ["./assets/*"],
       "@utils/*": ["./src/utils/*"],
-      "@ui/*": ["./src/components/ui/*"]
+      "@ui/*": ["./src/components/ui/*"],
+      "@icons/*": ["./src/components/icons/*"],
     }
   },
   "include": [
