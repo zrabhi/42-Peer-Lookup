@@ -1,31 +1,12 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet, ScrollView ,Text} from 'react-native';
-import { ThemedView } from '@/components/ThemedView';
+import { View ,Text} from 'react-native';
 
 export default function HomeScreen() {
   return (
-    <ScrollView
-     className='flex-1'>
-     <Text>Hello</Text>
-    </ScrollView>
+    <View
+     className='flex-1 items-center gap-5 justify-center px-6'>
+    <Text className="font-light text-lg">Light (LexendMega_300Light)</Text>
+    <Text className="font-bold text-xl">Bold (LexendMega_700Bold)</Text>
+    <Text className="font-black text-2xl">Black (LexendMega_900Black)</Text>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
