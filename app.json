@@ -2,21 +2,23 @@
   "expo": {
     "name": "42-peer-lookup",
     "slug": "42-peer-lookup",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "42peerlookup",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.x42peerlookup"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.x42peerlookup"
     },
     "web": {
       "bundler": "metro",

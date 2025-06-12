@@ -1,0 +1,1 @@
+// here will be the colors used in the app and there will be exported in tailwind.config.js
