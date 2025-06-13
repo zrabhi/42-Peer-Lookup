@@ -4,5 +4,6 @@ echo ">>                Running pre-commit hooks..."
 echo ">> Linting your files and fixing them if needed..."
 yarn lint-fix
 echo ">> Running typescript check..."
+
 yarn type-check
 echo ">>                  Your pre-commit hooks are done!"      
