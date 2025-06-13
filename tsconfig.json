@@ -10,7 +10,9 @@
       "@assets/*": ["./assets/*"],
       "@utils/*": ["./src/utils/*"],
       "@ui/*": ["./src/components/ui/*"],
+      "@config/*": ["./src/config/*"],
       "@icons/*": ["./src/components/icons/*"],
+      "@types/*": ["./src/types/*"],
     },
     "esModuleInterop": true,
     "checkJs": true

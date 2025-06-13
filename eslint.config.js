@@ -88,6 +88,7 @@ export default [
     files: [
       'src/app/**/*',
       './+*.ts*',
+      './expo-env.d.ts',
       './nativewind-env.d.ts',
     ],
     rules: {
