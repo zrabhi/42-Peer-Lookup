@@ -1,11 +1,11 @@
+import { IconSymbol } from '@components/ui/IconSymbol.ios';
+import { ThemeColors } from '@utils/ThemeColors';
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform, useColorScheme } from 'react-native';
-import { HapticTab } from '@components/HapticTab';
-import { IconSymbol } from '@components/ui/IconSymbol.ios';
-import { ThemeColors } from '@utils/ThemeColors';
-import colors from '@/utils/colors';
 
+import { HapticTab } from '@/components/HapticTab';
+import colors from '@/utils/Colors';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -15,19 +15,19 @@ export default function TabLayout() {
         tabBarActiveTintColor: ThemeColors[colorScheme ?? 'light'].tint,
         headerShown: false,
         tabBarButton: HapticTab,
-          tabBarLabelStyle:{
+        tabBarLabelStyle: {
           fontFamily: 'LexendMega_700Bold',
           fontSize: 12,
         },
-        tabBarIconStyle :{
-           marginBottom:10, 
-           marginTop: 8,
+        tabBarIconStyle: {
+          marginBottom: 10,
+          marginTop: 8,
         },
-         tabBarStyle: Platform.select({
+        tabBarStyle: Platform.select({
           ios: {
             // Use a transparent background on iOS to show the blur effect
 
-            backgroundColor: ThemeColors[colorScheme ?? 'dark'].background, 
+            backgroundColor: ThemeColors[colorScheme ?? 'dark'].background,
             borderTopWidth: 2,
             borderTopColor: colors.black,
             height: 80,
@@ -36,19 +36,21 @@ export default function TabLayout() {
             borderTopWidth: 2,
             borderTopColor: colors.black,
             height: 80,
-            backgroundColor: ThemeColors[colorScheme ?? 'light'].background, 
+            backgroundColor: ThemeColors[colorScheme ?? 'light'].background,
           },
-        })
-      }}>
+        }),
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-      
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="house.fill" color={color} />
+          ),
         }}
       />
-      
     </Tabs>
   );
 }

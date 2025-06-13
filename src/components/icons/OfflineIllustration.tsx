@@ -1,15 +1,9 @@
-import * as React from "react"
-import Svg, { Path, SvgProps } from "react-native-svg"
+import * as React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
 
-export const OfflineIllustration =  React.memo((props: SvgProps) => {
+export const OfflineIllustration = React.memo((props: SvgProps) => {
   return (
-    <Svg
-      width={314}
-      height={247}
-      viewBox="0 0 314 247"
-      fill="none"
-      {...props}
-    >
+    <Svg width={314} height={247} viewBox="0 0 314 247" fill="none" {...props}>
       <Path
         d="M243.569 136.964c26.828 0 48.576-20.369 48.576-45.496 0-25.126-21.748-45.495-48.576-45.495-26.827 0-48.575 20.37-48.575 45.495 0 25.127 21.748 45.496 48.575 45.496zM83.754 136.964c26.828 0 48.576-20.369 48.576-45.496 0-25.126-21.748-45.495-48.576-45.495-26.827 0-48.575 20.37-48.575 45.495 0 25.127 21.748 45.496 48.575 45.496z"
         fill="#fff"
@@ -47,5 +41,5 @@ export const OfflineIllustration =  React.memo((props: SvgProps) => {
         fill="#231F20"
       />
     </Svg>
-  )
-})
+  );
+});

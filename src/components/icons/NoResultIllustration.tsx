@@ -1,16 +1,9 @@
-import React, { memo } from "react";
-import Svg, { Path, SvgProps } from "react-native-svg";
+import React, { memo } from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
 
 export const NoResultIllustration = memo((props: SvgProps) => {
   return (
-    <Svg
-      width={226}
-      height={212}
-      viewBox="0 0 226 212"
-      fill="none"
-
-      {...props}
-    >
+    <Svg width={226} height={212} viewBox="0 0 226 212" fill="none" {...props}>
       <Path
         d="M201.227 106.516c-9.708 12.964-25.698 18.102-39.085 12.174-10.85-4.822-19.416-16.443-23.35-29.96-3.236-11.146-3.553-23.399-1.459-35.019.444-2.45.951-4.901 1.586-7.273 5.647 1.028 11.357 2.135 17.068 3.241a835.348 835.348 0 0024.365 4.427c9.834 1.581 19.606 2.688 29.25 2.925 1.015 3.715 1.586 7.589 1.84 11.462.952 13.676-2.601 27.905-10.215 38.023z"
         fill="#fff"

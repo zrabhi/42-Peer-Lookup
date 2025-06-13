@@ -1,8 +1,8 @@
-import { View, Text } from "react-native";
-import { FortyTwoLogo } from "@icons/FortyTwoLogo";
+import { FortyTwoLogo } from '@icons/FortyTwoLogo';
+import { View } from 'react-native';
 export default function HomeScreen() {
   return (
-    <View className="flex-1 bg-peach items-center gap-5 justify-center px-6">
+    <View className="flex-1 items-center justify-center gap-5 bg-peach px-6">
       <FortyTwoLogo />
     </View>
   );

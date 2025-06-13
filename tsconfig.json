@@ -11,8 +11,17 @@
       "@utils/*": ["./src/utils/*"],
       "@ui/*": ["./src/components/ui/*"],
       "@icons/*": ["./src/components/icons/*"],
-    }
+    },
+    "esModuleInterop": true,
+    "checkJs": true
   },
+   "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "android",
+    "ios",
+  ],
   "include": [
     "**/*.ts",
     "**/*.tsx",
