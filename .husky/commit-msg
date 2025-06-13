@@ -1,0 +1,7 @@
+#!/bin/sh
+
+yarn commitlint --edit $1
+if [ $? -ne 0 ]; then
+  echo ">> Commitlint failed. Please fix the issues above."
+  exit 1
+fi
