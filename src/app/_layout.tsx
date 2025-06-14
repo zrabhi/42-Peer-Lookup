@@ -9,10 +9,12 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
+import { ApiProvider } from '@/api';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-
   const [loaded] = useFonts({
     LexendMega_100Thin: require('@assets/fonts/LexendMega-Thin.ttf'),
     LexendMega_200ExtraLight: require('@assets/fonts/LexendMega-ExtraLight.ttf'),
@@ -31,12 +33,19 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <GestureHandlerRootView className="flex-1">
+      <ApiProvider>
+        <ThemeProvider
+          value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </ApiProvider>
+    </GestureHandlerRootView>
   );
 }
