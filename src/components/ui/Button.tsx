@@ -1,4 +1,3 @@
-import Colors from '@/utils/Colors';
 import * as Haptics from 'expo-haptics';
 import React, {
   type ComponentProps,
@@ -104,7 +103,7 @@ export const Button = ({
   buttonIcon: ButtonIcon = undefined,
   onPress,
   disabled = false,
-  isLoading = true,
+  isLoading = false,
   variant = disabled ? undefined : 'Primary',
   ...rest
 }: ButtonProps) => {

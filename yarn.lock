@@ -4213,7 +4213,7 @@ expo-router@~5.0.7:
     server-only "^0.0.1"
     shallowequal "^1.1.0"
 
-expo-splash-screen@~0.30.9:
+expo-splash-screen@^0.30.9:
   version "0.30.9"
   resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.30.9.tgz#8f2a86b3b802ea46065fc761ed60e77e81bdb84c"
   integrity sha512-curHUaZxUTZ2dWvz32ao3xPv5mJr1LBqn5V8xm/IULAehB9RGCn8iKiROMN1PYebSG+56vPMuJmBm9P+ayvJpA==
