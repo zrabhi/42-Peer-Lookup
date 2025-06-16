@@ -7,14 +7,18 @@ import {
 } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { ApiProvider } from '@/api';
 
+SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+
   const [loaded] = useFonts({
     LexendMega_100Thin: require('@assets/fonts/LexendMega-Thin.ttf'),
     LexendMega_200ExtraLight: require('@assets/fonts/LexendMega-ExtraLight.ttf'),
@@ -26,6 +30,10 @@ export default function RootLayout() {
     LexendMega_900Black: require('@assets/fonts/LexendMega-Black.ttf'),
     LexendMega_400Regular: require('@assets/fonts/LexendMega-Regular.ttf'),
   });
+
+  useEffect(() => {
+    if (loaded) SplashScreen.hideAsync();
+  }, [loaded]);
 
   if (!loaded) {
     // If the fonts are not loaded, we return null to avoid rendering the app and show spalsh screen.
@@ -41,8 +49,7 @@ export default function RootLayout() {
           <Stack>
             <Stack.Screen name="(auth)" options={{ headerShown: false }} />
           </Stack>
-
-          <StatusBar style="auto" />
+          <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
         </ThemeProvider>
       </ApiProvider>
     </GestureHandlerRootView>
