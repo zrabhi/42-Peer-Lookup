@@ -120,7 +120,6 @@ export const Button = ({
       <Pressable
         disabled={disabled || isLoading}
         onPressIn={() => {
-          console.log('Button pressed');
           setIsPressed(true);
           // remove the neo brutalisme shadow whne the button is presseed
           // This is useful to give a feedback to the user that the button is pressed

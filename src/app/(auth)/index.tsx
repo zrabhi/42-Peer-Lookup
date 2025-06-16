@@ -1,26 +1,34 @@
 import { Env } from '@utils/Env';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
-import React from 'react';
+import { router } from 'expo-router';
+import React, { useCallback, useEffect } from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 
+import { useGetAccessToken } from '@/api/auth/GetAccessToken';
 import { apiUrls } from '@/api/Common';
 import { FortyTwoIcon } from '@/components/icons/FortyTwoIcon';
 import { FortyTwoLogo } from '@/components/icons/FortyTwoLogo';
 import { Button } from '@/components/ui/Button';
+import { ToastType } from '@/types/ToastType';
+import { useAuth } from '@/utils/auth/AuthProvider';
+import { openToaster } from '@/utils/Helpers';
 
 const discovery = {
   authorizationEndpoint: Env.API_URL + apiUrls.oauth,
 };
 
 export default function AuthScreen() {
+  const { getAccessToken, isPending } = useGetAccessToken();
+  const { isAuthenticated } = useAuth();
+
   console.log(
     makeRedirectUri({
       scheme: '42peerlookup',
     })
   );
- /*
- } const [response, promptAsync] = useAuthRequest(
-  {
+
+  const [request, response, promptAsync] = useAuthRequest(
+    {
       clientId: Env.CLIENT_UID,
       scopes: ['public', 'profile'],
       redirectUri: makeRedirectUri({
@@ -29,8 +37,22 @@ export default function AuthScreen() {
     },
     discovery
   );
-  console.log(response);
-  */
+
+  useEffect(() => {
+    const handleAuthCode = async () => {
+      if (response?.type === 'success' && response.params?.code) {
+        await getAccessToken({ code: response.params.code });
+
+        openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
+        router.push('/(tabs)');
+      }
+    };
+
+    handleAuthCode();
+  }, [response]);
+  const handleOnpress = useCallback(async () => {
+    await promptAsync();
+  }, [promptAsync]);
 
   return (
     <SafeAreaView className="flex-1 items-center  justify-between bg-peach ">
@@ -50,14 +72,11 @@ export default function AuthScreen() {
       </View>
       <View className="w-full px-10 pb-6">
         <Button
+          isLoading={isPending || !request}
           label="Login with "
           size="lg"
           buttonIcon={FortyTwoIcon}
-          onPress={async () => {
-            //     await promptAsync();
-            // Handle login logic here
-            console.log('Login button pressed');
-          }}
+          onPress={async () => await handleOnpress()}
         />
       </View>
     </SafeAreaView>
