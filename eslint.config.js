@@ -20,6 +20,7 @@ export default [
       'metro.config.js',
       'jest.config.js',
       'native.config.js',
+      'src/utils/Env.js'
     ],
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {

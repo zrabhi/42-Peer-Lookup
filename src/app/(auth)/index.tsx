@@ -1,12 +1,37 @@
+import { Env } from '@utils/Env';
+import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import React from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 
+import { apiUrls } from '@/api/Common';
 import { FortyTwoIcon } from '@/components/icons/FortyTwoIcon';
 import { FortyTwoLogo } from '@/components/icons/FortyTwoLogo';
 import { Button } from '@/components/ui/Button';
 
+const discovery = {
+  authorizationEndpoint: Env.API_URL + apiUrls.oauth,
+};
+
 export default function AuthScreen() {
-  // TODO: Implement 42 OAuth Logic when the user presses the login button
+  console.log(
+    makeRedirectUri({
+      scheme: '42peerlookup',
+    })
+  );
+ /*
+ } const [response, promptAsync] = useAuthRequest(
+  {
+      clientId: Env.CLIENT_UID,
+      scopes: ['public', 'profile'],
+      redirectUri: makeRedirectUri({
+        scheme: '42peerlookup',
+      }),
+    },
+    discovery
+  );
+  console.log(response);
+  */
+
   return (
     <SafeAreaView className="flex-1 items-center  justify-between bg-peach ">
       <View className="flex items-center gap-6 pt-28 ">
@@ -28,7 +53,8 @@ export default function AuthScreen() {
           label="Login with "
           size="lg"
           buttonIcon={FortyTwoIcon}
-          onPress={() => {
+          onPress={async () => {
+            //     await promptAsync();
             // Handle login logic here
             console.log('Login button pressed');
           }}
