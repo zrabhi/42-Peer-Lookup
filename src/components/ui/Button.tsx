@@ -30,7 +30,9 @@ interface ButtonProps extends ComponentProps<typeof Pressable> {
   buttonIcon?: ElementType;
   onPress: () => void;
 }
+
 // TODO: add dark mode style
+
 const ButtonVariant = tv({
   slots: {
     container: 'relative w-full',
@@ -120,10 +122,7 @@ export const Button = ({
       <Pressable
         disabled={disabled || isLoading}
         onPressIn={() => {
-          console.log('Button pressed');
           setIsPressed(true);
-          // remove the neo brutalisme shadow whne the button is presseed
-          // This is useful to give a feedback to the user that the button is pressed
 
           if (process.env.EXPO_OS === 'ios') {
             Haptics.selectionAsync(); // Provide a  feedback when the button is pressed (May be removed later )
