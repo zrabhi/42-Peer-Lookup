@@ -8,11 +8,22 @@ export const openToaster = (type: ToastType, message: string) => {
     type,
     text1: 'Hello',
     text2: message,
+    visibilityTime: 3000000, // for testing
   });
 };
 
 export const isTokenExpired = (token: AuthTokenResponse): boolean => {
   const now = Math.floor(Date.now() / 1000);
-  const expiryTime = token.created_at + token.expires_in;
-  return now >= expiryTime;
+
+  const expiresAt =
+    token?.created_at && token?.expires_in
+      ? token.created_at + token.expires_in
+      : 0;
+
+  const secondsLeft = expiresAt - Math.floor(Date.now() / 1000);
+  const minutesLeft = Math.floor(secondsLeft / 60);
+
+  console.log(`Token www expires in ${minutesLeft} minutes`);
+
+  return expiresAt < now;
 };

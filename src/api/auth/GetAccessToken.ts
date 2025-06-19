@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
 import { Env } from '@/utils/Env';
-import { setItem } from '@/utils/Storage';
+import { AUTH_KEY, setItem } from '@/utils/Storage';
 
 import { apiUrls } from '../Common';
 
@@ -31,7 +31,7 @@ export const useGetAccessToken = () => {
         }
       );
       // TODO: to check if the response is OK
-      setItem('auth', response.data);
+      setItem(AUTH_KEY, response.data);
       return response.data;
     },
   });

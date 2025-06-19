@@ -1,8 +1,8 @@
+import { Loading } from '@components/ui/Loading';
+import { AUTH_KEY, getItem, removeItem, setItem } from '@utils/Storage';
 import { createContext, useContext, useEffect, useState } from 'react';
 
-import { Loading } from '@/components/ui/Loading';
 import type { AuthTokenResponse } from '@/types/AuthTokenResponse';
-import { getItem, removeItem, setItem } from '@/utils/Storage';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -10,11 +10,6 @@ interface AuthContextType {
   signOut: () => Promise<void>;
 }
 
-const AuthContextInitValue: AuthContextType = {
-  isAuthenticated: false,
-  signIn: async (tokendata) => {},
-  signOut: async () => {},
-};
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -23,7 +18,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const token = await getItem<AuthTokenResponse>('auth');
+      const token = await getItem<AuthTokenResponse>(AUTH_KEY);
 
       const now = Math.floor(Date.now() / 1000);
       const expiresAt =
@@ -32,7 +27,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           : 0;
 
       const isValid = expiresAt > now;
-      console.log('printing is Valid', isValid, expiresAt, now);
+      const secondsLeft = expiresAt - Math.floor(Date.now() / 1000);
+      const minutesLeft = Math.floor(secondsLeft / 60);
+
+      console.log(`Token expires in ${minutesLeft} minutes`);
       setIsAuthenticated(isValid);
       setLoading(false);
     };
@@ -41,12 +39,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const signIn = async (tokenData: AuthTokenResponse) => {
-    await setItem('auth', tokenData);
+    await setItem(AUTH_KEY, tokenData);
     setIsAuthenticated(true);
   };
 
   const signOut = async () => {
-    await removeItem('auth');
+    await removeItem(AUTH_KEY);
     setIsAuthenticated(false);
   };
 

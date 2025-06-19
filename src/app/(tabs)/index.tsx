@@ -5,7 +5,7 @@ import { useGetUserProfile } from '@/api/user/GetUserProfile';
 import { Loading } from '@/components/ui/Loading';
 
 export default function HomeScreen() {
-  const { data, isLoading } = useGetUserProfile();
+  const { isLoading } = useGetUserProfile();
 
   if (isLoading) return <Loading />;
   return (

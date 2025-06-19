@@ -4,7 +4,7 @@ import { ToastType } from '@/types/ToastType';
 
 import { openToaster } from './Helpers';
 
-export const AUTH_KEY = 'AUTH';
+export const AUTH_KEY = 'auth';
 export const setItem = async <T>(item: string, value: T) => {
   try {
     const itemValue = JSON.stringify(value);

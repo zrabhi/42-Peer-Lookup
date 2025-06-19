@@ -1,9 +1,6 @@
-import { Stack } from 'expo-router';
-import { type ReactNode } from 'react';
-
-import { useAuth } from '@/utils/auth/AuthProvider';
-
-import { Loading } from './ui/Loading';
+import { useAuth } from '@utils/auth/AuthProvider';
+import { Redirect } from 'expo-router';
+import React, { type ReactNode } from 'react';
 
 interface ProtectedRoutesProps {
   children: ReactNode;
@@ -12,12 +9,9 @@ interface ProtectedRoutesProps {
 export const ProtectedRoutes = ({ children }: ProtectedRoutesProps) => {
   const { isAuthenticated } = useAuth();
 
-  if (isAuthenticated === null) return <Loading />;
-
   if (!isAuthenticated) {
-    console.log('i  here');
-    return <Stack.Screen name="(auth)" options={{ headerShown: false }} />;
+    console.log('i m here ProtectedRoutes');
+    return <Redirect href={'/(auth)'} />;
   }
-
   return children;
 };

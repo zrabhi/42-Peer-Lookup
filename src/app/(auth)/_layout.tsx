@@ -4,8 +4,11 @@ import { useAuth } from '@/utils/auth/AuthProvider';
 
 export default function AuthLayout() {
   const { isAuthenticated } = useAuth();
-  console.log('in layout !!!', isAuthenticated);
+
+  console.log('in AuthLayout layout !!!', isAuthenticated);
+
   if (isAuthenticated) return <Redirect href={'/(tabs)'} />;
+
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
