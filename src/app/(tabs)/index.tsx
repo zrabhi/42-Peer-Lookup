@@ -1,16 +1,18 @@
 import { FortyTwoLogo } from '@icons/FortyTwoLogo';
-import { View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 
-import { useGetUserProfile } from '@/api/user/GetUserProfile';
-import { Loading } from '@/components/ui/Loading';
+import { useGetCurrentUser } from '@/api/user/GetUserProfile';
+import { Loading } from '@components/ui/Loading';
+import { UserHeader } from '@components/ui/UserHeader';
 
 export default function HomeScreen() {
-  const { isLoading } = useGetUserProfile();
+  const { isLoading } = useGetCurrentUser();
 
   if (isLoading) return <Loading />;
+
   return (
-    <View className="flex-1 items-center justify-center  gap-5 bg-peach  px-6">
-      <FortyTwoLogo />
-    </View>
+    <SafeAreaView className="flex-1  bg-peach  px-6">
+      <UserHeader className='p-5'  />
+    </SafeAreaView>
   );
 }
