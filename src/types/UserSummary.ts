@@ -1,12 +1,19 @@
+import { UserCoalition } from "./UserCoalition";
 
-export interface UserSummary {
-    displayname: string;
-    login:string;
-    image_url: string;
+
+export interface UserSummary extends UserCoalition{
+    displayname: string | null;
+    id:number | null;
+    login:string | null;
+    
+    image_url: string | null;
 }
-
 export const UserSummaryInitValue : UserSummary  = {
-    displayname: '',
-    login: '', 
-    image_url:''
+    id: null,
+    coalition_image: null,
+    coalition_name: null,
+    coalition_color: null,
+    displayname: null,
+    login: null, 
+    image_url: null
 }

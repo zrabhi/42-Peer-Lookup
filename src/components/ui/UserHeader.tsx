@@ -5,6 +5,7 @@ import { NImage } from '../Image';
 import { Settings } from 'lucide-react-native';
 import * as Haptics from 'expo-haptics';
 import { useAuth } from '@/utils/auth/AuthProvider';
+import { Image } from 'expo-image';
 
 interface UserHeaderProps {
   className?: string;
@@ -16,9 +17,7 @@ interface UserHeaderProps {
 
 export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
   const { authenticatedUser } = useAuth();
-
-  console.log(authenticatedUser);
-
+console.log(authenticatedUser)
   const style = useMemo(
     () => twMerge('flex-row items-center justify-between', className),
     [className]
@@ -31,11 +30,18 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
           imageSource={authenticatedUser.image_url}
           className="w-12 h-12 rounded-full"
         />
-        <View className="gap-1">
+        <View className="gap-1 justify-center">
           <Text className="font-bold text-lg">
-            {authenticatedUser.displayname}
+            {authenticatedUser.displayname ?? ''}
           </Text>
-          <Text className="text-gray-100 font-normal text-sm">Pandora</Text>
+          <View className='flex-row items-center gap-2'>
+            <Image
+              source={authenticatedUser.coalition_image}
+              tintColor={authenticatedUser.coalition_color}
+              style={{width:14, height:22}}
+            />
+          <Text className="text-gray-100 font-normal text-sm">{authenticatedUser.coalition_name}</Text>
+          </View>
         </View>
       </View>
 

@@ -4,23 +4,27 @@ import { client } from '../Client';
 import { apiUrls } from '../Common';
 import { useAuth } from '@/utils/auth/AuthProvider';
 import { UserSummary } from '@/types/UserSummary';
+import { useEffect } from 'react';
 
 export const useGetCurrentUser = () => {
-  
-  const { setAuthenticatedUser } = useAuth();
-  
   const { data, isLoading, error } = useQuery<UserSummary>({
-    queryKey: [''],
+    queryKey: [apiUrls.userDetails],
     queryFn: async () => {
       const response = await client.get(apiUrls.userDetails);
-      setAuthenticatedUser({
-        displayname: response.data.displayname,
-        login: response.data.login,
-        image_url: response.data.image?.versions?.medium ?? '',
-      });
-      return response.data;
+      const coalisionRes = await client.get(
+        apiUrls.coalision.replace(':id', response.data.id)
+      );
+      const data = {
+        ...response.data,
+        image_url: response.data.image?.versions?.medium,
+        coalition_image: coalisionRes.data[0].image_url,
+        coalition_color: coalisionRes.data[0].color,
+        coalition_name: coalisionRes.data[0].name,
+      };
+
+      return data;
     },
-    staleTime: Infinity
+    staleTime: Infinity,
   });
 
   return {

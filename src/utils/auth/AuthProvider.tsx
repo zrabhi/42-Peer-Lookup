@@ -9,6 +9,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   signIn: (tokenData: AuthTokenResponse) => Promise<void>;
   setAuthenticatedUser : Dispatch<SetStateAction<UserSummary>>
+  setIsAuthenticated: Dispatch<SetStateAction<boolean>>
   authenticatedUser: UserSummary 
   signOut: () => Promise<void>;
 }
@@ -56,6 +57,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const contextValue = {
     isAuthenticated,
     authenticatedUser,
+    setIsAuthenticated,
     setAuthenticatedUser,
     signIn,
     signOut,

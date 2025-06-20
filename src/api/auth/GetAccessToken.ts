@@ -5,24 +5,30 @@ import { Env } from '@/utils/Env';
 import { AUTH_KEY, setItem } from '@/utils/Storage';
 
 import { apiUrls } from '../Common';
+import { useAuth } from '@/utils/auth/AuthProvider';
 
 interface GetAccessToeknParams {
   code: string | null;
 }
 
 export const useGetAccessToken = () => {
+  const { setIsAuthenticated } = useAuth();
   const { mutateAsync, isPending, isSuccess, data } = useMutation<
     void,
     void,
     GetAccessToeknParams
   >({
     mutationFn: async ({ code }) => {
-      const formBody = `grant_type=authorization_code&client_id=${Env.CLIENT_UID}&client_secret=${Env.CLIENT_SECRET}&code=${encodeURIComponent(
-        code
-      )}&redirect_uri=${apiUrls.redirectUrl}`;
+      const formBody = new URLSearchParams({
+        grant_type: 'authorization_code',
+        client_id: Env.CLIENT_UID,
+        client_secret: Env.CLIENT_SECRET,
+        code: code,
+        redirect_uri: apiUrls.redirectUrl,
+      }).toString();
 
       const response = await axios.post(
-        Env.API_URL + apiUrls.accessToken,
+        `${Env.API_URL}${apiUrls.accessToken}`,
         formBody,
         {
           headers: {
@@ -30,8 +36,10 @@ export const useGetAccessToken = () => {
           },
         }
       );
-      // TODO: to check if the response is OK
-      setItem(AUTH_KEY, response.data);
+      if (response.status === 200) {
+        await setItem(AUTH_KEY, response.data);
+        setIsAuthenticated(true);
+      }
       return response.data;
     },
   });
