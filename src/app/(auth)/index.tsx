@@ -71,7 +71,7 @@ export default function AuthScreen() {
       <AuthenticationHeader />
       <View className="w-full px-10 pb-6">
         <Button
-          isLoading={isPending || ! request} // to change 
+          isLoading={isPending || !request} // to change
           label="Login with "
           size="lg"
           buttonIcon={FortyTwoIcon}

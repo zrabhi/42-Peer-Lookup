@@ -1,16 +1,23 @@
 import { Loading } from '@components/ui/Loading';
 import { AUTH_KEY, getItem, removeItem, setItem } from '@utils/Storage';
-import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  type Dispatch,
+  type SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 import type { AuthTokenResponse } from '@/types/AuthTokenResponse';
-import { UserSummary, UserSummaryInitValue } from '@/types/UserSummary';
+import { type UserSummary, UserSummaryInitValue } from '@/types/UserSummary';
 
 interface AuthContextType {
   isAuthenticated: boolean;
   signIn: (tokenData: AuthTokenResponse) => Promise<void>;
-  setAuthenticatedUser : Dispatch<SetStateAction<UserSummary>>
-  setIsAuthenticated: Dispatch<SetStateAction<boolean>>
-  authenticatedUser: UserSummary 
+  setAuthenticatedUser: Dispatch<SetStateAction<UserSummary>>;
+  setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
+  authenticatedUser: UserSummary;
   signOut: () => Promise<void>;
 }
 
@@ -18,7 +25,8 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [authenticatedUser, setAuthenticatedUser] = useState<UserSummary>(UserSummaryInitValue)
+  const [authenticatedUser, setAuthenticatedUser] =
+    useState<UserSummary>(UserSummaryInitValue);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -50,7 +58,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signOut = async () => {
     await removeItem(AUTH_KEY);
-    setAuthenticatedUser(UserSummaryInitValue)
+    setAuthenticatedUser(UserSummaryInitValue);
     setIsAuthenticated(false);
   };
 

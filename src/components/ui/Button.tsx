@@ -123,11 +123,7 @@ export const Button = ({
         disabled={disabled || isLoading}
         onPressIn={() => {
           setIsPressed(true);
-
-          if (process.env.EXPO_OS === 'ios') {
-            Haptics.selectionAsync(); // Provide a  feedback when the button is pressed (May be removed later )
-            // Add a soft haptic feedback when pressing down on the button.
-          }
+          process.env.EXPO_OS === 'ios' && Haptics.selectionAsync();
         }}
         onPressOut={() => setIsPressed(false)}
         accessible
