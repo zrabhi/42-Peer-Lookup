@@ -1,8 +1,9 @@
 import { Env } from '@utils/Env';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { router } from 'expo-router';
+import { Text } from '@components/ui/Text';
 import React, { memo, useCallback, useEffect } from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 
 import { useGetAccessToken } from '@/api/auth/GetAccessToken';
 import { apiUrls } from '@/api/Common';
@@ -20,13 +21,17 @@ const AuthenticationHeader = memo(() => {
   return (
     <View className="flex items-center gap-6 pt-28 ">
       <FortyTwoLogo />
-      <Text className="font-bold text-3xl">Welcome!</Text>
+      <Text textSize={28} className="font-bold">
+        Welcome!
+      </Text>
       <View className="">
-        <Text className="text- pt-1 text-center font-medium text-xl">
+        <Text textSize={18} className="text- pt-1 text-center font-medium">
           Discover your
           <Text>
             {' '}
-            <Text className="text-primary-100">peers</Text>
+            <Text textSize={18} className="text-primary-100">
+              peers
+            </Text>
           </Text>{' '}
           and view their profiles.
         </Text>
@@ -53,7 +58,7 @@ export default function AuthScreen() {
     if (response?.type === 'success' && response.params?.code) {
       await getAccessToken({ code: response.params.code });
 
-      openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
+     //  openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
       router.push('/(tabs)');
     }
   }, [response]);

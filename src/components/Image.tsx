@@ -9,8 +9,8 @@ interface NImageProps {
 
 export const NImage = ({
   imageSource,
-  width = 74,
-  height = 74,
+  width = 64,
+  height = 64,
 }: NImageProps) => {
   return (
     <Image

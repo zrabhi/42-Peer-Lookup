@@ -3,23 +3,24 @@ import { TextInput, type TextInputProps, View } from 'react-native';
 import { tv } from 'tailwind-variants';
 
 import Colors from '@/utils/Colors';
+import { moderateScale } from 'react-native-size-matters';
 
 interface InputProps extends TextInputProps {
   disabled?: boolean;
   label?: string;
   value?: string;
+  textSize?: number;
   className?: string;
   inputIcon?: ElementType;
 }
 
 const InputVariants = tv({
   slots: {
-    container: 'relative  h-16 w-full  rounded-full border bg-white',
-    inputContainer: 'z-99 flex-1 flex-row items-center justify-between px-6',
+    container: 'relative overflow-visible  h-16 w-full  rounded-full border bg-white',
+    inputContainer: 'flex-1 flex-row  items-center justify-between px-6',
     label: 'font-medium text-gray-100',
     input: 'flex-1 bg-white pl-4 pr-6 font-medium text-gray-100',
-    shadow:
-      'absolute left-1.5 top-1.5 z-[-9999] size-full rounded-full  bg-black',
+    shadow: 'absolute left-1.5 top-1.5 size-full rounded-full bg-black z-[-9999]',
   },
   variants: {
     disabled: {
@@ -45,6 +46,7 @@ const InputVariants = tv({
 export const Input = ({
   inputIcon: InputIcon = undefined,
   disabled = false,
+  textSize = 12,
   className = '',
   value = '',
   ...rest
@@ -61,6 +63,9 @@ export const Input = ({
     <View className={style.container({ className })}>
       <View className={style.inputContainer()}>
         <TextInput
+          style={{
+            fontSize: moderateScale(textSize),
+          }}
           value={value}
           onFocus={handleOnFocus}
           onBlur={handleOnBlur}
@@ -69,7 +74,7 @@ export const Input = ({
           {...rest}
         />
         {InputIcon && (
-          <InputIcon strokeWidth={2.5} size={26} color={Colors.gray[100]} />
+          <InputIcon strokeWidth={2.5} size={moderateScale(20)} color={Colors.gray[100]} />
         )}
       </View>
       <View className={style.shadow({ focus: isFocus })} />

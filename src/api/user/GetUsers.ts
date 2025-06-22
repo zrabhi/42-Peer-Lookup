@@ -1,7 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { type UserKind } from '@/types/UserKind';
-
 import { client } from '../Client';
 
 interface ImageVersions {
@@ -27,20 +25,58 @@ interface User {
   usual_full_name: string;
   wallet: number;
 }
-export const useGetUsers = () => {
-  const { data, isLoading, error } = useQuery<User[]>({
-    queryKey: ['/v2/cursus/42/users'],
-    queryFn: async () => {
-      const response = await client.get('v2/cursus/42/users');
 
-      return response.data;
-    },
-    staleTime: Infinity,
-  });
+interface PaginatedResponse {
+  users: User[];
+  hasNext: boolean;
+}
+export const useGetPaginatedUsers = (searchedUser?: string) => {
+  const queryClient = useQueryClient();
 
-  return {
+  const queryKey = ['users', { search: searchedUser }];
+
+  const {
     data,
     isLoading,
     error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery<PaginatedResponse, Error>({
+    queryKey,
+    queryFn: async ({ pageParam = 1 }) => {
+      const query = searchedUser
+        ? `?search[login]=${searchedUser}&page=${pageParam}`
+        : `?page=${pageParam}`;
+
+      const response = await client.get<User[]>(`v2/users${query}`);
+
+      return {
+        users: response.data,
+        hasNext: response.headers?.link?.includes('rel="next"') ?? false,
+      };
+    },
+    initialPageParam: 1,
+
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.hasNext ? allPages.length + 1 : undefined,
+    
+    staleTime: Infinity,
+  });
+
+  const invalidate = () => queryClient.invalidateQueries({ queryKey });
+
+  const loadMore = () => {
+    if (hasNextPage && !isFetchingNextPage) fetchNextPage();
+  };
+
+  return {
+    users: data?.pages.flatMap((page) => page.users) ?? [],
+    isLoading,
+    error,
+    isFetchingNextPage,
+    hasNextPage,
+    loadMore,
+    invalidate,
   };
 };

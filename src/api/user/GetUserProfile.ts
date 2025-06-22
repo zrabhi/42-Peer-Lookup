@@ -20,7 +20,6 @@ export const useGetCurrentUser = () => {
         coalition_color: coalisionRes.data[0].color,
         coalition_name: coalisionRes.data[0].name,
       };
-
       return data;
     },
     staleTime: Infinity,

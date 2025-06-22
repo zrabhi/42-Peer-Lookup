@@ -16,7 +16,7 @@ export const Loading = ({ className = '' }: LoadingProps) => {
           width: 400,
           height: 200,
         }}
-        source={require('@assets/Loader.json')}
+        source={require('@assets/EyesLoader.json')}
       />
     </View>
   );
