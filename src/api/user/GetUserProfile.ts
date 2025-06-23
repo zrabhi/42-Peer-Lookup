@@ -1,10 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { type UserSummary } from '@/types/UserSummary';
+
 import { client } from '../Client';
 import { apiUrls } from '../Common';
-import { useAuth } from '@/utils/auth/AuthProvider';
-import { UserSummary } from '@/types/UserSummary';
-import { useEffect } from 'react';
 
 export const useGetCurrentUser = () => {
   const { data, isLoading, error } = useQuery<UserSummary>({
@@ -21,7 +20,6 @@ export const useGetCurrentUser = () => {
         coalition_color: coalisionRes.data[0].color,
         coalition_name: coalisionRes.data[0].name,
       };
-
       return data;
     },
     staleTime: Infinity,

@@ -8,7 +8,7 @@ export const openToaster = (type: ToastType, message: string) => {
     type,
     text1: 'Hello',
     text2: message,
-    visibilityTime: 3000000, // for testing
+    visibilityTime: 3000, 
   });
 };
 

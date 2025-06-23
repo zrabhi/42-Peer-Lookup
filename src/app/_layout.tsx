@@ -74,8 +74,8 @@ const Providers = ({ children }: { children: ReactNode }) => {
 
   return (
     <GestureHandlerRootView className="flex-1">
-      <AuthProvider>
-        <ApiProvider>
+      <ApiProvider>
+        <AuthProvider>
           <ThemeProvider
             value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
           >
@@ -83,8 +83,8 @@ const Providers = ({ children }: { children: ReactNode }) => {
             <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
             <Toast config={toasterConfig} />
           </ThemeProvider>
-        </ApiProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </ApiProvider>
     </GestureHandlerRootView>
   );
 };

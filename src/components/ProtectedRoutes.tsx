@@ -10,8 +10,7 @@ export const ProtectedRoutes = ({ children }: ProtectedRoutesProps) => {
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
-    console.log('i m here ProtectedRoutes');
-    return <Redirect href={'/(auth)'} />;
+    return <Redirect href={'/(auth)'} />
   }
   return children;
 };

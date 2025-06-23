@@ -1,11 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
+import { useAuth } from '@/utils/auth/AuthProvider';
 import { Env } from '@/utils/Env';
 import { AUTH_KEY, setItem } from '@/utils/Storage';
 
 import { apiUrls } from '../Common';
-import { useAuth } from '@/utils/auth/AuthProvider';
 
 interface GetAccessToeknParams {
   code: string | null;
