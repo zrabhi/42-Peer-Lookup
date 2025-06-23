@@ -56,6 +56,7 @@ export default function AuthScreen() {
       await getAccessToken({ code: response.params.code });
 
       // openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
+      // to investigate: when rendering the toater and attempting to navigate , a rendering error get throwed
       router.push('/(tabs)/users');
     }
   }, [response]);

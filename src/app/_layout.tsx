@@ -17,10 +17,13 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 
 import { ApiProvider } from '@/api';
+import { useNetworkStatus } from '@/hooks/UseNetworkStatus';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+
+  useNetworkStatus()
   const [loaded] = useFonts({
     LexendMega_100Thin: require('@assets/fonts/LexendMega-Thin.ttf'),
     LexendMega_200ExtraLight: require('@assets/fonts/LexendMega-ExtraLight.ttf'),
