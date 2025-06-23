@@ -7,9 +7,8 @@ export const useDebouncedValue = <T>(value: T, delay = 500): T => {
     const handler = setTimeout(() => setDebouncedValue(value), delay);
 
     return () => {
-      clearTimeout(handler); 
+      clearTimeout(handler);
     };
   }, [value, delay]);
-console.log("value debounded ", debouncedValue)
   return debouncedValue;
 };

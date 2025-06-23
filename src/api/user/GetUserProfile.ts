@@ -7,9 +7,9 @@ import { apiUrls } from '../Common';
 
 export const useGetCurrentUser = () => {
   const { data, isLoading, error } = useQuery<UserSummary>({
-    queryKey: [apiUrls.userDetails],
+    queryKey: [apiUrls.userProfile],
     queryFn: async () => {
-      const response = await client.get(apiUrls.userDetails);
+      const response = await client.get(apiUrls.userProfile);
       const coalisionRes = await client.get(
         apiUrls.coalision.replace(':id', response.data.id)
       );

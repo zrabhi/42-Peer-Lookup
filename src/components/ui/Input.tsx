@@ -1,9 +1,9 @@
 import { type ElementType, useCallback, useMemo, useState } from 'react';
 import { TextInput, type TextInputProps, View } from 'react-native';
+import { moderateScale } from 'react-native-size-matters';
 import { tv } from 'tailwind-variants';
 
 import Colors from '@/utils/Colors';
-import { moderateScale } from 'react-native-size-matters';
 
 interface InputProps extends TextInputProps {
   disabled?: boolean;
@@ -16,11 +16,13 @@ interface InputProps extends TextInputProps {
 
 const InputVariants = tv({
   slots: {
-    container: 'relative overflow-visible  h-16 w-full  rounded-full border bg-white',
+    container:
+      'relative h-16  w-full overflow-visible  rounded-full border bg-white',
     inputContainer: 'flex-1 flex-row  items-center justify-between px-6',
     label: 'font-medium text-gray-100',
     input: 'flex-1 bg-white pl-4 pr-6 font-medium text-gray-100',
-    shadow: 'absolute left-1.5 top-1.5 size-full rounded-full bg-black z-[-9999]',
+    shadow:
+      'absolute left-1.5 top-1.5 z-[-9999] size-full rounded-full bg-black',
   },
   variants: {
     disabled: {
@@ -74,7 +76,11 @@ export const Input = ({
           {...rest}
         />
         {InputIcon && (
-          <InputIcon strokeWidth={2.5} size={moderateScale(20)} color={Colors.gray[100]} />
+          <InputIcon
+            strokeWidth={2.5}
+            size={moderateScale(20)}
+            color={Colors.gray[100]}
+          />
         )}
       </View>
       <View className={style.shadow({ focus: isFocus })} />

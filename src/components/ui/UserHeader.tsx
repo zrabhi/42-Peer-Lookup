@@ -1,7 +1,8 @@
 import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
+import { router } from 'expo-router';
 import { Settings } from 'lucide-react-native';
-import { memo, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { twMerge } from 'tailwind-merge';
 
@@ -25,6 +26,11 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
     [className]
   );
 
+  const handleOnPress = useCallback(() => {
+    process.env.EXPO_OS === 'ios' && Haptics.selectionAsync(),
+      router.push('/settings');
+  }, []);
+
   return (
     <View className={style}>
       <View className="flex-row items-center gap-4">
@@ -47,9 +53,7 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
       </View>
 
       <Pressable
-        onPressIn={() =>
-          process.env.EXPO_OS === 'ios' && Haptics.selectionAsync()
-        }
+        onPressIn={handleOnPress}
         className="size-12 items-center justify-center rounded-full border-2 border-black bg-primary-200"
       >
         <Settings strokeWidth={2.5} />

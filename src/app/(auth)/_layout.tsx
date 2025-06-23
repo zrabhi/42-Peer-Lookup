@@ -7,7 +7,7 @@ export default function AuthLayout() {
 
   console.log('in AuthLayout layout !!!', isAuthenticated);
 
-  if (isAuthenticated) return <Redirect href={'/(tabs)'} />;
+  if (isAuthenticated) return <Redirect href={'/(tabs)/users'} />;
 
   return (
     <Stack>

@@ -1,21 +1,16 @@
 import { useGetPaginatedUsers } from '@api/user/GetUsers';
 import { FlashList } from '@shopify/flash-list';
+import Colors from '@utils/Colors';
 import * as Haptics from 'expo-haptics';
-import React, { useCallback, useState } from 'react';
-import {
-  ActivityIndicator,
-  Platform,
-  Pressable,
-  RefreshControl,
-  View,
-} from 'react-native';
+import { router } from 'expo-router';
+import React, { useCallback } from 'react';
+import { ActivityIndicator, Pressable, RefreshControl } from 'react-native';
 
 import { ErrorOccurredIllustration } from './icons/ErrorOccurredIllustration';
 import { NoResultIllustration } from './icons/NoResultIllustration';
-import { AlertMessage } from './ui/EmptyList';
-import { UserCard } from './UserCard';
+import { AlertMessage } from './ui/AlertMessage';
 import { Loading } from './ui/Loading';
-import Colors from '@/utils/Colors';
+import { UserCard } from './UserCard';
 
 interface UsersListProps {
   searchedUser?: string;
@@ -25,10 +20,13 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
   const { users, error, invalidate, isFetchingNextPage, isLoading, loadMore } =
     useGetPaginatedUsers(searchedUser);
 
-  const handleOnPress = useCallback(
-    () => process.env.EXPO_OS === 'ios' && Haptics.selectionAsync(),
-    []
-  );
+  const handleOnPress = useCallback((userId: string) => {
+    process.env.EXPO_OS === 'ios' && Haptics.selectionAsync(),
+      router.push({
+        pathname: '/users/[id]',
+        params: { id: userId },
+      });
+  }, []);
 
   if (error)
     return (
@@ -50,7 +48,7 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
             message={
               searchedUser
                 ? `Hmm... no matching users for "${searchedUser}" `
-                :  "Hmm... no users available at the moment. "
+                : 'Hmm... no users available at the moment. '
             }
           />
         ) : undefined
@@ -77,7 +75,10 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
       }
       contentContainerStyle={{ paddingHorizontal: 24 }}
       renderItem={({ item: user }) => (
-        <Pressable className="mb-10" onPress={handleOnPress}>
+        <Pressable
+          className="mb-10"
+          onPress={() => handleOnPress(user.id.toString())}
+        >
           <UserCard
             image={user.image.versions.medium}
             kind={user.kind}

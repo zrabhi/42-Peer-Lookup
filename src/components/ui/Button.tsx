@@ -26,6 +26,7 @@ interface ButtonProps extends ComponentProps<typeof Pressable> {
   variant?: ButtonVariantType;
   labelClassName?: string;
   size?: buttonSize;
+  textSize?: number;
   disabled?: boolean;
   buttonIcon?: ElementType;
   onPress: () => void;
@@ -37,9 +38,9 @@ const ButtonVariant = tv({
   slots: {
     container: 'relative w-full',
     pressable:
-      'z-99 flex-row items-center  justify-center rounded-full border border-black  bg-primary-200 px-4',
+      'z-[99999] flex-row items-center  justify-center rounded-full border border-black  bg-primary-200 px-4',
     label: 'p-2  font-bold text-black ',
-    shadow: 'absolute left-1.5 top-1.5 z-[-9999]  rounded-full  bg-black',
+    shadow: '-z-99 absolute left-1.5 top-1.5  rounded-full  bg-black',
     indicator: 'text-black dark:text-white',
   },
   variants: {
@@ -64,7 +65,7 @@ const ButtonVariant = tv({
         pressable: 'bg-tertiary-200 border-gray-300', // the bg-colors are still not defined in Colors.js
       },
       Danger: {
-        pressable: 'border-red-500 bg-red-200', // the bg-colors are still not defined in Colors.js
+        pressable: 'bg-primary-100', // the bg-colors are still not defined in Colors.js
       },
       Success: {
         pressable: 'border-green-500 bg-green-200', // the bg-colors are still not defined in Colors.js
@@ -117,6 +118,7 @@ export const Button = ({
 
   const iconSize = size === 'sm' ? 14 : size === 'md' ? 16 : 18;
 
+  console.log(styles.shadow(), 'ss', styles.container());
   return (
     <View className={styles.container({ className: containerClassName })}>
       <Pressable
@@ -146,7 +148,6 @@ export const Button = ({
           </>
         )}
       </Pressable>
-
       <View className={styles.shadow({ className: containerClassName })} />
     </View>
   );

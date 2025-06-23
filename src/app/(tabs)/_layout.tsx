@@ -1,24 +1,22 @@
-import { clearStorage } from '@/utils/Storage';
 import { HapticTab } from '@components/HapticTab';
 import { ProtectedRoutes } from '@components/ProtectedRoutes';
-import { IconSymbol } from '@components/ui/IconSymbol.ios';
 import colors from '@utils/Colors';
 import { ThemeColors } from '@utils/ThemeColors';
 import { Tabs } from 'expo-router';
 import { Cctv } from 'lucide-react-native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Platform, useColorScheme } from 'react-native';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-  
+
   return (
     <ProtectedRoutes>
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: ThemeColors[colorScheme ?? 'light'].tint,
           headerShown: false,
-          tabBarHideOnKeyboard:true,
+          tabBarHideOnKeyboard: true,
           tabBarButton: HapticTab,
           tabBarLabelStyle: {
             fontFamily: 'LexendMega_700Bold',
@@ -49,7 +47,7 @@ export default function TabLayout() {
         }}
       >
         <Tabs.Screen
-          name="index"
+          name="users/index"
           options={{
             title: 'Users',
             tabBarIcon: ({ color }) => <Cctv size={28} color={color} />,

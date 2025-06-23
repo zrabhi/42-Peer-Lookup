@@ -1,5 +1,5 @@
 import { Loading } from '@components/ui/Loading';
-import { AUTH_KEY, getItem, removeItem, setItem } from '@utils/Storage';
+import { AUTH_KEY, clearStorage, getItem, setItem } from '@utils/Storage';
 import {
   createContext,
   type Dispatch,
@@ -18,6 +18,7 @@ interface AuthContextType {
   setAuthenticatedUser: Dispatch<SetStateAction<UserSummary>>;
   setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
   authenticatedUser: UserSummary;
+  setLoading: Dispatch<SetStateAction<boolean>>;
   signOut: () => Promise<void>;
 }
 
@@ -57,7 +58,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const signOut = async () => {
-    await removeItem(AUTH_KEY);
+    await clearStorage();
     setAuthenticatedUser(UserSummaryInitValue);
     setIsAuthenticated(false);
   };
@@ -67,6 +68,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     authenticatedUser,
     setIsAuthenticated,
     setAuthenticatedUser,
+    setLoading,
     signIn,
     signOut,
   };

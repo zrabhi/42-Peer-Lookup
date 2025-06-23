@@ -1,17 +1,14 @@
+import { useGetAccessToken } from '@api/auth/GetAccessToken';
+import { apiUrls } from '@api/Common';
+import { FortyTwoIcon } from '@components/icons/FortyTwoIcon';
+import { FortyTwoLogo } from '@components/icons/FortyTwoLogo';
+import { Button } from '@components/ui/Button';
+import { Text } from '@components/ui/Text';
 import { Env } from '@utils/Env';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { router } from 'expo-router';
-import { Text } from '@components/ui/Text';
 import React, { memo, useCallback, useEffect } from 'react';
 import { SafeAreaView, View } from 'react-native';
-
-import { useGetAccessToken } from '@/api/auth/GetAccessToken';
-import { apiUrls } from '@/api/Common';
-import { FortyTwoIcon } from '@/components/icons/FortyTwoIcon';
-import { FortyTwoLogo } from '@/components/icons/FortyTwoLogo';
-import { Button } from '@/components/ui/Button';
-import { ToastType } from '@/types/ToastType';
-import { openToaster } from '@/utils/Helpers';
 
 const discovery = {
   authorizationEndpoint: Env.API_URL + apiUrls.oauth,
@@ -58,8 +55,8 @@ export default function AuthScreen() {
     if (response?.type === 'success' && response.params?.code) {
       await getAccessToken({ code: response.params.code });
 
-     //  openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
-      router.push('/(tabs)');
+      // openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
+      router.push('/(tabs)/users');
     }
   }, [response]);
 
