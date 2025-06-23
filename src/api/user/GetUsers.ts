@@ -1,5 +1,7 @@
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
+
 import { type UserKind } from '@/types/UserKind';
+
 import { client } from '../Client';
 
 interface ImageVersions {
@@ -60,7 +62,7 @@ export const useGetPaginatedUsers = (searchedUser?: string) => {
 
     getNextPageParam: (lastPage, allPages) =>
       lastPage.hasNext ? allPages.length + 1 : undefined,
-    
+
     staleTime: Infinity,
   });
 

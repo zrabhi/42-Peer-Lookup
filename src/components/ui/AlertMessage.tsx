@@ -11,7 +11,11 @@ interface EmptyListProps {
 export const AlertMessage = memo(
   ({ alertIcon: AlertIcon, className, message }: EmptyListProps) => {
     const style = useMemo(
-      () => twMerge('flex-1 justify-center gap-28 items-center ', className),
+      () =>
+        twMerge(
+          'flex-1 justify-center gap-28 items-center bg-peach ',
+          className
+        ),
       [className]
     );
     return (

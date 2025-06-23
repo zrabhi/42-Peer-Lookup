@@ -5,7 +5,7 @@ import { UserHeader } from '@components/ui/UserHeader';
 import { useAuth } from '@utils/auth/AuthProvider';
 import { Search } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
-import { Platform, SafeAreaView, View, Animated } from 'react-native';
+import { Animated, Platform, SafeAreaView, View } from 'react-native';
 
 import { PaginatedUsersList } from '@/components/PaginatedUsersList';
 import { useDebouncedValue } from '@/hooks/UseDebouncedValue';
@@ -13,10 +13,10 @@ import { useDebouncedValue } from '@/hooks/UseDebouncedValue';
 export default function HomeScreen() {
   const { data, isLoading } = useGetCurrentUser();
   const { setAuthenticatedUser } = useAuth();
-  
+
   const [searchedUser, setSearchedUser] = useState<string>('');
   const [fadeAnim] = useState(new Animated.Value(0));
-   const debouncedSearch =  useDebouncedValue(searchedUser, 400)
+  const debouncedSearch = useDebouncedValue(searchedUser, 400);
 
   useEffect(() => {
     if (data) {
@@ -43,7 +43,7 @@ export default function HomeScreen() {
         }}
       >
         <UserHeader
-          className={`${Platform.OS === 'android' ? 'pt-14 px-5' : 'p-5'}`}
+          className={`${Platform.OS === 'android' ? 'px-5 pt-14' : 'p-5'}`}
         />
         <View className="px-6">
           <Input

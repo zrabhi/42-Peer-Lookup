@@ -1,31 +1,14 @@
-import {Text} from '@components/ui/Text'
-import { ThemedView } from '@components/ThemedView';
-import { Link, Stack } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import { OfflineIllustration } from '@/components/icons/OfflineIllustration';
+import { AlertMessage } from '@/components/ui/AlertMessage';
+
+// TODO: ADD got home screen button !!!!
 
 export default function NotFoundScreen() {
   return (
-    <>
-      <Stack.Screen options={{ title: 'Oops!' }} />
-      <ThemedView style={styles.container}>
-        <Text >This screen does not exist.</Text>
-        <Link href="/" style={styles.link}>
-          <Text >Go to home screen!</Text>
-        </Link>
-      </ThemedView>
-    </>
+    <AlertMessage
+      className="px-4"
+      alertIcon={OfflineIllustration}
+      message="Opss.. this screen doesn t exist"
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
-});

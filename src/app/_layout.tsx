@@ -42,12 +42,13 @@ export default function RootLayout() {
   return (
     <Providers>
       <Stack>
-        <Stack.Screen
-          name="(auth)"
-          // redirect={!!isAuthenticated}
-          options={{ headerShown: false }}
-        />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="settings/index"
+          options={{ headerShown: false, presentation: 'modal' }}
+        />
       </Stack>
     </Providers>
   );

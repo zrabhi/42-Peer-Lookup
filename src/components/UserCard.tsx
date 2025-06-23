@@ -1,3 +1,4 @@
+import { Text } from '@components/ui/Text';
 import { ChevronRight, Telescope } from 'lucide-react-native';
 import { View } from 'react-native';
 
@@ -5,7 +6,6 @@ import { type UserKind } from '@/types/UserKind';
 import Colors from '@/utils/Colors';
 
 import { NImage } from './Image';
-import { Text } from '@components/ui/Text';
 interface UserCardProps {
   kind: UserKind;
   displayname: string | null;
@@ -22,8 +22,8 @@ export const UserCard = ({ kind, displayname, image }: UserCardProps) => {
             {kind}
           </Text>
         </View>
-        <View className="flex-row flex-1 items-center justify-between">
-          <View className="flex-row flex-1  items-center  gap-4">
+        <View className="flex-1 flex-row items-center justify-between">
+          <View className="flex-1 flex-row  items-center  gap-4">
             <NImage imageSource={image} />
             <View className="flex-1 gap-2">
               <Text
