@@ -118,7 +118,6 @@ export const Button = ({
 
   const iconSize = size === 'sm' ? 14 : size === 'md' ? 16 : 18;
 
-  console.log(styles.shadow(), 'ss', styles.container());
   return (
     <View className={styles.container({ className: containerClassName })}>
       <Pressable
