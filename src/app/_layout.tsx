@@ -17,33 +17,21 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 
 import { ApiProvider } from '@/api';
-import { useNetworkStatus } from '@/hooks/UseNetworkStatus';
+import { OfflineIllustration } from '@/components/icons/OfflineIllustration';
+import { AlertMessage } from '@/components/ui/AlertMessage';
+import { useNetworkConnectivity } from '@/hooks/UseNetworkStatus';
 
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+export default function AppLayout() {
+  const isNetworkConnected = useNetworkConnectivity();
 
-  useNetworkStatus()
-  const [loaded] = useFonts({
-    LexendMega_100Thin: require('@assets/fonts/LexendMega-Thin.ttf'),
-    LexendMega_200ExtraLight: require('@assets/fonts/LexendMega-ExtraLight.ttf'),
-    LexendMega_300Light: require('@assets/fonts/LexendMega-Light.ttf'),
-    LexendMega_500Medium: require('@assets/fonts/LexendMega-Medium.ttf'),
-    LexendMega_600SemiBold: require('@assets/fonts/LexendMega-SemiBold.ttf'),
-    LexendMega_700Bold: require('@assets/fonts/LexendMega-Bold.ttf'),
-    LexendMega_800ExtraBold: require('@assets/fonts/LexendMega-ExtraBold.ttf'),
-    LexendMega_900Black: require('@assets/fonts/LexendMega-Black.ttf'),
-    LexendMega_400Regular: require('@assets/fonts/LexendMega-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) SplashScreen.hideAsync();
-  }, [loaded]);
-
-  if (!loaded) return null;
+  // Instead of returning <AlertMessage /> directly when !isNetworkConnected,
+  // we use conditional rendering inside the component tree so the AppProviders and navigation
+  // remain mounted. This avoids unmounting the entire app when offline, preserving state and preventing full re-renders.
 
   return (
-    <Providers>
+    <AppProviders>
       <Stack>
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -53,14 +41,21 @@ export default function RootLayout() {
           options={{ headerShown: false, presentation: 'modal' }}
         />
       </Stack>
-    </Providers>
+      {!isNetworkConnected && (
+        <AlertMessage
+          className="absolute size-full"
+          alertIcon={OfflineIllustration}
+          message="Oops! No internet connection. Please check your network and try again."
+        />
+      )}
+    </AppProviders>
   );
 }
 
-const Providers = ({ children }: { children: ReactNode }) => {
+const AppProviders = ({ children }: { children: ReactNode }) => {
   const colorScheme = useColorScheme();
 
-  const [loaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     LexendMega_100Thin: require('@assets/fonts/LexendMega-Thin.ttf'),
     LexendMega_200ExtraLight: require('@assets/fonts/LexendMega-ExtraLight.ttf'),
     LexendMega_300Light: require('@assets/fonts/LexendMega-Light.ttf'),
@@ -73,8 +68,8 @@ const Providers = ({ children }: { children: ReactNode }) => {
   });
 
   useEffect(() => {
-    if (loaded) SplashScreen.hideAsync();
-  }, [loaded]);
+    if (fontsLoaded) SplashScreen.hideAsync();
+  }, [fontsLoaded]);
 
   return (
     <GestureHandlerRootView className="flex-1">

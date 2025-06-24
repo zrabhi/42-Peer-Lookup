@@ -11,7 +11,6 @@ import { NoResultIllustration } from './icons/NoResultIllustration';
 import { AlertMessage } from './ui/AlertMessage';
 import { Loading } from './ui/Loading';
 import { UserCard } from './UserCard';
-import { AppRoutes } from '@/api/Common';
 
 interface UsersListProps {
   searchedUser?: string;

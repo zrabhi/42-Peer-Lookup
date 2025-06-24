@@ -1,14 +1,20 @@
-import { useEffect } from "react"
 import NetInfo from '@react-native-community/netinfo';
+import { useEffect, useState } from 'react';
 
+// This hook checks the network status.
+// If there is no network, an alert message can be rendered (optionally with a refresh button).
+export const useNetworkConnectivity = () => {
+  const [isNetworkConnected, setIsNetworkConnected] = useState<boolean>(false);
 
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      setIsNetworkConnected(
+        state.isInternetReachable ?? state.isConnected ?? false
+      );
+    });
 
-// TODO: This is hook is reponsible for checking the network status 
-// of there is no netwrok an alertMessage must be render to the user , (optional: display a refresh button)
+    return () => unsubscribe();
+  }, []);
 
-export const useNetworkStatus = () =>{
-   
-    useEffect(()=>{
-
-    }, [])
-}
+  return isNetworkConnected;
+};
