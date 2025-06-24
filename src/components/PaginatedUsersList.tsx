@@ -4,7 +4,7 @@ import Colors from '@utils/Colors';
 import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
 import React, { useCallback } from 'react';
-import { ActivityIndicator, Pressable, RefreshControl } from 'react-native';
+import { ActivityIndicator, RefreshControl } from 'react-native';
 
 import { ErrorOccurredIllustration } from './icons/ErrorOccurredIllustration';
 import { NoResultIllustration } from './icons/NoResultIllustration';
@@ -14,6 +14,7 @@ import { UserCard } from './UserCard';
 
 interface UsersListProps {
   searchedUser?: string;
+  onScroll?: (...args: any[]) => void;
 }
 
 export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
@@ -53,6 +54,8 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
           />
         ) : undefined
       }
+      /*onScroll={onScroll}*/
+      showsVerticalScrollIndicator={false}
       className="flex-1 pt-4"
       keyExtractor={(_item, index) => index.toString()}
       refreshControl={
@@ -75,17 +78,14 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
       }
       contentContainerStyle={{ paddingHorizontal: 24 }}
       renderItem={({ item: user }) => (
-        <Pressable
+        <UserCard
           className="mb-10"
           onPress={() => handleOnPress(user.id.toString())}
-        >
-          <UserCard
-            image={user.image.versions.medium}
-            kind={user.kind}
-            location={user.location}
-            displayname={user.displayname}
-          />
-        </Pressable>
+          image={user.image.versions.medium}
+          kind={user.kind}
+          location={user.location}
+          displayname={user.displayname}
+        />
       )}
     />
   );

@@ -5,7 +5,13 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Platform,
+  Pressable,
+  Text,
+  View,
+} from 'react-native';
 import { tv } from 'tailwind-variants';
 
 type buttonSize = 'sm' | 'md' | 'lg';
@@ -18,8 +24,10 @@ type ButtonVariantType =
   | 'Success'
   | undefined;
 
+type ButtonShapeType = 'rounded' | 'square';
 interface ButtonProps extends ComponentProps<typeof Pressable> {
-  label: string;
+  label?: string;
+  isIcon?: boolean;
   containerClassName?: string;
   isLoading?: boolean;
   className?: string;
@@ -27,6 +35,7 @@ interface ButtonProps extends ComponentProps<typeof Pressable> {
   labelClassName?: string;
   size?: buttonSize;
   textSize?: number;
+  shape?: ButtonShapeType;
   disabled?: boolean;
   buttonIcon?: ElementType;
   onPress: () => void;
@@ -40,7 +49,7 @@ const ButtonVariant = tv({
     pressable:
       'z-[99999] flex-row items-center  justify-center rounded-full border border-black  bg-primary-200 px-4',
     label: 'p-2  font-bold text-black ',
-    shadow: '-z-99 absolute left-1.5 top-1.5  rounded-full  bg-black',
+    shadow: '-z-99 absolute left-1.5 top-1.5   rounded-full  bg-black',
     indicator: 'text-black dark:text-white',
   },
   variants: {
@@ -52,6 +61,23 @@ const ButtonVariant = tv({
     isPressed: {
       true: {
         shadow: 'hidden',
+      },
+    },
+    shape: {
+      rounded: {
+        pressable: 'rounded-full',
+        shadow: 'rounded-full',
+      },
+      square: {
+        pressable: 'rounded',
+        shadow: 'rounded',
+      },
+    },
+    isIcon: {
+      true: {
+        pressable: 'h-12 w-12 border-2',
+        label: 'hidden',
+        shadow: 'h-12 w-12',
       },
     },
     variant: {
@@ -90,46 +116,53 @@ const ButtonVariant = tv({
     },
   },
   defaultVariants: {
+    isIcon: false,
+    shape: 'rounded',
     variant: 'Primary',
     isPressed: false,
     disabled: false,
-    size: 'md',
+    size: undefined,
   },
 });
 
 export const Button = ({
-  label,
-  size = 'md',
+  label = undefined,
+  isIcon = false,
+  size = isIcon ? undefined : 'md',
+  shape = 'rounded',
+  disabled = false,
+  isLoading = false,
+  buttonIcon: ButtonIcon = undefined,
+  variant = disabled ? undefined : 'Primary',
   className = '',
   labelClassName = '',
   containerClassName = '',
-  buttonIcon: ButtonIcon = undefined,
   onPress,
-  disabled = false,
-  isLoading = false,
-  variant = disabled ? undefined : 'Primary',
   ...rest
 }: ButtonProps) => {
   const [isPressed, setIsPressed] = useState(false);
 
   const styles = useMemo(() => {
-    return ButtonVariant({ size, variant, isPressed, disabled });
-  }, [size, variant, isPressed, disabled]);
+    return ButtonVariant({ size, shape, variant, isIcon, isPressed, disabled });
+  }, [size, variant, isPressed, disabled, shape, isIcon]);
 
   const iconSize = size === 'sm' ? 14 : size === 'md' ? 16 : 18;
 
-  console.log(styles.shadow(), 'ss', styles.container());
   return (
     <View className={styles.container({ className: containerClassName })}>
       <Pressable
         disabled={disabled || isLoading}
         onPressIn={() => {
           setIsPressed(true);
-          process.env.EXPO_OS === 'ios' && Haptics.selectionAsync();
+          Platform.OS === 'ios' && Haptics.selectionAsync();
         }}
         onPressOut={() => setIsPressed(false)}
         accessible
         role="button"
+        accessibilityState={{
+          disabled: disabled || isLoading,
+          busy: isLoading,
+        }}
         accessibilityRole="button"
         onPress={onPress}
         className={styles.pressable({ className })}
@@ -144,7 +177,13 @@ export const Button = ({
                 {label}
               </Text>
             )}
-            {ButtonIcon && <ButtonIcon height={iconSize} width={iconSize} />}
+            {ButtonIcon && (
+              <ButtonIcon
+                strokeWidth={2.5}
+                height={iconSize}
+                width={iconSize}
+              />
+            )}
           </>
         )}
       </Pressable>

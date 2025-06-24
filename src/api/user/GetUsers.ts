@@ -32,6 +32,7 @@ interface PaginatedResponse {
   users: User[];
   hasNext: boolean;
 }
+
 export const useGetPaginatedUsers = (searchedUser?: string) => {
   const queryClient = useQueryClient();
 

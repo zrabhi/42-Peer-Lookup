@@ -9,18 +9,18 @@ export default function SettingsScreen() {
   const { signOut, setLoading } = useAuth();
 
   const handleOnPress = useCallback(async () => {
-    setLoading(true); // this is jut for testing  purpose
+    setLoading(true); // this is just for testing  purpose
     await signOut();
     setLoading(false); // this one too
     router.replace('/(auth)');
   }, []);
 
   return (
-    <View className="flex-1   bg-peach">
-      <Text textSize={18} className=" pt-10 text-center font-bold ">
+    <View className="flex-1  bg-peach">
+      <Text textSize={18} className="pt-10 text-center font-bold ">
         Settings
       </Text>
-      <View className="px-6  pt-20">
+      <View className="px-6   pt-20">
         <Button
           label="Logout"
           variant="Danger"

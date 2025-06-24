@@ -1,25 +1,46 @@
 import { Text } from '@components/ui/Text';
+import Colors from '@utils/Colors';
+import * as Haptics from 'expo-haptics';
 import { ChevronRight, Telescope } from 'lucide-react-native';
-import { View } from 'react-native';
+import { useState } from 'react';
+import { Platform, Pressable, View } from 'react-native';
 
-import { type UserKind } from '@/types/UserKind';
-import Colors from '@/utils/Colors';
+import { UserKind } from '@/types/UserKind';
 
 import { NImage } from './Image';
 interface UserCardProps {
   kind: UserKind;
+  onPress?: () => void;
+  className?: string;
   displayname: string | null;
   location?: string | null;
   image: string | null;
 }
 
-export const UserCard = ({ kind, displayname, image }: UserCardProps) => {
+export const UserCard = ({
+  kind,
+  displayname,
+  image,
+  onPress,
+  className,
+}: UserCardProps) => {
+  const [isPressed, setIsPressed] = useState<boolean>(false);
   return (
-    <View className="relative w-full">
+    <Pressable
+      onPress={onPress}
+      onPressOut={() => setIsPressed(false)}
+      accessible
+      role="listitem"
+      onPressIn={() => {
+        setIsPressed(true);
+        Platform.OS === 'ios' && Haptics.selectionAsync();
+      }}
+      className={`relative w-full ${className}`}
+    >
       <View className="rounded-3xl  border border-black bg-white p-6">
         <View className="absolute -top-4 right-10 rounded-full bg-primary-100 px-4 py-2">
           <Text textSize={14} className="font-bold  text-white">
-            {kind}
+            {kind === UserKind.ADMIN ? 'Staff' : kind}
           </Text>
         </View>
         <View className="flex-1 flex-row items-center justify-between">
@@ -45,7 +66,9 @@ export const UserCard = ({ kind, displayname, image }: UserCardProps) => {
           <ChevronRight color={Colors.black} strokeWidth={2.5} size={26} />
         </View>
       </View>
-      <View className="absolute left-1.5 top-1.5 z-[-9999] size-full rounded-3xl  bg-black" />
-    </View>
+      <View
+        className={`absolute ${isPressed && 'hidden'} left-1.5 top-1.5 z-[-9999] size-full rounded-3xl  bg-black`}
+      />
+    </Pressable>
   );
 };
