@@ -3,12 +3,13 @@ import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { Settings } from 'lucide-react-native';
 import { memo, useCallback, useMemo } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import { twMerge } from 'tailwind-merge';
 
 import { useAuth } from '@/utils/auth/AuthProvider';
 
 import { NImage } from '../Image';
+import { Button } from './Button';
 
 interface UserHeaderProps {
   className?: string;
@@ -27,13 +28,12 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
   );
 
   const handleOnPress = useCallback(() => {
-    process.env.EXPO_OS === 'ios' && Haptics.selectionAsync(),
-      router.push('/settings');
+    Platform.OS === 'ios' && Haptics.selectionAsync(), router.push('/settings');
   }, []);
 
   return (
     <View className={style}>
-      <View className="flex-row items-center gap-4">
+      <View className="flex-row  items-center gap-4">
         <NImage imageSource={authenticatedUser.image_url} />
         <View className="justify-center gap-1">
           <Text className="font-bold text-lg">
@@ -51,13 +51,9 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
           </View>
         </View>
       </View>
-
-      <Pressable
-        onPressIn={handleOnPress}
-        className="size-12 items-center justify-center rounded-full border-2 border-black bg-primary-200"
-      >
-        <Settings strokeWidth={2.5} />
-      </Pressable>
+      <View className="pr-1">
+        <Button onPress={handleOnPress} buttonIcon={Settings} isIcon />
+      </View>
     </View>
   );
 });
