@@ -8,10 +8,10 @@ import { Loading } from '@/components/ui/Loading';
 
 export default function UserDetails() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  console.log('user id is ====> ', id);
-  const { data, isLoading } = useGetUserDetails(id);
+  const {  isLoading } = useGetUserDetails(id);
 
-  console.log('user details is ===>', data);
+  // console.log('user details is ===>', data && data.displayname)
+
   if (isLoading) return <Loading />;
   return (
     <ProtectedRoutes>
