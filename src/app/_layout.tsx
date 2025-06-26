@@ -1,6 +1,9 @@
 import '../../global.css';
 
+import { OfflineIllustration } from '@components/icons/OfflineIllustration';
+import { AlertMessage } from '@components/ui/AlertMessage';
 import { toasterConfig } from '@config/ToasterConfig';
+import { useNetworkConnectivity } from '@hooks/UseNetworkStatus';
 import {
   DarkTheme,
   DefaultTheme,
@@ -17,9 +20,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 
 import { ApiProvider } from '@/api';
-import { OfflineIllustration } from '@/components/icons/OfflineIllustration';
-import { AlertMessage } from '@/components/ui/AlertMessage';
-import { useNetworkConnectivity } from '@/hooks/UseNetworkStatus';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -35,11 +35,8 @@ export default function AppLayout() {
       <Stack>
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(content)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="settings/index"
-          options={{ headerShown: false, presentation: 'modal' }}
-        />
       </Stack>
       {!isNetworkConnected && (
         <AlertMessage

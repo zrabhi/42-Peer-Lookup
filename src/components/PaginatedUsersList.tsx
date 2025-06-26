@@ -24,7 +24,7 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
   const handleOnPress = useCallback((userId: string) => {
     process.env.EXPO_OS === 'ios' && Haptics.selectionAsync(),
       router.push({
-        pathname: '/users/[id]',
+        pathname: '/(content)/users/[id]',
         params: { id: userId },
       });
   }, []);
