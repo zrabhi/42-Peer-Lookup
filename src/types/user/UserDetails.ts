@@ -2,11 +2,13 @@ import { type UserKind } from '../UserKind';
 import { type CursusProject } from './CursusProject';
 import { type UserAchievement } from './UserAchievement';
 import { type UserCampus } from './UserCampus';
+import { UserCursusStat } from './UserCursusStat';
 import { type UserImage } from './UserImage';
 
 export interface UserDetails {
   id: number;
   displayname: string;
+  cursus_users: UserCursusStat[];
   achievements: UserAchievement[];
   image: UserImage;
   campus: UserCampus[];

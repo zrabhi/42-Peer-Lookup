@@ -2,6 +2,7 @@ import Toast from 'react-native-toast-message';
 
 import { type AuthTokenResponse } from '@/types/AuthTokenResponse';
 import { type ToastType } from '@/types/ToastType';
+import { UserCursusStat, UserGrade } from '@/types/user/UserCursusStat';
 
 export const openToaster = (type: ToastType, message: string) => {
   Toast.show({
@@ -27,3 +28,8 @@ export const isTokenExpired = (token: AuthTokenResponse): boolean => {
 
   return expiresAt < now;
 };
+
+export const getLatestLevel = (cursusUsers: UserCursusStat[]): number =>
+  cursusUsers
+    .slice()
+    .find((cursus) => cursus.grade === UserGrade.TRANCENDER )?.level || 0;

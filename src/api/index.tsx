@@ -18,8 +18,8 @@ const queryClient = new QueryClient({
       retry: 1,
       throwOnError(_error, _query) {
         openToaster(ToastType.ERROR, 'Something went wrong');
-        console.log(_error);
-        return false;
+        console.log("errrror", _error);
+        return true;
       },
     },
     mutations: {

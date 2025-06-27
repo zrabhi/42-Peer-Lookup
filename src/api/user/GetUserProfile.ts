@@ -24,7 +24,6 @@ export const useGetCurrentUser = () => {
     },
     staleTime: Infinity,
   });
-
   return {
     data,
     isLoading,

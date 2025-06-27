@@ -1,4 +1,4 @@
-import { Image, ImageProps } from 'expo-image';
+import { Image, type ImageProps } from 'expo-image';
 import React from 'react';
 
 interface NImageProps extends ImageProps {
@@ -17,9 +17,9 @@ export const NImage = ({
 }: NImageProps) => {
   return (
     <Image
-    source={imageSource ?? require('@assets/images/avatars/avatar@1.png')}
-    style={{ width, height, borderRadius }}
-    {...rest}
+      source={imageSource ?? require('@assets/images/avatars/avatar@1.png')}
+      style={{ width, height, borderRadius }}
+      {...rest}
     />
   );
 };

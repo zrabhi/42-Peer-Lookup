@@ -1,7 +1,7 @@
+import { NeoBruteView } from '@components/ui/NeoBruteView';
+import { Text } from '@components/ui/Text';
 import { memo } from 'react';
 import { View } from 'react-native';
-import { Text } from '@components/ui/Text';
-import { NeoBruteView } from '@components/ui/NeoBruteView';
 
 interface UserStatsProps {
   wallet: number;
@@ -11,8 +11,8 @@ interface UserStatsProps {
 
 export const UserStats = memo(({ wallet, rank, score }: UserStatsProps) => {
   return (
-    <View className="p-4 flex-row gap-4">
-      <NeoBruteView  className="py-5 px-10 rounded-xl items-center justify-center">
+    <View className="flex-row items-center justify-between gap-4 ">
+      <NeoBruteView className="items-center justify-center rounded-xl px-9 py-3">
         <Text textSize={14} className="font-bold">
           {wallet}
         </Text>
@@ -21,7 +21,7 @@ export const UserStats = memo(({ wallet, rank, score }: UserStatsProps) => {
         </Text>
       </NeoBruteView>
 
-      <NeoBruteView className="py-5 px-10 rounded-xl items-center justify-center">
+      <NeoBruteView className="items-center justify-center rounded-xl px-9 py-3">
         <Text textSize={14} className="font-bold">
           {rank}
         </Text>
@@ -30,7 +30,7 @@ export const UserStats = memo(({ wallet, rank, score }: UserStatsProps) => {
         </Text>
       </NeoBruteView>
 
-      <NeoBruteView className="py-5 px-10 rounded-xl items-center justify-center">
+      <NeoBruteView className="items-center justify-center rounded-xl px-9 py-3">
         <Text textSize={14} className="font-bold">
           {score}
         </Text>

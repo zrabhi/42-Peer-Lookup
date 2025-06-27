@@ -8,12 +8,14 @@ import { Platform, Pressable, View } from 'react-native';
 import { UserKind } from '@/types/UserKind';
 
 import { NImage } from './Image';
+import { HighlightedText } from './ui/HighlightedText';
 interface UserCardProps {
   kind: UserKind;
   onPress?: () => void;
   className?: string;
   displayname: string | null;
   location?: string | null;
+  login?: string | null;
   image: string | null;
 }
 
@@ -21,9 +23,12 @@ export const UserCard = ({
   kind,
   displayname,
   image,
+  login,
+  location,
   onPress,
   className,
 }: UserCardProps) => {
+  console.log('UserCard', kind, displayname, image, login, location);
   const [isPressed, setIsPressed] = useState<boolean>(false);
   return (
     <Pressable
@@ -38,15 +43,15 @@ export const UserCard = ({
       className={`relative w-full ${className}`}
     >
       <View className="rounded-3xl  border border-black bg-white p-6">
-        <View className="absolute -top-4 right-10 rounded-full bg-primary-100 px-4 py-2">
+        <View className="absolute -top-4 right-10 rounded-3xl bg-primary-100 px-4 py-2">
           <Text textSize={14} className="font-bold  text-white">
             {kind === UserKind.ADMIN ? 'Staff' : kind}
           </Text>
         </View>
         <View className="flex-1 flex-row items-center justify-between">
-          <View className="flex-1 flex-row  items-center  gap-4">
+          <View className="flex-1 flex-row justify-start  items-center  gap-4">
             <NImage imageSource={image} />
-            <View className="flex-1 gap-2">
+            <View className="flex-1 items-start  gap-2">
               <Text
                 lineBreakMode="tail"
                 numberOfLines={2}
@@ -55,12 +60,11 @@ export const UserCard = ({
               >
                 {displayname}
               </Text>
-              <View className="flex-row items-center gap-2">
-                <Telescope color={Colors.gray[100]} />
-                <Text className="font-normal text-gray-100">
-                  1337 khouribga
+              <HighlightedText>
+                <Text textSize={14} className="font-medium text-gray-100">
+                  @{login}
                 </Text>
-              </View>
+              </HighlightedText>
             </View>
           </View>
           <ChevronRight color={Colors.black} strokeWidth={2.5} size={26} />

@@ -18,7 +18,7 @@ export const Text = ({
   textSize = 12,
   ...rest
 }: Props) => {
-  const textStyle =useMemo(
+  const textStyle = useMemo(
     () => twMerge('text-black  dark:text-white  font-normal', className),
     [className]
   );

@@ -1,3 +1,6 @@
+import { ToastType } from '@/types/ToastType';
+import { openToaster } from '@/utils/Helpers';
+import { clearStorage, getItem } from '@/utils/Storage';
 import { useGetAccessToken } from '@api/auth/GetAccessToken';
 import { apiUrls } from '@api/Common';
 import { FortyTwoIcon } from '@components/icons/FortyTwoIcon';
@@ -54,12 +57,10 @@ export default function AuthScreen() {
   const handleAuthCode = useCallback(async () => {
     if (response?.type === 'success' && response.params?.code) {
       await getAccessToken({ code: response.params.code });
-
-      // openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
-      // to investigate: when rendering the toater and attempting to navigate , a rendering error get throwed
+      openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
       router.push('/(tabs)/users');
     }
-  }, [response]);
+  }, [response, getAccessToken]);
 
   useEffect(() => {
     handleAuthCode();
@@ -74,7 +75,7 @@ export default function AuthScreen() {
       <AuthenticationHeader />
       <View className="w-full px-10 pb-6">
         <Button
-          isLoading={isPending || !request} // to change
+          isLoading={isPending || !request}
           label="Login with "
           size="lg"
           buttonIcon={FortyTwoIcon}

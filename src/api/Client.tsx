@@ -13,7 +13,7 @@ export const client = axios.create({
 client.interceptors.request.use(async (config) => {
   try {
     const token = await getItem<AuthTokenResponse>(AUTH_KEY);
-
+ 
     if (isTokenExpired(token))
       return Promise.reject(new axios.Cancel('Token expired'));
 

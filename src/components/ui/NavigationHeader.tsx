@@ -1,11 +1,12 @@
-import { memo, useCallback } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { twMerge } from 'tailwind-merge';
-import { Text } from './Text';
-import { Button } from './Button';
-import { ArrowLeft } from 'lucide-react-native';
 import { router } from 'expo-router';
+import { ArrowLeft } from 'lucide-react-native';
+import { memo, useCallback } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { twMerge } from 'tailwind-merge';
+
+import { Button } from './Button';
+import { Text } from './Text';
 
 interface NavigationHeaderProps {
   title: string;
@@ -40,11 +41,3 @@ export const NavigationHeader = memo(
   }
 );
 
-const styles = StyleSheet.create({
-  header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-  },
-});

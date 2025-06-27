@@ -24,7 +24,7 @@ export default function HomeScreen() {
   const debouncedSearch = useDebouncedValue(searchedUser, 400);
 
   const fadeAnim = useAnimatedValue(0);
-
+  console.log(data)
   useEffect(() => {
     if (data) {
       setAuthenticatedUser(data);

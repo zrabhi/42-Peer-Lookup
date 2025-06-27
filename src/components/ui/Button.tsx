@@ -47,7 +47,7 @@ const ButtonVariant = tv({
   slots: {
     container: 'relative w-full',
     pressable:
-      'z-[99999] flex-row items-center  justify-center rounded-full border border-black  bg-primary-200 px-4',
+      'z-[99999] flex-row items-center  justify-center rounded-full border border-black  bg-primary-250 px-4',
     label: 'p-2  font-bold text-black ',
     shadow: '-z-99 absolute left-1.5 top-1.5   rounded-full  bg-black',
     indicator: 'text-black dark:text-white',
@@ -82,7 +82,7 @@ const ButtonVariant = tv({
     },
     variant: {
       Primary: {
-        pressable: 'border-black bg-primary-200',
+        pressable: 'border-black bg-primary-250',
       },
       Secondary: {
         pressable: 'bg-primary-300', // the bg-colors are still not defined in Colors.js

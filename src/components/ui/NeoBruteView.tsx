@@ -1,13 +1,13 @@
-import {
-  View,
-  ViewStyle,
-  StyleSheet,
-  StyleProp,
-  ViewProps,
-} from 'react-native';
-import { memo, ReactNode, useMemo } from 'react';
-import { twMerge } from 'tailwind-merge';
 import Colors from '@utils/Colors';
+import { memo, type ReactNode, useMemo } from 'react';
+import {
+  type StyleProp,
+  StyleSheet,
+  View,
+  type ViewProps,
+  type ViewStyle,
+} from 'react-native';
+import { twMerge } from 'tailwind-merge';
 
 interface NeoBruteViewProps extends ViewProps {
   children: ReactNode;

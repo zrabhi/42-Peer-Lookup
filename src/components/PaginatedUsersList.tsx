@@ -79,12 +79,10 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
       contentContainerStyle={{ paddingHorizontal: 24 }}
       renderItem={({ item: user }) => (
         <UserCard
+          {...user}
           className="mb-10"
           onPress={() => handleOnPress(user.id.toString())}
           image={user.image.versions.medium}
-          kind={user.kind}
-          location={user.location}
-          displayname={user.displayname}
         />
       )}
     />

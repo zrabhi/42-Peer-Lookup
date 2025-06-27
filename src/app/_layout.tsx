@@ -21,6 +21,7 @@ import Toast from 'react-native-toast-message';
 
 import { ApiProvider } from '@/api';
 import { NavigationHeader } from '@/components/ui/NavigationHeader';
+import { getItem } from '@/utils/Storage';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -30,7 +31,6 @@ export default function AppLayout() {
   // Instead of returning <AlertMessage /> directly when !isNetworkConnected,
   // we use conditional rendering inside the component tree so the AppProviders and navigation
   // remain mounted. This avoids unmounting the entire app when offline, preserving state and preventing full re-renders.
-
   return (
     <AppProviders>
       <Stack>

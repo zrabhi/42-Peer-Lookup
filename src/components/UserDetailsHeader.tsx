@@ -1,71 +1,78 @@
 import { memo } from 'react';
-import { Platform, View, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { SquareArrowUpRight } from 'lucide-react-native';
+
+import Colors from '@/utils/Colors';
 import { NImage } from './Image';
-import Colors from '@/utils/Colors'; // assuming you store colors here
-import { Text } from '@components/ui/Text';
 import { NeoBruteView } from './ui/NeoBruteView';
+import { UserLevelBar } from './ui/UserLevelBar';
+import { Text } from '@components/ui/Text';
+import { HighlightedText } from './ui/HighlightedText';
 
 interface UserDetailsHeaderProps {
-  /** Background image URL of the coalition */
-  coalitionBackground: string;
-
-  /** Full display name of the user */
-  displayname: string;
-
-  /** User login (e.g., username) */
-  login: string;
-
-  /** URL to user's profile image */
   userImage: string;
+  userName?: string;
+  userLogin?: string;
+  userLocation?: string;
+  userlevel?: number;
+  onPress?: VoidFunction;
 }
 
 export const UserDetailsHeader = memo(
   ({
-    coalitionBackground,
     userImage,
-    displayname,
-    login,
+    userName ,
+    userLogin,
+    userLocation = '',
+    userlevel = 0,
+    onPress,
   }: UserDetailsHeaderProps) => {
     return (
-      <View className="w-full h-80 border-b-2  border-black">
-        <NImage style={styles.container} imageSource={coalitionBackground} />
-        <NeoBruteView className="absolute  rounded-3xl bg-none -bottom-12 left-[36%] flex-row justify-center  items-center">
-          <NImage
-            accessibilityLabel={`${displayname} 's avatar`}
-            style={styles.avatarImage}
-            imageSource={userImage}
-          />
-        </NeoBruteView>
+      <View className="w-full items-center justify-center pt-40 gap-4">
+        {/* Avatar */}
+        <View className="border-1.5 rounded-full">
+          <NImage style={styles.avatarImage} imageSource={userImage} />
+        </View>
+
+        {/* Name + Login + Link */}
+        <View className="items-center justify-center gap-1">
+          <View className="flex-row gap-2 items-center justify-center  ">
+            <Text
+              numberOfLines={2}
+              ellipsizeMode="tail"
+              textSize={18}
+              className="font-bold max-w-[80%]  "
+            >
+              {userName}
+            </Text>
+            {!!onPress && (
+              <Pressable onPress={onPress}>
+                <SquareArrowUpRight
+                  size={20}
+                  strokeWidth={2.5}
+                  color={Colors.primary[100]}
+                />
+              </Pressable>
+            )}
+          </View>
+            <Text textSize={14} className="font-medium text-gray-100">
+              @{userLogin}
+            </Text>
+            <Hi
+            <Text textSize={14} className="font-medium text-gray-100">
+              @{userLocation ?? 'Unvailable'}
+            </Text>
+        </View>
+       
       </View>
     );
   }
 );
 
-/* <View className="flex-col gap-1 justify-start items-center ">
-          <Text textSize={18} className="font-semibold text-bold">
-            {displayname}
-          </Text>
-          <Text className="text-gray-100" textSize={14}>
-            {'@' + login}
-          </Text>
-        </View> */
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: '100%',
-    borderBottomWidth: 10,
-    borderColor: Colors.primary[100],
-  },
-  avatarContainer: {
-    shadowColor: '#000',
-    shadowOffset: { width: 6, height: 6 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: Platform.OS === 'android' ? 5 : 0,
-  },
   avatarImage: {
-    width: 120,
-    height: 135,
-    borderRadius: 14,
+    width: 90,
+    height: 90,
+    borderRadius: 9999,
   },
 });
