@@ -1,4 +1,4 @@
-type ImageVersionType = 'LARGE' | 'MEDIUM' | 'MICRO' | 'SMALL';
+type ImageVersionType = 'large' | 'medium' | 'micro' | 'small';
 
 export type ImageVersions = {
   [key in ImageVersionType]: string;

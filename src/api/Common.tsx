@@ -5,7 +5,7 @@ export const apiUrls: Record<string, string> = {
   coalision: 'v2/users/:id/coalitions',
   accessToken: 'oauth/token',
   userProfile: 'v2/me',
-  redirectUrl: 'exp://1lqc-3m-anonymous-8081.exp.direct',
+  redirectUrl: 'exp://xswatuk-anonymous-8081.exp.direct',
   userDetails: 'v2/users/:id',
 };
 

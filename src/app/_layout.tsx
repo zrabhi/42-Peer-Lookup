@@ -20,6 +20,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 
 import { ApiProvider } from '@/api';
+import { NavigationHeader } from '@/components/ui/NavigationHeader';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -35,7 +36,16 @@ export default function AppLayout() {
       <Stack>
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="(content)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="users/[id]"
+          options={{
+            header: () => <NavigationHeader title="My Profile" />,
+          }}
+        />
+        <Stack.Screen
+          name="settings/index"
+          options={{ headerShown: false, presentation: 'modal' }}
+        />
         <Stack.Screen name="+not-found" options={{ headerShown: false }} />
       </Stack>
       {!isNetworkConnected && (

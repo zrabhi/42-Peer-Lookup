@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import type { TextProps, TextStyle } from 'react-native';
 import { StyleSheet, Text as NNText } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
@@ -18,12 +18,12 @@ export const Text = ({
   textSize = 12,
   ...rest
 }: Props) => {
-  const textStyle = React.useMemo(
+  const textStyle =useMemo(
     () => twMerge('text-black  dark:text-white  font-normal', className),
     [className]
   );
 
-  const nStyle: TextStyle = React.useMemo(
+  const nStyle: TextStyle = useMemo(
     () =>
       StyleSheet.flatten([
         {
