@@ -28,8 +28,8 @@ export const UserCard = ({
   onPress,
   className,
 }: UserCardProps) => {
-  console.log('UserCard', kind, displayname, image, login, location);
   const [isPressed, setIsPressed] = useState<boolean>(false);
+
   return (
     <Pressable
       onPress={onPress}
@@ -60,11 +60,9 @@ export const UserCard = ({
               >
                 {displayname}
               </Text>
-              <HighlightedText>
-                <Text textSize={14} className="font-medium text-gray-100">
-                  @{login}
-                </Text>
-              </HighlightedText>
+              <Text textSize={13} className="font-medium text-gray-100">
+                @{login}
+              </Text>
             </View>
           </View>
           <ChevronRight color={Colors.black} strokeWidth={2.5} size={26} />

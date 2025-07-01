@@ -10,6 +10,7 @@ export const setItem = async <T>(item: string, value: T) => {
     const itemValue = JSON.stringify(value);
     await AsyncStorage.setItem(item, itemValue);
   } catch (error) {
+    
     console.error(`AsyncStorage getItem error for key "${item}":`, error);
     openToaster(ToastType.ERROR, 'Something went wrong, please try again');
   }

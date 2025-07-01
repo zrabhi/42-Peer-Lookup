@@ -45,7 +45,7 @@ interface ButtonProps extends ComponentProps<typeof Pressable> {
 
 const ButtonVariant = tv({
   slots: {
-    container: 'relative w-full',
+    container: '',
     pressable:
       'z-[99999] flex-row items-center  justify-center rounded-full border border-black  bg-primary-250 px-4',
     label: 'p-2  font-bold text-black ',

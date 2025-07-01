@@ -1,7 +1,7 @@
 import { type ElementType, memo, useMemo } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { twMerge } from 'tailwind-merge';
-
+import { Text } from '@components/ui/Text';
 interface EmptyListProps {
   className?: string;
   message?: string;
@@ -10,6 +10,7 @@ interface EmptyListProps {
 
 export const AlertMessage = memo(
   ({ alertIcon: AlertIcon, className, message }: EmptyListProps) => {
+    
     const style = useMemo(
       () =>
         twMerge(
@@ -18,10 +19,13 @@ export const AlertMessage = memo(
         ),
       [className]
     );
+
     return (
       <View className={style}>
         <AlertIcon />
-        <Text className="text-center  font-bold text-2xl">{message}</Text>
+        <Text textSize={20} className="text-center  font-bold text-2xl">
+          {message}
+        </Text>
       </View>
     );
   }

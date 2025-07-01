@@ -15,13 +15,13 @@ interface NavigationBarProps<T> {
 
 const NavigationTv = tv({
   slots: {
-    tab: 'w-1/2 flex-1 items-center justify-center rounded-lg py-3.5',
+    tab: 'w-1/3 flex-1 items-center justify-center rounded-lg py-3.5',
     label: 'font-semibold',
   },
   variants: {
     isCurrent: {
       true: {
-        tab: 'border bg-primary-250',
+        tab: 'border px-1 bg-primary-300',
         label: 'text-black',
       },
     },
@@ -41,7 +41,7 @@ export const NavigationBar = memo(
     navigationSections,
   }: NavigationBarProps<T>) => {
     return (
-      <NeoBruteView className="flex-row rounded-xl p-2">
+      <NeoBruteView className="flex-row justify-between rounded-xl p-2">
         {navigationSections.map(
           ({
             section: navigationSection,
@@ -59,7 +59,9 @@ export const NavigationBar = memo(
                 className={tab()}
                 onPress={() => onChangeSection(navigationSection)}
               >
-                <Text className={label()}>{tabLabel}</Text>
+                <Text textSize={11} className={label()}>
+                  {tabLabel}
+                </Text>
               </Pressable>
             );
           }

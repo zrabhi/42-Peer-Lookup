@@ -29,7 +29,18 @@ export const isTokenExpired = (token: AuthTokenResponse): boolean => {
   return expiresAt < now;
 };
 
-export const getLatestLevel = (cursusUsers: UserCursusStat[]): number =>
-  cursusUsers
-    .slice()
-    .find((cursus) => cursus.grade === UserGrade.TRANCENDER )?.level || 0;
+export const getLatestLevel = (cursusUsers: UserCursusStat[]): number => {
+  let transcenderLevel: number | null = null;
+  let piscinerLevel: number | null = null;
+
+  for (const cursus of cursusUsers) {
+    if (cursus.grade === UserGrade.PISCINER) {
+      transcenderLevel = cursus.level;
+      break;
+    }
+    if (cursus.grade === UserGrade.TRANCENDER && piscinerLevel === null) {
+      piscinerLevel = cursus.level;
+    }
+  }
+  return transcenderLevel ?? piscinerLevel ?? 0;
+};

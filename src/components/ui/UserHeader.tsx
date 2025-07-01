@@ -46,11 +46,14 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
         accessibilityLabel={`Go to profile of ${authenticatedUser.first_name ?? authenticatedUser.login}`}
         onPress={handleOnPressProfile}
       >
+        <View className="rounded-full border">
+
         <NImage
           width={64}
           height={64}
           imageSource={authenticatedUser.image_url}
-        />
+          />
+          </View>
         <View className="justify-center items-start">
           <Text textSize={14} className="font-extrabold">
             <Text className="font-medium" textSize={14}>
@@ -65,7 +68,7 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
           </HighlightedText>
           <View className="flex-row items-center gap-2">
             <Image
-              source={authenticatedUser.coalition_image}
+              source={authenticatedUser.coalition_icon}
               tintColor={authenticatedUser.coalition_color}
               style={{ width: 14, height: 22 }}
             />

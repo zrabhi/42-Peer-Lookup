@@ -10,7 +10,8 @@ export interface UserSummary extends UserCoalition {
 
 export const UserSummaryInitValue: UserSummary = {
   id: null,
-  coalition_image: null,
+  coalition_cover: null,
+  coalition_icon: null,
   first_name: null,
   coalition_name: null,
   coalition_color: null,

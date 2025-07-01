@@ -1,3 +1,6 @@
+import { Use } from "react-native-svg";
+import { UserSkills } from "./UserSkills";
+
 export enum UserGrade  {
     TRANCENDER = 'Transcender',
     PISCINER = 'Pisciner',
@@ -9,6 +12,7 @@ export interface UserCursusStat {
   created_at: string | null; 
   cursus_id: number | null;
   end_at: string | null; 
+  skills:UserSkills[] | null;
   grade: string | null;
   has_coalition: boolean;
   id: number | null;

@@ -9,6 +9,12 @@ export const userDetailsSections: NavigationSectionsType<UserDetailsSections>[] 
       isActive: true,
     },
     {
+      label: 'Skills',
+      section: UserDetailsSections.SKILLS,
+      isActive: true,
+    
+    },
+    {
       label: 'Achievements',
       section: UserDetailsSections.ACHIEVEMENTS,
       isActive: true,

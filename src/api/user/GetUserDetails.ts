@@ -4,6 +4,7 @@ import { type UserDetails } from '@/types/user/UserDetails';
 
 import { client } from '../Client';
 import { apiUrls } from '../Common';
+import { getUserCoalision } from './GetUserCoalision';
 
 export const useGetUserDetails = (userId: string | null) => {
   const queryKey = [apiUrls.userDetails, userId];
@@ -13,11 +14,11 @@ export const useGetUserDetails = (userId: string | null) => {
       const response = await client.get(
         apiUrls.userDetails.replace(':id', userId.toString())
       );
-      return response.data;
+       return await  getUserCoalision(response.data);
     },
     staleTime: Infinity,
   });
-
+  
   return {
     data,
     isLoading,

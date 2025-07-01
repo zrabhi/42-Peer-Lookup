@@ -26,7 +26,7 @@ export const UserStats = memo(({ wallet, rank, score }: UserStatsProps) => {
           {rank}
         </Text>
         <Text textSize={10} className="font-medium text-gray-100">
-          Rank
+          Points
         </Text>
       </NeoBruteView>
 
@@ -35,7 +35,7 @@ export const UserStats = memo(({ wallet, rank, score }: UserStatsProps) => {
           {score}
         </Text>
         <Text textSize={10} className="font-medium text-gray-100">
-          Score
+          Coalition 
         </Text>
       </NeoBruteView>
     </View>

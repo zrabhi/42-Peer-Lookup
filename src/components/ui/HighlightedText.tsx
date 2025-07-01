@@ -11,14 +11,14 @@ interface HighlightedTextProps {
 
 export const HighlightedText = ({
   children,
-  backgroundColor = Colors.Primary,
+  backgroundColor = Colors.highlight,
   className = '',
   style,
 }: HighlightedTextProps) => {
   return (
     <View
-      className={`  p-1 rounded-full ${className}`}
-      style={[{ backgroundColor,  }, style]}
+      className={` p-1 rounded-full ${className}`}
+      style={[{ backgroundColor }, style]}
     >
       {children}
     </View>

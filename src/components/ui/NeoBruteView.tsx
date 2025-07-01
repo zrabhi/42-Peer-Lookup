@@ -18,7 +18,7 @@ interface NeoBruteViewProps extends ViewProps {
 export const NeoBruteView = memo(
   ({ children, style, className }: NeoBruteViewProps) => {
     const viewClassName = useMemo(
-      () => twMerge('border-[3px] border-black bg-white rounded-lg', className),
+      () => twMerge('border-[2px] border-black bg-white rounded-lg', className),
       [className]
     );
 
@@ -27,7 +27,8 @@ export const NeoBruteView = memo(
         StyleSheet.flatten([
           {
             shadowColor: Colors.black,
-            shadowOffset: { width: 6, height: 6 },
+            shadowOffset: { width: 
+              4, height: 4 },
             shadowOpacity: 1,
             shadowRadius: 0,
             elevation: 4,

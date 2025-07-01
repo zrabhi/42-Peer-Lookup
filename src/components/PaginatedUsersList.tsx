@@ -80,9 +80,9 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
       renderItem={({ item: user }) => (
         <UserCard
           {...user}
+          image={user.image.versions.medium}
           className="mb-10"
           onPress={() => handleOnPress(user.id.toString())}
-          image={user.image.versions.medium}
         />
       )}
     />

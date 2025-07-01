@@ -1,6 +1,6 @@
 import { ToastType } from '@/types/ToastType';
 import { openToaster } from '@/utils/Helpers';
-import { clearStorage, getItem } from '@/utils/Storage';
+import { AUTH_KEY, clearStorage, getItem, removeItem } from '@/utils/Storage';
 import { useGetAccessToken } from '@api/auth/GetAccessToken';
 import { apiUrls } from '@api/Common';
 import { FortyTwoIcon } from '@components/icons/FortyTwoIcon';
