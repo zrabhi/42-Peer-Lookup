@@ -1,26 +1,25 @@
-import * as Haptics from 'expo-haptics';
+import { Text } from '@components/ui/Text';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { Settings } from 'lucide-react-native';
 import { memo, useCallback, useMemo } from 'react';
-import { Platform, Text, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { twMerge } from 'tailwind-merge';
 
+import { useHaptics } from '@/hooks/UseHaptics';
 import { useAuth } from '@/utils/auth/AuthProvider';
 
 import { NImage } from '../Image';
 import { Button } from './Button';
+import { HighlightedText } from './HighlightedText';
 
 interface UserHeaderProps {
   className?: string;
 }
 
-// TODO: add user collision
-
-// WHEN CLICKED i t will rout the user to /[id].tsx user details
-
 export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
   const { authenticatedUser } = useAuth();
+  const { triggerImpact } = useHaptics();
 
   const style = useMemo(
     () => twMerge('flex-row items-center justify-between', className),
@@ -28,20 +27,46 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
   );
 
   const handleOnPress = useCallback(() => {
-    Platform.OS === 'ios' && Haptics.selectionAsync(), router.push('/settings');
+    triggerImpact(), router.push('/settings');
   }, []);
+
+  const handleOnPressProfile = useCallback(() => {
+    triggerImpact();
+    router.push(`/users/${authenticatedUser.id}`);
+  }, [authenticatedUser.id, triggerImpact]);
 
   return (
     <View className={style}>
-      <View className="flex-row  items-center gap-4">
-        <NImage imageSource={authenticatedUser.image_url} />
-        <View className="justify-center gap-1">
-          <Text className="font-bold text-lg">
-            {authenticatedUser.displayname ?? ''}
+      <TouchableOpacity
+        activeOpacity={0.7}
+        className="flex-row items-center gap-4"
+        accessible
+        accessibilityRole="button"
+        accessibilityLabel={`Go to profile of ${authenticatedUser.first_name ?? authenticatedUser.login}`}
+        onPress={handleOnPressProfile}
+      >
+        <View className="rounded-full border">
+          <NImage
+            width={64}
+            height={64}
+            imageSource={authenticatedUser.image_url}
+          />
+        </View>
+        <View className="items-start justify-center">
+          <Text textSize={14} className="font-extrabold">
+            <Text className="font-medium" textSize={14}>
+              Hola, {''}
+            </Text>
+            {authenticatedUser.first_name ?? ''}!
           </Text>
+          <HighlightedText>
+            <Text className="font-medium  text-sm text-gray-100">
+              @{authenticatedUser.login}
+            </Text>
+          </HighlightedText>
           <View className="flex-row items-center gap-2">
             <Image
-              source={authenticatedUser.coalition_image}
+              source={authenticatedUser.coalition_icon}
               tintColor={authenticatedUser.coalition_color}
               style={{ width: 14, height: 22 }}
             />
@@ -50,7 +75,7 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
             </Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
       <View className="pr-1">
         <Button onPress={handleOnPress} buttonIcon={Settings} isIcon />
       </View>

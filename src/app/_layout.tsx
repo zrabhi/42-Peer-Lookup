@@ -1,6 +1,9 @@
 import '../../global.css';
 
+import { OfflineIllustration } from '@components/icons/OfflineIllustration';
+import { AlertMessage } from '@components/ui/AlertMessage';
 import { toasterConfig } from '@config/ToasterConfig';
+import { useNetworkConnectivity } from '@hooks/UseNetworkStatus';
 import {
   DarkTheme,
   DefaultTheme,
@@ -17,9 +20,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 
 import { ApiProvider } from '@/api';
-import { OfflineIllustration } from '@/components/icons/OfflineIllustration';
-import { AlertMessage } from '@/components/ui/AlertMessage';
-import { useNetworkConnectivity } from '@/hooks/UseNetworkStatus';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,17 +29,23 @@ export default function AppLayout() {
   // Instead of returning <AlertMessage /> directly when !isNetworkConnected,
   // we use conditional rendering inside the component tree so the AppProviders and navigation
   // remain mounted. This avoids unmounting the entire app when offline, preserving state and preventing full re-renders.
-
   return (
     <AppProviders>
       <Stack>
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+        <Stack.Screen name="(screens)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="users/[id]"
+          options={{
+            headerShown: false,
+            // header: () => <NavigationHeader title="My Profile" />,
+          }}
+        />
         <Stack.Screen
           name="settings/index"
           options={{ headerShown: false, presentation: 'modal' }}
         />
+        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
       </Stack>
       {!isNetworkConnected && (
         <AlertMessage

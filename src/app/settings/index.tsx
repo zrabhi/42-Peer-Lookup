@@ -16,7 +16,7 @@ export default function SettingsScreen() {
   }, []);
 
   return (
-    <View className="flex-1  bg-peach">
+    <View className="w-1/ flex-1 bg-peach">
       <Text textSize={18} className="pt-10 text-center font-bold ">
         Settings
       </Text>

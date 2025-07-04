@@ -17,12 +17,12 @@ interface InputProps extends TextInputProps {
 const InputVariants = tv({
   slots: {
     container:
-      'relative h-16  w-full overflow-visible  rounded-full border bg-white',
+      'relative h-16  w-full overflow-visible  rounded-2xl border bg-white',
     inputContainer: 'flex-1 flex-row  items-center justify-between px-6',
     label: 'font-medium text-gray-100',
     input: 'flex-1 bg-white pl-4 pr-6 font-medium text-gray-100',
     shadow:
-      'absolute left-1.5 top-1.5 z-[-9999] size-full rounded-full bg-black',
+      'absolute left-1.5 top-1.5 z-[-9999] size-full rounded-2xl bg-black',
   },
   variants: {
     disabled: {

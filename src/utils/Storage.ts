@@ -20,6 +20,7 @@ export const getItem = async <T>(item: string): Promise<T | null> => {
     const itemValue = await AsyncStorage.getItem(item);
     return itemValue != null ? (JSON.parse(itemValue) as T) : null;
   } catch (error) {
+    console.error(`AsyncStorage getItem error for key "${item}":`, error);
     openToaster(ToastType.ERROR, 'Something went wrong, please try again');
     console.error(`AsyncStorage getItem error for key "${item}":`, error);
     return null;

@@ -3,7 +3,6 @@ import { router } from 'expo-router';
 
 import { type AuthTokenResponse } from '@/types/AuthTokenResponse';
 import { Env } from '@/utils/Env';
-import { isTokenExpired } from '@/utils/Helpers';
 import { AUTH_KEY, getItem, removeItem } from '@/utils/Storage';
 
 export const client = axios.create({
@@ -13,9 +12,6 @@ export const client = axios.create({
 client.interceptors.request.use(async (config) => {
   try {
     const token = await getItem<AuthTokenResponse>(AUTH_KEY);
-
-    if (isTokenExpired(token))
-      return Promise.reject(new axios.Cancel('Token expired'));
 
     config.headers.Authorization = `Bearer ${token.access_token}`;
 

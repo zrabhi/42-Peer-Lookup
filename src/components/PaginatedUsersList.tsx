@@ -7,7 +7,7 @@ import React, { useCallback } from 'react';
 import { ActivityIndicator, RefreshControl } from 'react-native';
 
 import { ErrorOccurredIllustration } from './icons/ErrorOccurredIllustration';
-import { NoResultIllustration } from './icons/NoResultIllustration';
+import { NoResultFoundIllustration } from './icons/NoResultFoundIllustration';
 import { AlertMessage } from './ui/AlertMessage';
 import { Loading } from './ui/Loading';
 import { UserCard } from './UserCard';
@@ -45,7 +45,7 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
       ListEmptyComponent={
         !isLoading ? (
           <AlertMessage
-            alertIcon={NoResultIllustration}
+            alertIcon={NoResultFoundIllustration}
             message={
               searchedUser
                 ? `Hmm... no matching users for "${searchedUser}" `
@@ -79,12 +79,10 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
       contentContainerStyle={{ paddingHorizontal: 24 }}
       renderItem={({ item: user }) => (
         <UserCard
+          {...user}
+          image={user.image.versions.medium}
           className="mb-10"
           onPress={() => handleOnPress(user.id.toString())}
-          image={user.image.versions.medium}
-          kind={user.kind}
-          location={user.location}
-          displayname={user.displayname}
         />
       )}
     />

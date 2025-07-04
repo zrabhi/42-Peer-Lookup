@@ -10,6 +10,10 @@ import { router } from 'expo-router';
 import React, { memo, useCallback, useEffect } from 'react';
 import { SafeAreaView, View } from 'react-native';
 
+import { BounceWrapper } from '@/components/ui/BounceWrapper';
+import { ToastType } from '@/types/ToastType';
+import { openToaster } from '@/utils/Helpers';
+
 const discovery = {
   authorizationEndpoint: Env.API_URL + apiUrls.oauth,
 };
@@ -17,7 +21,9 @@ const discovery = {
 const AuthenticationHeader = memo(() => {
   return (
     <View className="flex items-center gap-6 pt-28 ">
-      <FortyTwoLogo />
+      <BounceWrapper>
+        <FortyTwoLogo />
+      </BounceWrapper>
       <Text textSize={28} className="font-bold">
         Welcome!
       </Text>
@@ -54,12 +60,10 @@ export default function AuthScreen() {
   const handleAuthCode = useCallback(async () => {
     if (response?.type === 'success' && response.params?.code) {
       await getAccessToken({ code: response.params.code });
-
-      // openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
-      // to investigate: when rendering the toater and attempting to navigate , a rendering error get throwed
+      openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
       router.push('/(tabs)/users');
     }
-  }, [response]);
+  }, [response, getAccessToken]);
 
   useEffect(() => {
     handleAuthCode();
@@ -74,7 +78,7 @@ export default function AuthScreen() {
       <AuthenticationHeader />
       <View className="w-full px-10 pb-6">
         <Button
-          isLoading={isPending || !request} // to change
+          isLoading={isPending || !request}
           label="Login with "
           size="lg"
           buttonIcon={FortyTwoIcon}
