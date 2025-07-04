@@ -16,7 +16,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Linking, Platform, View } from 'react-native';
 
-import { useUserLevel } from '@/hooks/UseUserCursus';
+import { useUserCursus, useUserLevel } from '@/hooks/UseUserCursus';
 import { ToastType } from '@/types/ToastType';
 import { UserDetailsSections } from '@/types/user/UserDeatilsSections';
 
@@ -29,7 +29,7 @@ export default function UserDetails() {
 
   const { data, isLoading } = useGetUserDetails(id);
 
-  const level = useUserLevel(data?.cursus_users);
+  const cursus = useUserCursus(data?.cursus_users);
 
   const handleOnPress = useCallback(() => {
     Platform.OS === 'ios' && Haptics.selectionAsync();
@@ -62,7 +62,7 @@ export default function UserDetails() {
             onPress={handleOnPress}
             {...data}
           />
-          <UserLevelBar level={level} maxLevel={21} />
+          <UserLevelBar grade={cursus.grade} level={cursus.level} maxLevel={21} />
           <NavigationBar
             section={currentSection}
             onChangeSection={setCurrentSection}

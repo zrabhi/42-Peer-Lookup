@@ -11,7 +11,7 @@ interface UserDetailsHeaderProps {
 
 export const UserDetailsHeader = memo(
   ({ coalitionBackground, userImage }: UserDetailsHeaderProps) => {
-    console.log('backgourmd', coalitionBackground);
+   
     return (
       <View className="h-64 w-full border-b-2  border-black">
         <NImage

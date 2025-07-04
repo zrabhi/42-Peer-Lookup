@@ -5,13 +5,16 @@ import { Animated, View } from 'react-native';
 import Colors from '@/utils/Colors';
 
 import { NeoBruteView } from './NeoBruteView';
+import { UserGrade } from '@/types/user/UserCursusStat';
+import { UserGradeLabels } from '@/utils/UserGradeLabes';
 
 type LevelBarProps = {
   level: number;
+  grade?: UserGrade;
   maxLevel?: number;
 };
 
-export const UserLevelBar = memo(({ level, maxLevel = 21 }: LevelBarProps) => {
+export const UserLevelBar = memo(({ level, maxLevel = 21, grade }: LevelBarProps) => {
   const percentage = useMemo(
     () => Math.min((level / maxLevel) * 100, 100),
     [level, maxLevel]
@@ -38,6 +41,14 @@ export const UserLevelBar = memo(({ level, maxLevel = 21 }: LevelBarProps) => {
 
   return (
     <View className=" w-full ">
+      {grade && (
+        <Text
+          textSize={10}
+          className="mb-1 self-center font-bold "
+        >
+          {UserGradeLabels[grade]}
+        </Text>
+      )}
       <NeoBruteView className="h-9 w-full  rounded-lg ">
         <Animated.View
           style={{
