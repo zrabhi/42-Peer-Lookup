@@ -1,4 +1,5 @@
-import { UserCoalition } from '@/types/UserCoalition';
+import { type UserCoalition } from '@/types/UserCoalition';
+
 import { client } from '../Client';
 import { apiUrls } from '../Common';
 
@@ -14,7 +15,7 @@ export const getUserCoalision = async <T extends { id: number; image?: any }>(
   return {
     ...user,
     score: coalition?.score ?? null,
-    image_url: user.image?.versions?.medium ??null,
+    image_url: user.image?.versions?.medium ?? null,
     coalition_icon: coalition?.image_url ?? null,
     coalition_cover: coalition?.cover_url ?? null,
     coalition_color: coalition?.color ?? null,

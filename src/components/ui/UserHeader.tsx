@@ -1,18 +1,17 @@
-import * as Haptics from 'expo-haptics';
+import { Text } from '@components/ui/Text';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { Settings } from 'lucide-react-native';
 import { memo, useCallback, useMemo } from 'react';
-import { Platform, TouchableOpacity, View } from 'react-native';
-import { Text } from '@components/ui/Text';
+import { TouchableOpacity, View } from 'react-native';
 import { twMerge } from 'tailwind-merge';
 
+import { useHaptics } from '@/hooks/UseHaptics';
 import { useAuth } from '@/utils/auth/AuthProvider';
 
 import { NImage } from '../Image';
 import { Button } from './Button';
 import { HighlightedText } from './HighlightedText';
-import { useHaptics } from '@/hooks/UseHaptics';
 
 interface UserHeaderProps {
   className?: string;
@@ -47,14 +46,13 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
         onPress={handleOnPressProfile}
       >
         <View className="rounded-full border">
-
-        <NImage
-          width={64}
-          height={64}
-          imageSource={authenticatedUser.image_url}
+          <NImage
+            width={64}
+            height={64}
+            imageSource={authenticatedUser.image_url}
           />
-          </View>
-        <View className="justify-center items-start">
+        </View>
+        <View className="items-start justify-center">
           <Text textSize={14} className="font-extrabold">
             <Text className="font-medium" textSize={14}>
               Hola, {''}

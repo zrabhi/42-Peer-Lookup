@@ -1,12 +1,12 @@
-import { UserCoalition } from '../UserCoalition';
+import { type UserCoalition } from '../UserCoalition';
 import { type UserKind } from '../UserKind';
 import { type CursusProject } from './CursusProject';
 import { type UserAchievement } from './UserAchievement';
 import { type UserCampus } from './UserCampus';
-import { UserCursusStat } from './UserCursusStat';
+import { type UserCursusStat } from './UserCursusStat';
 import { type UserImage } from './UserImage';
 
-export interface UserDetails extends UserCoalition{
+export interface UserDetails extends UserCoalition {
   id: number;
   displayname: string;
   cursus_users: UserCursusStat[];

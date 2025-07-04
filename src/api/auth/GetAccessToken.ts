@@ -3,10 +3,9 @@ import axios from 'axios';
 
 import { useAuth } from '@/utils/auth/AuthProvider';
 import { Env } from '@/utils/Env';
-import { AUTH_KEY, getItem, setItem } from '@/utils/Storage';
+import { AUTH_KEY, setItem } from '@/utils/Storage';
 
 import { apiUrls } from '../Common';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
 interface GetAccessToeknParams {
   code: string | null;
@@ -20,7 +19,6 @@ export const useGetAccessToken = () => {
     GetAccessToeknParams
   >({
     mutationFn: async ({ code }) => {
-
       const formBody = new URLSearchParams({
         grant_type: 'authorization_code',
         client_id: Env.CLIENT_UID,

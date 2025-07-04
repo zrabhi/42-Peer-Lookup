@@ -1,10 +1,9 @@
+import * as Haptics from 'expo-haptics';
 import { useCallback } from 'react';
 import { Platform } from 'react-native';
-import * as Haptics from 'expo-haptics';
 
 export const useHaptics = () => {
- 
-    const triggerSelection = useCallback(() => {
+  const triggerSelection = useCallback(() => {
     if (Platform.OS === 'ios') {
       Haptics.selectionAsync();
     }

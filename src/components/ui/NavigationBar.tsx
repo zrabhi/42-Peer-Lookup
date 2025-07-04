@@ -15,14 +15,14 @@ interface NavigationBarProps<T> {
 
 const NavigationTv = tv({
   slots: {
-    tab: 'w-1/3 flex-1 items-center justify-center rounded-lg py-3.5',
+    tab: ' flex-1 items-center justify-center rounded-lg py-3.5',
     label: 'font-semibold',
   },
   variants: {
     isCurrent: {
       true: {
-        tab: 'border px-1 bg-primary-300',
-        label: 'text-black',
+        tab: 'border  bg-primary-300',
+        label: 'text-black ',
       },
     },
     isActive: {

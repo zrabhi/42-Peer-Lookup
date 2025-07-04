@@ -7,7 +7,7 @@ export const apiUrls: Record<string, string> = {
   userProfile: 'v2/me',
   redirectUrl: 'exp://tm6ay0g-anonymous-8081.exp.direct',
   userDetails: 'v2/users/:id',
-  fortyTwoCdn: 'https://cdn.intra.42.fr/',
+  fortyTwoCdn: 'https://cdn.intra.42.fr',
 };
 
 export const AppRoutes: Record<string, Href> = {

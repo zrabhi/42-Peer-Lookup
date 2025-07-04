@@ -1,6 +1,3 @@
-import { ToastType } from '@/types/ToastType';
-import { openToaster } from '@/utils/Helpers';
-import { AUTH_KEY, clearStorage, getItem, removeItem } from '@/utils/Storage';
 import { useGetAccessToken } from '@api/auth/GetAccessToken';
 import { apiUrls } from '@api/Common';
 import { FortyTwoIcon } from '@components/icons/FortyTwoIcon';
@@ -13,6 +10,10 @@ import { router } from 'expo-router';
 import React, { memo, useCallback, useEffect } from 'react';
 import { SafeAreaView, View } from 'react-native';
 
+import { BounceWrapper } from '@/components/ui/BounceWrapper';
+import { ToastType } from '@/types/ToastType';
+import { openToaster } from '@/utils/Helpers';
+
 const discovery = {
   authorizationEndpoint: Env.API_URL + apiUrls.oauth,
 };
@@ -20,7 +21,9 @@ const discovery = {
 const AuthenticationHeader = memo(() => {
   return (
     <View className="flex items-center gap-6 pt-28 ">
-      <FortyTwoLogo />
+      <BounceWrapper>
+        <FortyTwoLogo />
+      </BounceWrapper>
       <Text textSize={28} className="font-bold">
         Welcome!
       </Text>

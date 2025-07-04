@@ -1,6 +1,7 @@
-import Colors from '@/utils/Colors';
 import React, { type ReactNode } from 'react';
-import { View, ViewStyle } from 'react-native';
+import { View, type ViewStyle } from 'react-native';
+
+import Colors from '@/utils/Colors';
 
 interface HighlightedTextProps {
   children: ReactNode;
@@ -17,7 +18,7 @@ export const HighlightedText = ({
 }: HighlightedTextProps) => {
   return (
     <View
-      className={` p-1 rounded-full ${className}`}
+      className={` rounded-full p-1 ${className}`}
       style={[{ backgroundColor }, style]}
     >
       {children}

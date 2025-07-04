@@ -1,8 +1,10 @@
-import React, { memo, useEffect, useMemo, useRef } from 'react';
-import { View, Animated } from 'react-native';
 import { Text } from '@components/ui/Text';
-import { NeoBruteView } from './NeoBruteView';
+import React, { memo, useEffect, useMemo, useRef } from 'react';
+import { Animated, View } from 'react-native';
+
 import Colors from '@/utils/Colors';
+
+import { NeoBruteView } from './NeoBruteView';
 
 type LevelBarProps = {
   level: number;
@@ -47,7 +49,7 @@ export const UserLevelBar = memo(({ level, maxLevel = 21 }: LevelBarProps) => {
         ></Animated.View>
         <Text
           textSize={10}
-          className="font-bold top-1.5  z-99 absolute self-center  text-gray-700"
+          className="z-99 absolute  top-1.5 self-center font-bold  text-gray-700"
         >
           Level: {level.toFixed(2)}% / {maxLevel} ({percentage.toFixed(2)}%)
         </Text>

@@ -12,7 +12,6 @@ export const userDetailsSections: NavigationSectionsType<UserDetailsSections>[] 
       label: 'Skills',
       section: UserDetailsSections.SKILLS,
       isActive: true,
-    
     },
     {
       label: 'Achievements',

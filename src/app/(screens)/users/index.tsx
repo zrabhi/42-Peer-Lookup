@@ -5,15 +5,10 @@ import { UserHeader } from '@components/ui/UserHeader';
 import { useAuth } from '@utils/auth/AuthProvider';
 import { Search } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
-import {
-  Animated,
-  Platform,
-  SafeAreaView,
-  useAnimatedValue,
-  View,
-} from 'react-native';
+import { Platform, SafeAreaView, View } from 'react-native';
 
 import { PaginatedUsersList } from '@/components/PaginatedUsersList';
+import { FadeInView } from '@/components/ui/FadeInView';
 import { useDebouncedValue } from '@/hooks/UseDebouncedValue';
 
 export default function HomeScreen() {
@@ -23,17 +18,8 @@ export default function HomeScreen() {
   const [searchedUser, setSearchedUser] = useState<string>('');
   const debouncedSearch = useDebouncedValue(searchedUser, 400);
 
-  const fadeAnim = useAnimatedValue(0);
-
   useEffect(() => {
-    if (data) {
-      setAuthenticatedUser(data);
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 500,
-        useNativeDriver: true,
-      }).start();
-    }
+    if (data) setAuthenticatedUser(data);
   }, [data, setAuthenticatedUser]);
   // scroll fucntion to hide or show the searchBar or the tab bar based on the Scroll Y
   /* const handleOnScroll = Animated.event(
@@ -60,14 +46,7 @@ export default function HomeScreen() {
     <SafeAreaView
       className={`flex-1  bg-peach ${Platform.OS === 'ios' ? 'px-6' : ''}`}
     >
-      <Animated.View
-        style={{
-          flex: 1,
-          justifyContent: 'space-between',
-          gap: 20,
-          opacity: fadeAnim,
-        }}
-      >
+      <FadeInView className="justify-between gap-5">
         <UserHeader
           className={`${Platform.OS === 'android' ? 'px-5 pt-14' : 'p-5'}`}
         />
@@ -80,7 +59,7 @@ export default function HomeScreen() {
           />
         </View>
         <PaginatedUsersList searchedUser={debouncedSearch} />
-      </Animated.View>
+      </FadeInView>
     </SafeAreaView>
   );
 }

@@ -1,14 +1,13 @@
 import { Text } from '@components/ui/Text';
 import Colors from '@utils/Colors';
 import * as Haptics from 'expo-haptics';
-import { ChevronRight, Telescope } from 'lucide-react-native';
+import { ChevronRight } from 'lucide-react-native';
 import { useState } from 'react';
 import { Platform, Pressable, View } from 'react-native';
 
 import { UserKind } from '@/types/UserKind';
 
 import { NImage } from './Image';
-import { HighlightedText } from './ui/HighlightedText';
 interface UserCardProps {
   kind: UserKind;
   onPress?: () => void;
@@ -24,7 +23,6 @@ export const UserCard = ({
   displayname,
   image,
   login,
-  location,
   onPress,
   className,
 }: UserCardProps) => {
@@ -42,14 +40,14 @@ export const UserCard = ({
       }}
       className={`relative w-full ${className}`}
     >
-      <View className="rounded-3xl  border border-black bg-white p-6">
-        <View className="absolute -top-4 right-10 rounded-3xl bg-primary-100 px-4 py-2">
+      <View className="rounded-2xl  border border-black bg-white p-6">
+        <View className="absolute -top-4 right-10 rounded-2xl bg-primary-100 px-4 py-2">
           <Text textSize={14} className="font-bold  text-white">
             {kind === UserKind.ADMIN ? 'Staff' : kind}
           </Text>
         </View>
         <View className="flex-1 flex-row items-center justify-between">
-          <View className="flex-1 flex-row justify-start  items-center  gap-4">
+          <View className="flex-1 flex-row items-center  justify-start  gap-4">
             <NImage imageSource={image} />
             <View className="flex-1 items-start  gap-2">
               <Text
@@ -69,7 +67,7 @@ export const UserCard = ({
         </View>
       </View>
       <View
-        className={`absolute ${isPressed && 'hidden'} left-1.5 top-1.5 z-[-9999] size-full rounded-3xl  bg-black`}
+        className={`absolute ${isPressed && 'hidden'} left-1.5 top-1.5 z-[-9999] size-full rounded-2xl  bg-black`}
       />
     </Pressable>
   );

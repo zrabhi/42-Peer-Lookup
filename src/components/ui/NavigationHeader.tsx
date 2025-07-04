@@ -1,13 +1,14 @@
 import { router } from 'expo-router';
 import { ArrowLeft, Settings } from 'lucide-react-native';
 import { memo, useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { twMerge } from 'tailwind-merge';
 
+import { useHaptics } from '@/hooks/UseHaptics';
+
 import { Button } from './Button';
 import { Text } from './Text';
-import { useHaptics } from '@/hooks/UseHaptics';
 
 interface NavigationHeaderProps {
   title?: string;

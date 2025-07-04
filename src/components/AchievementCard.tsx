@@ -1,33 +1,40 @@
+import { Text } from '@components/ui/Text';
 import { memo } from 'react';
 import { View } from 'react-native';
-import { NeoBruteView } from './ui/NeoBruteView';
+
+import { apiUrls } from '@/api/Common';
+
 import { NImage } from './Image';
-import { Text } from '@components/ui/Text';
-interface AchievementCardProps {}
+import { NeoBruteView } from './ui/NeoBruteView';
+interface AchievementCardProps {
+  image: string | null;
+  name: string | null;
+  description: string | null;
+  kind: string | null;
+}
 
-export const AchievementCard = memo(({}: AchievementCardProps) => {
-  return (
-    <View className="bg-transparent flex-1 h-16 flex-row  gap-4 items-center ">
-      <NeoBruteView className=" p-3 gap-2 items-center justify-center rounded-xl ">
-        <NImage
-          style={{ height: 24, width: 24 }}
-          imageSource={
-            'https://cdn.intra.42.fr/achievement/image/218/PRO001-2.svg'
-          }
-        />
-        <Text textSize={8} className="font-semibold">
-          Scolarity
-        </Text>
-      </NeoBruteView>
-      <NeoBruteView className=" p-3 gap-2  items-center justify-center rounded-xl ">
-          <Text textSize={12} className="font-semibold">
-          Attended 4 event
-        </Text>
-        <Text textSize={8} className="font-semibold">
-          Attended 21 events.
-        </Text>
-
-      </NeoBruteView>
-    </View>
-  );
-});
+export const AchievementCard = memo(
+  ({ description, image, name, kind }: AchievementCardProps) => {
+    return (
+      <View className="ios:mb-4  android:pb-4  h-24 flex-row items-center  gap-4 bg-transparent ">
+        <NeoBruteView className="h-full w-28 items-center justify-center gap-2 rounded-xl px-2 py-3 ">
+          <NImage
+            style={{ height: 26, width: 26 }}
+            imageSource={apiUrls.fortyTwoCdn + image.replace(/^\/uploads/, '')}
+          />
+          <Text textSize={10} className="font-semibold">
+            {kind}
+          </Text>
+        </NeoBruteView>
+        <NeoBruteView className="h-full flex-1 justify-center  gap-2 rounded-xl px-2 py-3 ">
+          <Text textSize={13} className="font-bold">
+            {name}
+          </Text>
+          <Text textSize={10} className="font-medium text-gray-100">
+            {description}
+          </Text>
+        </NeoBruteView>
+      </View>
+    );
+  }
+);

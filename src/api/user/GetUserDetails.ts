@@ -14,11 +14,11 @@ export const useGetUserDetails = (userId: string | null) => {
       const response = await client.get(
         apiUrls.userDetails.replace(':id', userId.toString())
       );
-       return await  getUserCoalision(response.data);
+      return await getUserCoalision(response.data);
     },
     staleTime: Infinity,
   });
-  
+
   return {
     data,
     isLoading,

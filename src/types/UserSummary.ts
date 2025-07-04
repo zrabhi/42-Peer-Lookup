@@ -4,7 +4,7 @@ export interface UserSummary extends UserCoalition {
   displayname: string | null;
   id: number | null;
   login: string | null;
-  first_name:string | null,
+  first_name: string | null;
   image_url: string | null;
 }
 

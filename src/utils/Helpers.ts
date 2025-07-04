@@ -2,7 +2,7 @@ import Toast from 'react-native-toast-message';
 
 import { type AuthTokenResponse } from '@/types/AuthTokenResponse';
 import { type ToastType } from '@/types/ToastType';
-import { UserCursusStat, UserGrade } from '@/types/user/UserCursusStat';
+import { type UserCursusStat, UserGrade } from '@/types/user/UserCursusStat';
 
 export const openToaster = (type: ToastType, message: string) => {
   Toast.show({

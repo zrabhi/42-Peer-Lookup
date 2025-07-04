@@ -20,10 +20,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 
 import { ApiProvider } from '@/api';
-import { NavigationHeader } from '@/components/ui/NavigationHeader';
-import { getItem } from '@/utils/Storage';
-import BottomSheet, { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import { BottomSheetProvider } from '@gorhom/bottom-sheet/lib/typescript/contexts';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -37,7 +33,7 @@ export default function AppLayout() {
     <AppProviders>
       <Stack>
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(screens)" options={{ headerShown: false }} />
         <Stack.Screen
           name="users/[id]"
           options={{

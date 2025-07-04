@@ -1,9 +1,10 @@
-import { Pressable, View } from 'react-native';
 import { LocateFixed, SquareArrowUpRight } from 'lucide-react-native';
+import { Pressable, View } from 'react-native';
 
-import { Text } from './ui/Text';
-import { HighlightedText } from './ui/HighlightedText';
 import Colors from '@/utils/Colors';
+
+import { HighlightedText } from './ui/HighlightedText';
+import { Text } from './ui/Text';
 
 interface UserInfoProps {
   login?: string;
@@ -16,7 +17,7 @@ interface UserInfoProps {
 export const UserDetailsInfo = ({
   login,
   displayname,
-   campusLocation,
+  campusLocation,
   onPress,
   location = 'Khouribga, Morocco',
 }: UserInfoProps) => {
@@ -28,7 +29,7 @@ export const UserDetailsInfo = ({
         </Text>
       </HighlightedText>
 
-      <View className="flex-row gap-2 items-center justify-center">
+      <View className="flex-row items-center justify-center gap-2">
         <Text
           numberOfLines={2}
           ellipsizeMode="tail"
@@ -48,16 +49,16 @@ export const UserDetailsInfo = ({
         )}
       </View>
 
-      <View className="flex-row gap-2 items-center justify-center">
+      <View className="flex-row items-center justify-center gap-2">
         <LocateFixed size={20} strokeWidth={2.5} color={Colors.primary[100]} />
         <Text textSize={12} className="font-medium text-gray-100">
           {campusLocation}
         </Text>
       </View>
-      
-        <Text textSize={16} className="font-semibold text-primary-100">
-          {location ?? 'Unvailable'}
-        </Text>
+
+      <Text textSize={16} className="font-semibold text-primary-100">
+        {location ?? 'Unvailable'}
+      </Text>
     </View>
   );
 };
