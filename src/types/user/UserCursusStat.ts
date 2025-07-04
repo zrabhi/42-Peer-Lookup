@@ -3,6 +3,7 @@ import { type UserSkills } from './UserSkills';
 export enum UserGrade {
   TRANCENDER = 'Transcender',
   PISCINER = 'Pisciner',
+  CADET = 'Cadet',
 }
 
 export interface UserCursusStat {
@@ -12,7 +13,7 @@ export interface UserCursusStat {
   cursus_id: number | null;
   end_at: string | null;
   skills: UserSkills[] | null;
-  grade: string | null;
+  grade: UserGrade | null;
   has_coalition: boolean;
   id: number | null;
   level: number | null;

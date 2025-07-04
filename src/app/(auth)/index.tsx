@@ -61,7 +61,7 @@ export default function AuthScreen() {
     if (response?.type === 'success' && response.params?.code) {
       await getAccessToken({ code: response.params.code });
       openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
-      router.push('/(tabs)/users');
+      router.push('/(screens)/users');
     }
   }, [response, getAccessToken]);
 

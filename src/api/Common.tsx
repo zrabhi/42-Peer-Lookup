@@ -11,7 +11,7 @@ export const apiUrls: Record<string, string> = {
 };
 
 export const AppRoutes: Record<string, Href> = {
-  users: '/(tabs)/users',
+  users: '/(screens)/users',
   auth: '/(auth)',
   userDetails: '/users/[id]',
   settings: '/settings',
