@@ -12,6 +12,7 @@ export const UserSummaryInitValue: UserSummary = {
   id: null,
   coalition_cover: null,
   coalition_icon: null,
+  score: null,
   first_name: null,
   coalition_name: null,
   coalition_color: null,

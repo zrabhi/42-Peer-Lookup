@@ -7,11 +7,18 @@ module.exports = {
 
   highlight: '#BAFCA2',
   primary: {
-    100: '#F25C26', // strong orange/red
+    green: {
+      100: '#B5D2AD',
+      200: '#7FBC8C', // muted green
+    },
+    orange: {
+      50: '#FFA07A',
+      100: '#FF7A5C', // strong orange/red
+    },
+    50: '#FDFD96',
     200: '#F4D738', // yellow/gold
     250: '#FFDB58',
     300: '#E3A018',
-    400: '#7FBC8C', // muted green
   },
   gray: {
     100: '#777777', // medium gray

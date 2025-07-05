@@ -9,7 +9,7 @@ import { Text } from './ui/Text';
 interface UserInfoProps {
   login?: string;
   displayname?: string;
-  onPress?: VoidFunction;
+  onPress: VoidFunction;
   campusLocation?: string;
   location?: string;
 }
@@ -38,25 +38,28 @@ export const UserDetailsInfo = ({
         >
           {displayname}
         </Text>
-        {!!onPress && (
-          <Pressable onPress={onPress}>
-            <SquareArrowUpRight
-              size={20}
-              strokeWidth={2.5}
-              color={Colors.primary[100]}
-            />
-          </Pressable>
-        )}
+
+        <Pressable onPress={onPress}>
+          <SquareArrowUpRight
+            size={20}
+            strokeWidth={2.5}
+            color={Colors.primary.orange[100]}
+          />
+        </Pressable>
       </View>
 
       <View className="flex-row items-center justify-center gap-2">
-        <LocateFixed size={20} strokeWidth={2.5} color={Colors.primary[100]} />
+        <LocateFixed
+          size={20}
+          strokeWidth={2.5}
+          color={Colors.primary.orange[100]}
+        />
         <Text textSize={12} className="font-medium text-gray-100">
           {campusLocation}
         </Text>
       </View>
 
-      <Text textSize={16} className="font-semibold text-primary-100">
+      <Text textSize={16} className="font-semibold text-primary-orange-100">
         {location ?? 'Unvailable'}
       </Text>
     </View>

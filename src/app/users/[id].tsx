@@ -1,6 +1,5 @@
 import { useGetUserDetails } from '@api/user/GetUserDetails';
 import { AchievementList } from '@components/AchievementsList';
-import { NoItemIllustartion } from '@components/icons/NoItemIllustartion';
 import { ProtectedRoutes } from '@components/ProtectedRoutes';
 import { FadeInView } from '@components/ui/FadeInView';
 import { Loading } from '@components/ui/Loading';
@@ -16,13 +15,14 @@ import { useLocalSearchParams } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Linking, Platform, View } from 'react-native';
 
-import { useUserCursus, useUserLevel } from '@/hooks/UseUserCursus';
+import { MarksList } from '@/components/MarksList';
+import { useUserCursus } from '@/hooks/UseUserCursus';
 import { ToastType } from '@/types/ToastType';
 import { UserDetailsSections } from '@/types/user/UserDeatilsSections';
 
 export default function UserDetails() {
   const [currentSection, setCurrentSection] = useState<UserDetailsSections>(
-    UserDetailsSections.ACHIEVEMENTS
+    UserDetailsSections.MARKS
   );
 
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -62,7 +62,11 @@ export default function UserDetails() {
             onPress={handleOnPress}
             {...data}
           />
-          <UserLevelBar grade={cursus.grade} level={cursus.level} maxLevel={21} />
+          <UserLevelBar
+            grade={cursus.grade}
+            level={cursus.level}
+            maxLevel={21}
+          />
           <NavigationBar
             section={currentSection}
             onChangeSection={setCurrentSection}
@@ -71,7 +75,7 @@ export default function UserDetails() {
         </View>
         <View className="flex-1  gap-1 py-3 ">
           {currentSection === UserDetailsSections.MARKS ? (
-            <NoItemIllustartion />
+            <MarksList marks={data.projects_users} />
           ) : (
             <AchievementList achievements={data.achievements} />
           )}

@@ -79,7 +79,7 @@ export const Input = ({
           <InputIcon
             strokeWidth={2.5}
             size={moderateScale(20)}
-            color={Colors.gray[100]}
+            color={Colors.primary.orange[100]}
           />
         )}
       </View>

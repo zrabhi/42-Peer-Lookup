@@ -21,7 +21,7 @@ const NavigationTv = tv({
   variants: {
     isCurrent: {
       true: {
-        tab: 'border  bg-primary-300',
+        tab: 'border  bg-primary-200',
         label: 'text-black ',
       },
     },
@@ -59,7 +59,7 @@ export const NavigationBar = memo(
                 className={tab()}
                 onPress={() => onChangeSection(navigationSection)}
               >
-                <Text textSize={11} className={label()}>
+                <Text textSize={9} className={label()}>
                   {tabLabel}
                 </Text>
               </Pressable>

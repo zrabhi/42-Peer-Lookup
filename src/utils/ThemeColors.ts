@@ -9,9 +9,9 @@ const tintColorDark = '#fff';
 
 export const ThemeColors = {
   light: {
-    text: colors.primary[100],
+    text: colors.primary.orange[100],
     background: colors.white,
-    tint: colors.primary[100],
+    tint: colors.primary.orange[100],
     icon: colors.black,
     tabIconDefault: colors.black,
     tabIconSelected: tintColorLight,
@@ -20,7 +20,7 @@ export const ThemeColors = {
     text: '#ECEDEE',
     background: '#000',
     tint: tintColorDark,
-    icon: colors.primary[100],
+    icon: colors.primary.orange[100],
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
   },

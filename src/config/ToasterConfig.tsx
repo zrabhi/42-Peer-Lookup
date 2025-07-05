@@ -11,7 +11,7 @@ export const toasterConfig = {
         onPressIn={() => {
           if (process.env.EXPO_OS === 'ios') Haptics.selectionAsync();
         }}
-        className="z-99 flex-1 flex-row items-center gap-5  rounded-[32px] border border-black  bg-primary-100   px-4"
+        className="z-99 bg-primary-100 flex-1 flex-row items-center  gap-5 rounded-[32px] border  border-black   px-4"
       >
         <CircleCheckBig strokeWidth={2.5} size={34} />
         <View className="flex-1 gap-1">
