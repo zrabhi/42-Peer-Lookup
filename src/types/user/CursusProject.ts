@@ -1,6 +1,7 @@
-enum ProjectStatus {
+export enum markStatus {
   IN_PROGRESS = 'in_progress',
-  FINISHED = 'finished,',
+  FINISHED = 'finished',
+  SEARCHING_A_GROUP = 'searching_a_group',
 }
 
 export interface Project {
@@ -27,7 +28,7 @@ export interface CursusProject {
   marked_at: string | null;
   occurrence: number;
   retriable_at: string | null;
-  status: ProjectStatus;
+  status: markStatus;
   project: Project;
-  validated: boolean | null; // ← You added this manually, so keep it if your app uses it
+  'validated?': boolean | null; // ← You added this manually, so keep it if your app uses it
 }

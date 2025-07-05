@@ -21,7 +21,7 @@ const discovery = {
 const AuthenticationHeader = memo(() => {
   return (
     <View className="flex items-center gap-6 pt-28 ">
-      <BounceWrapper>
+      <BounceWrapper bounceHeight={9}>
         <FortyTwoLogo />
       </BounceWrapper>
       <Text textSize={28} className="font-bold">

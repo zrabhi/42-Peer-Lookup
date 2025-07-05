@@ -12,7 +12,7 @@ interface HighlightedTextProps {
 
 export const HighlightedText = ({
   children,
-  backgroundColor = Colors.highlight,
+  backgroundColor = Colors.primary[50],
   className = '',
   style,
 }: HighlightedTextProps) => {

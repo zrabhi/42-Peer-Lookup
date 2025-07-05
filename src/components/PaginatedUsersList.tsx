@@ -60,7 +60,7 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
       keyExtractor={(_item, index) => index.toString()}
       refreshControl={
         <RefreshControl
-          tintColor={Colors.primary[100]}
+          tintColor={Colors.primary.orange[100]}
           refreshing={isLoading}
           onRefresh={invalidate}
         />
@@ -70,7 +70,7 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
       ListFooterComponent={
         isFetchingNextPage ? (
           <ActivityIndicator
-            color={Colors.primary[100]}
+            color={Colors.primary.orange[100]}
             size="small"
             className="ios:mb-10 android:pb-10"
           />

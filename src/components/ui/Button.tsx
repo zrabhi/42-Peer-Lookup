@@ -91,10 +91,10 @@ const ButtonVariant = tv({
         pressable: 'bg-tertiary-200 border-gray-300', // the bg-colors are still not defined in Colors.js
       },
       Danger: {
-        pressable: 'bg-primary-100', // the bg-colors are still not defined in Colors.js
+        pressable: 'bg-primary-orange-100', // the bg-colors are still not defined in Colors.js
       },
       Success: {
-        pressable: 'border-green-500 bg-green-200', // the bg-colors are still not defined in Colors.js
+        pressable: 'border-green-500 bg-primary-green-200', // the bg-colors are still not defined in Colors.js
       },
     },
     size: {
