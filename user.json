@@ -334,7 +334,7 @@
     "active?": true,
     "alumni?": false,
     "alumnized_at": null,
-    "anonymize_date": "2028-07-02T00:00:00.000+01:00",
+    "anonymize_date": "2028-07-05T00:00:00.000+01:00",
     "campus": [
         {
             "active": true,
@@ -367,6 +367,10 @@
             "user_id": 90241
         }
     ],
+    "coalition_color": "#b61282",
+    "coalition_cover": "https://cdn.intra.42.fr/coalition/cover/74/Pandora_BG.jpg",
+    "coalition_icon": "https://cdn.intra.42.fr/coalition/image/74/Pandora-01.svg",
+    "coalition_name": "Pandora",
     "correction_point": 34,
     "created_at": "2021-06-14T09:37:45.058Z",
     "cursus_users": [
@@ -407,7 +411,7 @@
             ]
         }
     ],
-    "data_erasure_date": "2028-07-02T00:00:00.000+01:00",
+    "data_erasure_date": "2028-07-05T00:00:00.000+01:00",
     "displayname": "Zakaria Rabhi",
     "email": "zrabhi@student.1337.ma",
     "expertises_users": [
@@ -523,6 +527,7 @@
             "small": "https://cdn.intra.42.fr/users/ddae172c7c9c07dae5794f34b18a8cb3/small_zrabhi.jpg"
         }
     },
+    "image_url": "https://cdn.intra.42.fr/users/29f3625d618eca1242ea4c96645c5f44/medium_zrabhi.jpg",
     "kind": "student",
     "languages_users": [
         {
@@ -541,7 +546,7 @@
         }
     ],
     "last_name": "Rabhi",
-    "location": "e2r9p2",
+    "location": "e2r9p7",
     "login": "zrabhi",
     "partnerships": [],
     "patroned": [],
@@ -550,6 +555,23 @@
     "pool_month": "june",
     "pool_year": "2021",
     "projects_users": [
+        {
+            "created_at": "2025-07-05T14:51:09.032Z",
+            "current_team_id": null,
+            "cursus_ids": [Array
+            ],
+            "final_mark": null,
+            "id": 4377641,
+            "marked": false,
+            "marked_at": null,
+            "occurrence": 0,
+            "project": [Object
+            ],
+            "retriable_at": null,
+            "status": "searching_a_group",
+            "updated_at": "2025-07-05T14:51:09.032Z",
+            "validated?": null
+        },
         {
             "created_at": "2025-02-14T19:26:48.675Z",
             "current_team_id": 6359496,
@@ -1487,6 +1509,7 @@
         }
     ],
     "roles": [],
+    "score": 2503565,
     "staff?": false,
     "titles": [
         {
@@ -1516,7 +1539,7 @@
             "user_id": 90241
         }
     ],
-    "updated_at": "2025-07-02T18:30:48.627Z",
+    "updated_at": "2025-07-05T21:06:50.141Z",
     "url": "https://api.intra.42.fr/v2/users/zrabhi",
     "usual_first_name": null,
     "usual_full_name": "Zakaria Rabhi",

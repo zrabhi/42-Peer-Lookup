@@ -1,5 +1,4 @@
 import { Text } from '@components/ui/Text';
-import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { Settings } from 'lucide-react-native';
 import { memo, useCallback, useMemo } from 'react';
@@ -9,9 +8,9 @@ import { twMerge } from 'tailwind-merge';
 import { useHaptics } from '@/hooks/UseHaptics';
 import { useAuth } from '@/utils/auth/AuthProvider';
 
-import { NImage } from '../Image';
 import { Button } from './Button';
 import { HighlightedText } from './HighlightedText';
+import { Image } from './Image';
 
 interface UserHeaderProps {
   className?: string;
@@ -46,7 +45,7 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
         onPress={handleOnPressProfile}
       >
         <View className="rounded-full border">
-          <NImage
+          <Image
             width={64}
             height={64}
             imageSource={authenticatedUser.image_url}

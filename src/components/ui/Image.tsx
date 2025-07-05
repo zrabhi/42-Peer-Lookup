@@ -1,4 +1,4 @@
-import { Image, type ImageProps } from 'expo-image';
+import { Image as NImage, type ImageProps } from 'expo-image';
 import React from 'react';
 
 interface NImageProps extends ImageProps {
@@ -8,7 +8,7 @@ interface NImageProps extends ImageProps {
   height?: number;
 }
 
-export const NImage = ({
+export const Image = ({
   imageSource,
   width = 64,
   height = 64,
@@ -16,8 +16,8 @@ export const NImage = ({
   ...rest
 }: NImageProps) => {
   return (
-    <Image
-      source={imageSource ?? require('@assets/images/avatars/avatar@1.png')}
+    <NImage
+      source={imageSource ?? require('@assets/images/avatars/avatar@2.png')}
       style={{ width, height, borderRadius }}
       {...rest}
     />

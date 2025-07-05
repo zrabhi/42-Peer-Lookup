@@ -60,7 +60,7 @@ export const UserLevelBar = memo(
             textSize={10}
             className="z-99 absolute  top-1.5 self-center font-bold  text-gray-700"
           >
-            Level: {level.toFixed(2)}% / {maxLevel} ({percentage.toFixed(2)}%)
+            {level.toFixed(2)}% / {maxLevel} ({percentage.toFixed(2)}%)
           </Text>
         </NeoBruteView>
       </View>

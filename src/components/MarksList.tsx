@@ -32,6 +32,7 @@ export const MarksList = memo(({ marks }: MarksListProps) => {
       renderItem={({ item }) => {
         return (
           <MarkCard
+            date={item.updated_at}
             finalMark={item.final_mark}
             name={item.project.name}
             status={item.status}
