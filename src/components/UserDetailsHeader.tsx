@@ -51,7 +51,7 @@ export const UserDetailsHeader = memo(
               {campusLocation}
             </Text>
           </View>
-          <View className="flex-row items-center  gap-2">
+          <View className="flex-row items-center justify-center  gap-1">
             <Ghost
               size={20}
               strokeWidth={2.5}

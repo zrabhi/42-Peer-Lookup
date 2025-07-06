@@ -12,6 +12,7 @@ interface UserInfoProps {
   onPress: VoidFunction;
   location?: string;
 }
+
 export const UserDetailsInfo = ({
   login,
   displayname,
@@ -20,7 +21,7 @@ export const UserDetailsInfo = ({
 }: UserInfoProps) => {
   return (
     <View className="items-center justify-center gap-1.5">
-      <View className="max-w-[90%] flex-row flex-wrap items-start justify-center gap-1">
+      <View className="max-w-[90%] flex-row flex-wrap items-center justify-center gap-1">
         <Text textSize={18} className="text-center font-bold ">
           {displayname}
         </Text>
@@ -32,15 +33,13 @@ export const UserDetailsInfo = ({
           />
         </Pressable>
       </View>
-
       <HighlightedText>
         <Text textSize={12} className="font-medium text-gray-100">
           @{login}
         </Text>
       </HighlightedText>
-
       <Text textSize={16} className="font-semibold text-primary-orange-100">
-        {location ?? 'Unavailable'}
+        {location}
       </Text>
     </View>
   );
