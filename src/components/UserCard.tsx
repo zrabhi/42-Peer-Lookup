@@ -7,7 +7,7 @@ import { Platform, Pressable, View } from 'react-native';
 
 import { UserKind } from '@/types/UserKind';
 
-import { NImage } from './Image';
+import { Image } from './ui/Image';
 interface UserCardProps {
   kind: UserKind;
   onPress?: () => void;
@@ -48,7 +48,7 @@ export const UserCard = ({
         </View>
         <View className="flex-1 flex-row items-center justify-between">
           <View className="flex-1 flex-row items-center  justify-start  gap-4">
-            <NImage imageSource={image} />
+            <Image imageSource={image} />
             <View className="flex-1 items-start  gap-2">
               <Text
                 lineBreakMode="tail"

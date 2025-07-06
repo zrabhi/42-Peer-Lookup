@@ -16,6 +16,7 @@ import { useCallback, useState } from 'react';
 import { Linking, Platform, View } from 'react-native';
 
 import { MarksList } from '@/components/MarksList';
+import { UserStats } from '@/components/UserStats';
 import { useUserCursus } from '@/hooks/UseUserCursus';
 import { ToastType } from '@/types/ToastType';
 import { UserDetailsSections } from '@/types/user/UserDeatilsSections';
@@ -43,24 +44,25 @@ export default function UserDetails() {
 
   if (isLoading) return <Loading />;
 
-  const campusLocation = data?.campus?.[0]?.name || 'Unknown Location';
+  const campusLocation = data?.campus[0];
 
   if (!data) return null;
-
   return (
     <ProtectedRoutes>
       <FadeInView slideFrom="right" className="flex-1 bg-peach">
         <NavigationHeader />
         <UserDetailsHeader
           {...data}
+          erasureDate={data.data_erasure_date}
+          campusLocation={campusLocation.city}
           coalitionBackground={data.coalition_cover}
           userImage={data.image.versions.medium}
         />
-        <View className="gap-8  px-5 pt-16">
-          <UserDetailsInfo
-            campusLocation={campusLocation}
-            onPress={handleOnPress}
-            {...data}
+        <View className="gap-5  px-5 pt-16">
+          <UserDetailsInfo onPress={handleOnPress} {...data} />
+          <UserStats
+            correctionPoints={data.correction_point}
+            wallet={data.wallet}
           />
           <UserLevelBar
             grade={cursus.grade}

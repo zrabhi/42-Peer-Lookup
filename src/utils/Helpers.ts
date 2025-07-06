@@ -2,7 +2,6 @@ import Toast from 'react-native-toast-message';
 
 import { type AuthTokenResponse } from '@/types/AuthTokenResponse';
 import { type ToastType } from '@/types/ToastType';
-import { type UserCursusStat, UserGrade } from '@/types/user/UserCursusStat';
 
 export const openToaster = (type: ToastType, message: string) => {
   Toast.show({
@@ -29,18 +28,21 @@ export const isTokenExpired = (token: AuthTokenResponse): boolean => {
   return expiresAt < now;
 };
 
-export const getLatestLevel = (cursusUsers: UserCursusStat[]): number => {
-  let transcenderLevel: number | null = null;
-  let piscinerLevel: number | null = null;
+export const getRelativeDate = (isoDate: string): string => {
+  const now = Date.now();
+  const then = new Date(isoDate).getTime();
 
-  for (const cursus of cursusUsers) {
-    if (cursus.grade === UserGrade.PISCINER) {
-      transcenderLevel = cursus.level;
-      break;
-    }
-    if (cursus.grade === UserGrade.TRANCENDER && piscinerLevel === null) {
-      piscinerLevel = cursus.level;
-    }
+  const diffInDays = Math.floor((now - then) / 86_400_000); // 1000 * 60 * 60 * 24
+  const months = Math.floor(diffInDays / 30);
+
+  if (months >= 12) {
+    const years = Math.floor(months / 12);
+    return `${years} year${years > 1 ? 's' : ''} ago`;
   }
-  return transcenderLevel ?? piscinerLevel ?? 0;
+
+  if (months >= 1) {
+    return `${months} month${months > 1 ? 's' : ''} ago`;
+  }
+
+  return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
 };

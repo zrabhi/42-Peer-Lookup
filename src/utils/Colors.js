@@ -5,7 +5,7 @@ module.exports = {
   black: '#000000',
   peach: '#FFEFDE', // soft background or accent
 
-  highlight: '#BAFCA2',
+  highlight: '#FDFD96',
   primary: {
     green: {
       100: '#B5D2AD',

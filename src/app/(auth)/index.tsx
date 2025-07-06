@@ -8,8 +8,9 @@ import { Env } from '@utils/Env';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { router } from 'expo-router';
 import React, { memo, useCallback, useEffect } from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { Dimensions, SafeAreaView, View } from 'react-native';
 
+import { ScribbleLine } from '@/components/icons/ScribblleLine';
 import { BounceWrapper } from '@/components/ui/BounceWrapper';
 import { ToastType } from '@/types/ToastType';
 import { openToaster } from '@/utils/Helpers';
@@ -19,11 +20,13 @@ const discovery = {
 };
 
 const AuthenticationHeader = memo(() => {
+  const screenWidth = Dimensions.get('window').width;
   return (
-    <View className="flex items-center gap-6 pt-28 ">
+    <View className="items-center justify-center gap-6 pt-28 ">
       <BounceWrapper bounceHeight={9}>
         <FortyTwoLogo />
       </BounceWrapper>
+      <ScribbleLine width={screenWidth} />
       <Text textSize={28} className="font-bold">
         Welcome!
       </Text>
@@ -32,7 +35,7 @@ const AuthenticationHeader = memo(() => {
           Discover your
           <Text>
             {' '}
-            <Text textSize={18} className="text-primary-100">
+            <Text textSize={18} className="font-medium text-primary-orange-100">
               peers
             </Text>
           </Text>{' '}

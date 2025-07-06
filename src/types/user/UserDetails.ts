@@ -20,7 +20,9 @@ export interface UserDetails extends UserCoalition {
   pool_year: string | null;
   login: string;
   phone: string;
+  email: string | null;
   updated_at: string;
+  data_erasure_date: string | null;
   url: string | null;
   correction_point: number | null;
   usual_first_name: string | null;

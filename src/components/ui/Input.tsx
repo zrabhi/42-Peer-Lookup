@@ -33,7 +33,7 @@ const InputVariants = tv({
     },
     focus: {
       true: {
-        container: 'border-[2px] border-red-500 ring-1 ring-gray-500',
+        container: ' border-primary-orange-100 ',
         shadow: 'hidden',
       },
     },
@@ -62,7 +62,7 @@ export const Input = ({
   const handleOnBlur = useCallback(() => setIsFocus(false), []);
 
   return (
-    <View className={style.container({ className })}>
+    <View className={style.container({ className, focus: isFocus })}>
       <View className={style.inputContainer()}>
         <TextInput
           style={{

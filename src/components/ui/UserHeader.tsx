@@ -1,5 +1,4 @@
 import { Text } from '@components/ui/Text';
-import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { Settings } from 'lucide-react-native';
 import { memo, useCallback, useMemo } from 'react';
@@ -8,10 +7,11 @@ import { twMerge } from 'tailwind-merge';
 
 import { useHaptics } from '@/hooks/UseHaptics';
 import { useAuth } from '@/utils/auth/AuthProvider';
+import Colors from '@/utils/Colors';
 
-import { NImage } from '../Image';
 import { Button } from './Button';
 import { HighlightedText } from './HighlightedText';
+import { Image } from './Image';
 
 interface UserHeaderProps {
   className?: string;
@@ -28,7 +28,7 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
 
   const handleOnPress = useCallback(() => {
     triggerImpact(), router.push('/settings');
-  }, []);
+  }, [triggerImpact]);
 
   const handleOnPressProfile = useCallback(() => {
     triggerImpact();
@@ -46,31 +46,39 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
         onPress={handleOnPressProfile}
       >
         <View className="rounded-full border">
-          <NImage
+          <Image
             width={64}
             height={64}
             imageSource={authenticatedUser.image_url}
           />
         </View>
         <View className="items-start justify-center">
-          <Text textSize={14} className="font-extrabold">
-            <Text className="font-medium" textSize={14}>
-              Hola, {''}
+          <View className="flex-row flex-wrap items-center">
+            <Text className="font-semibold" textSize={14}>
+              Hola,{' '}
             </Text>
-            {authenticatedUser.first_name ?? ''}!
+            <HighlightedText className="mx-1">
+              <Text className="font-extrabold" textSize={14}>
+                {authenticatedUser.first_name ?? ''}!
+              </Text>
+            </HighlightedText>
+          </View>
+
+          <Text className="font-medium  text-sm text-gray-100">
+            @{authenticatedUser.login}
           </Text>
-          <HighlightedText>
-            <Text className="font-medium  text-sm text-gray-100">
-              @{authenticatedUser.login}
-            </Text>
-          </HighlightedText>
           <View className="flex-row items-center gap-2">
             <Image
               source={authenticatedUser.coalition_icon}
               tintColor={authenticatedUser.coalition_color}
               style={{ width: 14, height: 22 }}
             />
-            <Text className="font-normal text-sm text-gray-100">
+            <Text
+              style={{
+                color: authenticatedUser.coalition_color ?? Colors.gray[100],
+              }}
+              className="font-normal text-sm "
+            >
               {authenticatedUser.coalition_name}
             </Text>
           </View>

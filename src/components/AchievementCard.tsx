@@ -4,7 +4,7 @@ import { View } from 'react-native';
 
 import { apiUrls } from '@/api/Common';
 
-import { NImage } from './Image';
+import { Image } from './ui/Image';
 import { NeoBruteView } from './ui/NeoBruteView';
 interface AchievementCardProps {
   image: string | null;
@@ -18,7 +18,7 @@ export const AchievementCard = memo(
     return (
       <View className="ios:mb-4  android:pb-4  h-24 flex-row items-center  gap-4 bg-transparent ">
         <NeoBruteView className="h-full w-28 items-center justify-center gap-2 rounded-xl px-2 py-3 ">
-          <NImage
+          <Image
             style={{ height: 26, width: 26 }}
             imageSource={apiUrls.fortyTwoCdn + image.replace(/^\/uploads/, '')}
           />
