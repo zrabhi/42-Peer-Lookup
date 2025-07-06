@@ -76,9 +76,13 @@ export default function UserDetails() {
           />
         </View>
         <View className="flex-1  gap-1 py-3 ">
-          {currentSection === UserDetailsSections.MARKS ? (
+          {currentSection === UserDetailsSections.MARKS && (
             <MarksList marks={data.projects_users} />
-          ) : (
+          )}
+          {currentSection === UserDetailsSections.SKILLS && (
+            <AchievementList achievements={data.achievements} />
+          )}
+          {currentSection === UserDetailsSections.ACHIEVEMENTS && (
             <AchievementList achievements={data.achievements} />
           )}
         </View>
