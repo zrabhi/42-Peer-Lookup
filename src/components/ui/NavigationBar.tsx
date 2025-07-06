@@ -21,7 +21,7 @@ const NavigationTv = tv({
   variants: {
     isCurrent: {
       true: {
-        tab: 'border  bg-primary-200',
+        tab: ' border-2 border-dashed border-black  bg-primary-200',
         label: 'text-black ',
       },
     },

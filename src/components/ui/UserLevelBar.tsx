@@ -63,7 +63,7 @@ export const UserLevelBar = memo(
 
         <View className="relative h-10 w-full overflow-hidden rounded-xl border-2 border-dashed border-black bg-white">
           <Animated.View
-            className="absolute left-0 top-0 z-10 h-full overflow-hidden bg-primary-200"
+            className="absolute left-0 top-0 z-10 rounded-xl h-full overflow-hidden bg-primary-200"
             style={{
               width: widthInterpolated,
             }}
