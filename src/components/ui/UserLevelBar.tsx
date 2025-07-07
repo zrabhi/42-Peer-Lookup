@@ -5,6 +5,7 @@ import Svg, { Line } from 'react-native-svg';
 
 import { type UserGrade } from '@/types/user/UserCursusStat';
 import { UserGradeLabels } from '@/utils/UserGradeLabes';
+import Colors from '@/utils/Colors';
 
 const LINE_COUNT = 20;
 const LINE_SPACING = 10;
@@ -28,11 +29,19 @@ const DOODLE_LINES = Array.from({ length: LINE_COUNT }, (_, i) => {
 type LevelBarProps = {
   level: number;
   grade?: UserGrade;
+  className?: string;
+  backgroundColor?: string;
   maxLevel?: number;
 };
 
 export const UserLevelBar = memo(
-  ({ level, maxLevel = 21, grade }: LevelBarProps) => {
+  ({
+    level,
+    maxLevel = 21,
+    grade,
+    className = '',
+    backgroundColor = Colors.primary[200],
+  }: LevelBarProps) => {
     const percentage = useMemo(
       () => Math.min((level / maxLevel) * 100, 100),
       [level, maxLevel]
@@ -61,10 +70,13 @@ export const UserLevelBar = memo(
           </Text>
         )}
 
-        <View className="relative h-10 w-full overflow-hidden rounded-xl border-2 border-dashed border-black bg-white">
+        <View
+          className={`relative h-10 w-full overflow-hidden rounded-xl border-2 border-dashed border-black bg-white ${className}`}
+        >
           <Animated.View
-            className="absolute left-0 top-0 z-10 rounded-xl h-full overflow-hidden bg-primary-200"
+            className="absolute left-0 top-0 z-10 h-full overflow-hidden rounded-xl "
             style={{
+              backgroundColor,
               width: widthInterpolated,
             }}
           >
@@ -72,12 +84,11 @@ export const UserLevelBar = memo(
               {DOODLE_LINES}
             </Svg>
           </Animated.View>
-          <Text
-            textSize={10}
-            className="absolute top-1.5  z-30 self-center font-bold  text-gray-700"
-          >
-            {level.toFixed(2)} / {maxLevel} ({percentage.toFixed(2)}%)
-          </Text>
+          <View className="absolute inset-0 z-30 items-center justify-center">
+            <Text textSize={10} className="font-bold text-gray-700">
+              {level.toFixed(2)} / {maxLevel} ({percentage.toFixed(2)}%)
+            </Text>
+          </View>
         </View>
       </View>
     );

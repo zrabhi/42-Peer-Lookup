@@ -19,7 +19,7 @@ interface MarkCardProps {
 export const MarkCard = memo(
   ({ status, name, date, validated, finalMark }: MarkCardProps) => {
     const meta = markStateMetadata[status];
-    const Icon = meta.markIcon(validated);
+    const Icon = meta.Icon(validated);
     const color = meta.color(validated);
 
     return (
