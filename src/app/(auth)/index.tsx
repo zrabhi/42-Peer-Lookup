@@ -10,11 +10,11 @@ import { router } from 'expo-router';
 import React, { memo, useCallback, useEffect } from 'react';
 import { Dimensions, SafeAreaView, View } from 'react-native';
 
+import { AccessTokenGranType } from '@/api/types/AcessTokenGrantTYpe';
 import { ScribbleLine } from '@/components/icons/ScribblleLine';
 import { BounceWrapper } from '@/components/ui/BounceWrapper';
 import { ToastType } from '@/types/ToastType';
 import { openToaster } from '@/utils/Helpers';
-import { AccessTokenGranType } from '@/api/types/AcessTokenGrantTYpe';
 
 const discovery = {
   authorizationEndpoint: Env.API_URL + apiUrls.oauth,

@@ -1,4 +1,4 @@
-import { AccessTokenGranType } from "./AcessTokenGrantTYpe";
+import { type AccessTokenGranType } from './AcessTokenGrantTYpe';
 
 export interface GetAccessTokenParams {
   code?: string | null;

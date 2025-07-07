@@ -1,17 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 
+import { type AuthTokenResponse } from '@/types/AuthTokenResponse';
 import { useAuth } from '@/utils/auth/AuthProvider';
-import { Env } from '@/utils/Env';
-import { AUTH_KEY, setItem } from '@/utils/Storage';
 
-import { apiUrls } from '../Common';
-import { AccessTokenGranType } from '../types/AcessTokenGrantTYpe';
-import { AuthTokenResponse } from '@/types/AuthTokenResponse';
-import { GetAccessTokenParams } from '../types/GetAccessTokenParams';
+import { type GetAccessTokenParams } from '../types/GetAccessTokenParams';
 import { getAccessTokenMutationFn } from '../user/GetAccessTokenMutationFn';
-
-
 
 export const useGetAccessToken = () => {
   const { setIsAuthenticated } = useAuth();

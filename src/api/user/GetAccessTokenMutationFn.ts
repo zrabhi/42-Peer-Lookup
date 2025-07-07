@@ -1,13 +1,12 @@
-import { AuthTokenResponse } from "@/types/AuthTokenResponse";
-import { GetAccessTokenParams } from "../types/GetAccessTokenParams";
+import axios from 'axios';
+
+import { type AuthTokenResponse } from '@/types/AuthTokenResponse';
 import { Env } from '@/utils/Env';
-import { AccessTokenGranType } from "../types/AcessTokenGrantTYpe";
-import { apiUrls } from "../Common";
-import axios from "axios";
-import { AUTH_KEY, setItem } from "@/utils/Storage";
+import { AUTH_KEY, setItem } from '@/utils/Storage';
 
-
-
+import { apiUrls } from '../Common';
+import { AccessTokenGranType } from '../types/AcessTokenGrantTYpe';
+import { type GetAccessTokenParams } from '../types/GetAccessTokenParams';
 
 export const getAccessTokenMutationFn = async ({
   code,
