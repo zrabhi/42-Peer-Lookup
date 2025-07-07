@@ -2,15 +2,14 @@ import {
   Binoculars,
   CircleCheckBig,
   CircleDashed,
+  ClockFading,
   XCircle,
 } from 'lucide-react-native';
-import { type ElementType } from 'react';
 
+import { type Metadata } from '@/types/Metadata';
 import { markStatus } from '@/types/user/CursusProject';
 
 import Colors from './Colors';
-import { Metadata } from '@/types/Metadata';
-
 
 export const markStateMetadata: Record<markStatus, Metadata> = {
   [markStatus.IN_PROGRESS]: {
@@ -22,6 +21,11 @@ export const markStateMetadata: Record<markStatus, Metadata> = {
     description: 'This project is currently looking for a group.',
     Icon: () => Binoculars,
     color: () => Colors.primary.green[100],
+  },
+  [markStatus.WAITING_FOR_CORRESTION]: {
+    description: '',
+    Icon: () => ClockFading,
+    color: () => Colors.primary[200],
   },
   [markStatus.FINISHED]: {
     description: 'This project has been completed.',

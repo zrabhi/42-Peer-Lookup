@@ -1,7 +1,9 @@
 import { FlashList } from '@shopify/flash-list';
 import { memo } from 'react';
 
+import { useGetEmptyMessage } from '@/hooks/UseGetEmptyMessage';
 import { type UserAchievement } from '@/types/user/UserAchievement';
+import { UserDetailsSections } from '@/types/user/UserDeatilsSections';
 
 import { AchievementCard } from './AchievementCard';
 import { NoItemIllustartion } from './icons/NoItemIllustartion';
@@ -9,10 +11,16 @@ import { AlertMessage } from './ui/AlertMessage';
 
 interface AchievementsListProps {
   achievements?: UserAchievement[];
+  userLogin: string;
 }
-// TODO: to center the empty list
+
 export const AchievementList = memo(
-  ({ achievements }: AchievementsListProps) => {
+  ({ achievements, userLogin }: AchievementsListProps) => {
+    const emptyAchievementsList = useGetEmptyMessage(
+      UserDetailsSections.ACHIEVEMENTS,
+      userLogin
+    );
+
     return (
       <FlashList
         data={achievements}
@@ -23,7 +31,7 @@ export const AchievementList = memo(
             textSize={14}
             className="gap-6"
             alertIcon={NoItemIllustartion}
-            message="You have no achievements yet."
+            message={emptyAchievementsList}
           />
         }
         className="ios:my-auto flex-1 pt-4 "

@@ -6,12 +6,12 @@ import { StyleSheet, View } from 'react-native';
 import Colors from '@/utils/Colors';
 
 import { Image } from './ui/Image';
-import { NeoBruteView } from './ui/NeoBruteView';
 
 interface UserDetailsHeaderProps {
   coalitionBackground: string;
   userImage: string;
   campusLocation: string | null;
+  coalitionColor?: string | null;
   erasureDate: string | null;
 }
 
@@ -20,6 +20,7 @@ export const UserDetailsHeader = memo(
     coalitionBackground,
     userImage,
     campusLocation,
+    coalitionColor,
     erasureDate,
   }: UserDetailsHeaderProps) => {
     const formattedDate = erasureDate
@@ -37,10 +38,13 @@ export const UserDetailsHeader = memo(
             coalitionBackground ?? require('@assets/images/bkgrnd.jpg')
           }
         />
-        <NeoBruteView className="absolute -bottom-12 left-[36%] size-36 flex-row items-center justify-center rounded-3xl  bg-none">
+        <View
+          style={{ borderColor: coalitionColor ?? Colors.primary.orange[100] }}
+          className="absolute -bottom-12 left-[36%] size-36 flex-row items-center justify-center rounded-3xl border-2 border-dashed  bg-none"
+        >
           <Image style={styles.avatarImage} imageSource={userImage} />
-        </NeoBruteView>
-        <View className="-z-20 flex-row items-center justify-between px-4 pt-6">
+        </View>
+        <View className="-z-20 flex-row items-center justify-between px-2 pl-4 pt-6">
           <View className="flex-row items-center  gap-2">
             <LocateFixed
               size={20}
@@ -75,6 +79,6 @@ const styles = StyleSheet.create({
   avatarImage: {
     width: 122,
     height: 122,
-    borderRadius: 15,
+    borderRadius: 21,
   },
 });

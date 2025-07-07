@@ -1,5 +1,12 @@
+import { X } from 'lucide-react-native';
 import { type ElementType, useCallback, useMemo, useState } from 'react';
-import { TextInput, type TextInputProps, View } from 'react-native';
+import {
+  Keyboard,
+  Pressable,
+  TextInput,
+  type TextInputProps,
+  View,
+} from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import { tv } from 'tailwind-variants';
 
@@ -33,7 +40,7 @@ const InputVariants = tv({
     },
     focus: {
       true: {
-        container: ' border-primary-orange-100 ',
+        container: ' border-2 border-dashed border-primary-orange-100 ',
         shadow: 'hidden',
       },
     },
@@ -59,8 +66,11 @@ export const Input = ({
 
   const handleOnFocus = useCallback(() => setIsFocus(true), []);
 
-  const handleOnBlur = useCallback(() => setIsFocus(false), []);
+  const handleClearInput = useCallback(() => {
+    rest.onChangeText(''), Keyboard.dismiss();
+  }, []);
 
+  const handleOnBlur = useCallback(() => setIsFocus(false), []);
   return (
     <View className={style.container({ className, focus: isFocus })}>
       <View className={style.inputContainer()}>
@@ -69,19 +79,29 @@ export const Input = ({
             fontSize: moderateScale(textSize),
           }}
           value={value}
+          placeholderTextColor={Colors.gray[100]}
           onFocus={handleOnFocus}
           onBlur={handleOnBlur}
           className={style.input()}
           editable={!disabled}
           {...rest}
         />
-        {InputIcon && (
-          <InputIcon
-            strokeWidth={2.5}
-            size={moderateScale(20)}
-            color={Colors.primary.orange[100]}
-          />
-        )}
+        {InputIcon &&
+          (value.length === 0 ? (
+            <InputIcon
+              strokeWidth={2.5}
+              size={moderateScale(20)}
+              color={Colors.primary.orange[100]}
+            />
+          ) : (
+            <Pressable onPress={handleClearInput}>
+              <X
+                strokeWidth={2.5}
+                size={moderateScale(20)}
+                color={Colors.primary.orange[100]}
+              />
+            </Pressable>
+          ))}
       </View>
       <View className={style.shadow({ focus: isFocus })} />
     </View>

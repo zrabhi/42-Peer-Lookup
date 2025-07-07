@@ -1,10 +1,11 @@
 import { useGetPaginatedUsers } from '@api/user/GetUsers';
 import { FlashList } from '@shopify/flash-list';
 import Colors from '@utils/Colors';
-import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
 import React, { useCallback } from 'react';
 import { ActivityIndicator, RefreshControl } from 'react-native';
+
+import { useHaptics } from '@/hooks/UseHaptics';
 
 import { ErrorOccurredIllustration } from './icons/ErrorOccurredIllustration';
 import { NoResultFoundIllustration } from './icons/NoResultFoundIllustration';
@@ -13,20 +14,20 @@ import { Loading } from './ui/Loading';
 import { UserCard } from './UserCard';
 
 interface UsersListProps {
-  searchedUser?: string;
+  searchedUser: string;
   onScroll?: (...args: any[]) => void;
 }
 
 export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
   const { users, error, invalidate, isFetchingNextPage, isLoading, loadMore } =
     useGetPaginatedUsers(searchedUser);
-
+  const { triggerSelection } = useHaptics();
   const handleOnPress = useCallback((userId: string) => {
-    process.env.EXPO_OS === 'ios' && Haptics.selectionAsync(),
-      router.push({
-        pathname: '/users/[id]',
-        params: { id: userId },
-      });
+    triggerSelection();
+    router.push({
+      pathname: '/users/[id]',
+      params: { id: userId },
+    });
   }, []);
 
   if (error)

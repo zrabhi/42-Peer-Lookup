@@ -16,7 +16,7 @@ interface AchievementCardProps {
 export const AchievementCard = memo(
   ({ description, image, name, kind }: AchievementCardProps) => {
     return (
-      <View className="ios:mb-4  android:pb-4  h-24 flex-row items-center  gap-4 bg-transparent ">
+      <View className="ios:mb-4  android:pb-4  h-24 max-h-36 flex-row items-center  gap-4 bg-transparent ">
         <NeoBruteView className="h-full w-28 items-center justify-center gap-2 rounded-xl px-2 py-3 ">
           <Image
             style={{ height: 26, width: 26 }}
