@@ -48,7 +48,7 @@ export default function UserDetails() {
   const campusLocation = data?.campus[0];
 
   if (!data) return null;
-  console.log(data);
+
   return (
     <ProtectedRoutes>
       <FadeInView slideFrom="right" className="flex-1 bg-peach">

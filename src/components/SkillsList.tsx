@@ -35,11 +35,8 @@ export const SkillsList = memo(({ skills, userLogin }: SkillsListProps) => {
       }
       className="ios:my-auto flex-1 flex-grow pt-4 "
       estimatedItemSize={50}
-      style={{
+      contentContainerStyle={{
         paddingHorizontal: 20,
-        flexGrow: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
       }}
       keyExtractor={(item) => item.id?.toString() ?? ''}
       renderItem={({ item }) => (

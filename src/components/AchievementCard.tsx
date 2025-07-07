@@ -16,18 +16,18 @@ interface AchievementCardProps {
 export const AchievementCard = memo(
   ({ description, image, name, kind }: AchievementCardProps) => {
     return (
-      <View className="ios:mb-4  android:pb-4  h-24 max-h-36 flex-row items-center  gap-4 bg-transparent ">
-        <NeoBruteView className="h-full w-28 items-center justify-center gap-2 rounded-xl px-2 py-3 ">
+      <View className="ios:mb-4  android:pb-4 flex-row items-center justify-evenly gap-4 bg-transparent ">
+        <NeoBruteView className="h-full w-28 items-center justify-center gap-2 rounded-xl px-2 py-4 ">
           <Image
             style={{ height: 26, width: 26 }}
             imageSource={apiUrls.fortyTwoCdn + image.replace(/^\/uploads/, '')}
           />
-          <Text textSize={10} className="font-semibold">
+          <Text textSize={9} className="font-semibold">
             {kind}
           </Text>
         </NeoBruteView>
         <NeoBruteView className="h-full flex-1 justify-center  gap-2 rounded-xl px-2 py-3 ">
-          <Text textSize={13} className="font-bold">
+          <Text textSize={12} className="font-bold">
             {name}
           </Text>
           <Text textSize={10} className="font-medium text-gray-100">
