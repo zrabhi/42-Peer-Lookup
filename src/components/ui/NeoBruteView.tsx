@@ -38,7 +38,7 @@ export const NeoBruteView = memo(
     );
 
     return (
-      <View className={viewClassName} style={viewStyle} {...rest} >
+      <View className={viewClassName} style={viewStyle} {...rest}>
         {children}
       </View>
     );

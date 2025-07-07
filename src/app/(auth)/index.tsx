@@ -14,6 +14,7 @@ import { ScribbleLine } from '@/components/icons/ScribblleLine';
 import { BounceWrapper } from '@/components/ui/BounceWrapper';
 import { ToastType } from '@/types/ToastType';
 import { openToaster } from '@/utils/Helpers';
+import { AccessTokenGranType } from '@/api/types/AcessTokenGrantTYpe';
 
 const discovery = {
   authorizationEndpoint: Env.API_URL + apiUrls.oauth,
@@ -68,7 +69,10 @@ export default function AuthScreen() {
 
   const handleAuthCode = useCallback(async () => {
     if (response?.type === 'success' && response.params?.code) {
-      await getAccessToken({ code: response.params.code });
+      await getAccessToken({
+        code: response.params.code,
+        grantType: AccessTokenGranType.AUTORIZATION_CODE,
+      });
       openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
       router.push('/(screens)/users');
     }
