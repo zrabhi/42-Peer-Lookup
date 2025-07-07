@@ -1,7 +1,9 @@
 import { FlashList } from '@shopify/flash-list';
 import { memo } from 'react';
 
+import { useGetEmptyMessage } from '@/hooks/UseGetEmptyMessage';
 import { type CursusProject } from '@/types/user/CursusProject';
+import { UserDetailsSections } from '@/types/user/UserDeatilsSections';
 
 import { NoItemIllustartion } from './icons/NoItemIllustartion';
 import { MarkCard } from './MarksCard';
@@ -9,9 +11,15 @@ import { AlertMessage } from './ui/AlertMessage';
 
 interface MarksListProps {
   marks: CursusProject[];
+  userLogin: string;
 }
 
-export const MarksList = memo(({ marks }: MarksListProps) => {
+export const MarksList = memo(({ marks, userLogin }: MarksListProps) => {
+  const emptyMarksMessage = useGetEmptyMessage(
+    UserDetailsSections.MARKS,
+    userLogin
+  );
+
   return (
     <FlashList
       data={marks}
@@ -22,10 +30,10 @@ export const MarksList = memo(({ marks }: MarksListProps) => {
           textSize={14}
           className="gap-6"
           alertIcon={NoItemIllustartion}
-          message="You have no marks yet."
+          message={emptyMarksMessage}
         />
       }
-      className="ios:my-auto flex-1 pt-4"
+      className="ios:py-auto flex-1 pt-4"
       estimatedItemSize={50}
       contentContainerStyle={{ paddingHorizontal: 20 }}
       keyExtractor={(item) => item.id?.toString() ?? ''}

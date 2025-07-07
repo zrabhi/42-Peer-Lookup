@@ -1,16 +1,17 @@
-import { Metadata } from '@/types/Metadata';
 import {
   Brain,
-  Image,
   Briefcase,
   Code,
   Globe,
+  Image,
   Network,
   ScanLine,
   Settings,
   TerminalSquare,
   Users,
 } from 'lucide-react-native';
+
+import { type Metadata } from '@/types/Metadata';
 
 export const skillsStateMetadata: Record<string, Metadata> = {
   'Company experience': {

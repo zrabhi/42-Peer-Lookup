@@ -6,11 +6,11 @@ interface UserStatsProps {
   wallet: number;
   rank?: number;
   correctionPoints: number;
-  score?: number;
+  score: number | null;
 }
 
 export const UserStats = memo(
-  ({ wallet, correctionPoints }: UserStatsProps) => {
+  ({ wallet, correctionPoints, score }: UserStatsProps) => {
     return (
       <View className="flex-row  items-center justify-between gap-4 px-4 ">
         <View className="items-center justify-center  rounded-xl">
@@ -23,11 +23,11 @@ export const UserStats = memo(
         </View>
 
         <View className="items-center justify-center rounded-xl">
-          <Text textSize={16} className="font-bold">
-            {correctionPoints}
+          <Text textSize={score !== null ? 16 : 12} className="font-bold">
+            {score ?? 'No Coalition yet!'}
           </Text>
           <Text textSize={12} className="font-medium text-gray-100">
-            Points
+            Coalition Points
           </Text>
         </View>
         <View className="items-center justify-center rounded-xl">

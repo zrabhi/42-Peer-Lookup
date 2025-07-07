@@ -19,7 +19,7 @@ interface UserHeaderProps {
 
 export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
   const { authenticatedUser } = useAuth();
-  const { triggerImpact } = useHaptics();
+  const { triggerImpact, triggerSelection } = useHaptics();
 
   const style = useMemo(
     () => twMerge('flex-row items-center justify-between', className),
@@ -31,7 +31,7 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
   }, [triggerImpact]);
 
   const handleOnPressProfile = useCallback(() => {
-    triggerImpact();
+    triggerSelection();
     router.push(`/users/${authenticatedUser.id}`);
   }, [authenticatedUser.id, triggerImpact]);
 
@@ -45,7 +45,13 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
         accessibilityLabel={`Go to profile of ${authenticatedUser.first_name ?? authenticatedUser.login}`}
         onPress={handleOnPressProfile}
       >
-        <View className="rounded-full border">
+        <View
+          style={{
+            borderColor:
+              authenticatedUser.coalition_color ?? Colors.primary.orange[100],
+          }}
+          className="rounded-full border-2 border-dashed bg-white"
+        >
           <Image
             width={64}
             height={64}

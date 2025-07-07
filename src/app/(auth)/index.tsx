@@ -27,15 +27,21 @@ const AuthenticationHeader = memo(() => {
         <FortyTwoLogo />
       </BounceWrapper>
       <ScribbleLine width={screenWidth} />
-      <Text textSize={28} className="font-bold">
+      <Text textSize={28} className="font-bold text-black">
         Welcome!
       </Text>
       <View className="">
-        <Text textSize={18} className="text- pt-1 text-center font-medium">
+        <Text
+          textSize={18}
+          className="text- pt-1 text-center font-medium text-black"
+        >
           Discover your
           <Text>
             {' '}
-            <Text textSize={18} className="font-medium text-primary-orange-100">
+            <Text
+              textSize={19}
+              className="font-semibold text-primary-orange-100"
+            >
               peers
             </Text>
           </Text>{' '}

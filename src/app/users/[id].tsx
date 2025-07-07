@@ -16,12 +16,11 @@ import { useCallback, useState } from 'react';
 import { Linking, Platform, View } from 'react-native';
 
 import { MarksList } from '@/components/MarksList';
+import { SkillsList } from '@/components/SkillsList';
 import { UserStats } from '@/components/UserStats';
 import { useUserCursus } from '@/hooks/UseUserCursus';
 import { ToastType } from '@/types/ToastType';
 import { UserDetailsSections } from '@/types/user/UserDeatilsSections';
-import { SkillsCard } from '@/components/SkillsCard';
-import { SkillsList } from '@/components/SkillsList';
 
 export default function UserDetails() {
   const [currentSection, setCurrentSection] = useState<UserDetailsSections>(
@@ -49,6 +48,7 @@ export default function UserDetails() {
   const campusLocation = data?.campus[0];
 
   if (!data) return null;
+  console.log(data);
   return (
     <ProtectedRoutes>
       <FadeInView slideFrom="right" className="flex-1 bg-peach">
@@ -57,12 +57,14 @@ export default function UserDetails() {
           {...data}
           erasureDate={data.data_erasure_date}
           campusLocation={campusLocation.city}
+          coalitionColor={data.coalition_color}
           coalitionBackground={data.coalition_cover}
           userImage={data.image.versions.medium}
         />
         <View className="gap-5  px-5 pt-16">
           <UserDetailsInfo onPress={handleOnPress} {...data} />
           <UserStats
+            score={data.score}
             correctionPoints={data.correction_point}
             wallet={data.wallet}
           />
@@ -79,13 +81,16 @@ export default function UserDetails() {
         </View>
         <View className="flex-1  gap-1 py-3 ">
           {currentSection === UserDetailsSections.MARKS && (
-            <MarksList marks={data.projects_users} />
+            <MarksList userLogin={data.login} marks={data.projects_users} />
           )}
           {currentSection === UserDetailsSections.SKILLS && (
-            <SkillsList skills={cursus.skills} />
+            <SkillsList userLogin={data.login} skills={cursus.skills} />
           )}
           {currentSection === UserDetailsSections.ACHIEVEMENTS && (
-            <AchievementList achievements={data.achievements} />
+            <AchievementList
+              userLogin={data.login}
+              achievements={data.achievements}
+            />
           )}
         </View>
       </FadeInView>

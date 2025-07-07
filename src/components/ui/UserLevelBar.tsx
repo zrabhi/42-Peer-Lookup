@@ -4,8 +4,8 @@ import { Animated, View } from 'react-native';
 import Svg, { Line } from 'react-native-svg';
 
 import { type UserGrade } from '@/types/user/UserCursusStat';
-import { UserGradeLabels } from '@/utils/UserGradeLabes';
 import Colors from '@/utils/Colors';
+import { UserGradeLabels } from '@/utils/UserGradeLabes';
 
 const LINE_COUNT = 20;
 const LINE_SPACING = 10;

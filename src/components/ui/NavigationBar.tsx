@@ -1,8 +1,9 @@
 import { Text } from '@components/ui/Text';
-import { type Dispatch, memo, type SetStateAction } from 'react';
+import { type Dispatch, memo, type SetStateAction, useCallback } from 'react';
 import { Pressable } from 'react-native';
 import { tv } from 'tailwind-variants';
 
+import { useHaptics } from '@/hooks/UseHaptics';
 import { type NavigationSectionsType } from '@/types/NavigationSectionsType';
 
 import { NeoBruteView } from './NeoBruteView';
@@ -40,6 +41,10 @@ export const NavigationBar = memo(
     onChangeSection,
     navigationSections,
   }: NavigationBarProps<T>) => {
+    const { triggerSelection } = useHaptics();
+    const handleChangeSection = useCallback((section: T) => {
+      triggerSelection(), onChangeSection(section);
+    }, []);
     return (
       <NeoBruteView className="flex-row justify-between rounded-xl p-2">
         {navigationSections.map(
@@ -57,7 +62,7 @@ export const NavigationBar = memo(
                 key={String(navigationSection)}
                 disabled={!isActive}
                 className={tab()}
-                onPress={() => onChangeSection(navigationSection)}
+                onPress={() => handleChangeSection(navigationSection)}
               >
                 <Text textSize={9} className={label()}>
                   {tabLabel}
