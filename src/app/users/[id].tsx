@@ -20,6 +20,8 @@ import { UserStats } from '@/components/UserStats';
 import { useUserCursus } from '@/hooks/UseUserCursus';
 import { ToastType } from '@/types/ToastType';
 import { UserDetailsSections } from '@/types/user/UserDeatilsSections';
+import { SkillsCard } from '@/components/SkillsCard';
+import { SkillsList } from '@/components/SkillsList';
 
 export default function UserDetails() {
   const [currentSection, setCurrentSection] = useState<UserDetailsSections>(
@@ -76,9 +78,13 @@ export default function UserDetails() {
           />
         </View>
         <View className="flex-1  gap-1 py-3 ">
-          {currentSection === UserDetailsSections.MARKS ? (
+          {currentSection === UserDetailsSections.MARKS && (
             <MarksList marks={data.projects_users} />
-          ) : (
+          )}
+          {currentSection === UserDetailsSections.SKILLS && (
+            <SkillsList skills={cursus.skills} />
+          )}
+          {currentSection === UserDetailsSections.ACHIEVEMENTS && (
             <AchievementList achievements={data.achievements} />
           )}
         </View>
