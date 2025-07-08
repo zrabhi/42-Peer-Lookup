@@ -3,6 +3,7 @@ export enum markStatus {
   FINISHED = 'finished',
   SEARCHING_A_GROUP = 'searching_a_group',
   WAITING_FOR_CORRESTION = 'waiting_for_correction',
+  WATING_TO_START = 'waiting_to_start',
 }
 
 export interface Project {

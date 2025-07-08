@@ -32,19 +32,13 @@ export default function AppLayout() {
   return (
     <AppProviders>
       <Stack>
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="(screens)" options={{ headerShown: false }} />
         <Stack.Screen
-          name="users/[id]"
+          name="(auth)"
           options={{
             headerShown: false,
-            // header: () => <NavigationHeader title="My Profile" />,
           }}
         />
-        <Stack.Screen
-          name="settings/index"
-          options={{ headerShown: false, presentation: 'modal' }}
-        />
+        <Stack.Screen name="(protected)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" options={{ headerShown: false }} />
       </Stack>
       {!isNetworkConnected && (

@@ -40,7 +40,7 @@ export const UserDetailsHeader = memo(
         />
         <View
           style={{ borderColor: coalitionColor ?? Colors.primary.orange[100] }}
-          className="absolute -bottom-12 left-[36%] size-36 flex-row items-center justify-center rounded-3xl border-2 border-dashed  bg-none"
+          className="android:border-[3px] absolute -bottom-12 left-[36%] size-36 flex-row items-center justify-center rounded-3xl border-2 border-dashed  bg-none"
         >
           <Image style={styles.avatarImage} imageSource={userImage} />
         </View>

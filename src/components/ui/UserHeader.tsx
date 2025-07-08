@@ -50,7 +50,7 @@ export const UserHeader = memo(({ className = '' }: UserHeaderProps) => {
             borderColor:
               authenticatedUser.coalition_color ?? Colors.primary.orange[100],
           }}
-          className="rounded-full border-2 border-dashed bg-white"
+          className="android:border-[3px] rounded-full border-2 border-dashed bg-white"
         >
           <Image
             width={64}

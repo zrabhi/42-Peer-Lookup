@@ -1,5 +1,6 @@
 import { FlashList } from '@shopify/flash-list';
 import { memo } from 'react';
+import { Platform } from 'react-native';
 
 import { useGetEmptyMessage } from '@/hooks/UseGetEmptyMessage';
 import { type UserAchievement } from '@/types/user/UserAchievement';
@@ -28,13 +29,14 @@ export const AchievementList = memo(
           <AlertMessage
             width={128}
             height={128}
-            textSize={14}
+            textSize={Platform.OS === 'ios' ? 14 : 18}
             className="gap-6"
             alertIcon={NoItemIllustartion}
             message={emptyAchievementsList}
           />
         }
         className="ios:my-auto flex-1 pt-4 "
+        contentContainerClassName="android:py-auto items-center flex-grow"
         estimatedItemSize={50}
         contentContainerStyle={{ paddingHorizontal: 20 }}
         keyExtractor={(item) => item.id?.toString() ?? ''}

@@ -1,5 +1,6 @@
 import { FlashList } from '@shopify/flash-list';
 import { memo } from 'react';
+import { Platform } from 'react-native';
 
 import { useGetEmptyMessage } from '@/hooks/UseGetEmptyMessage';
 import { UserDetailsSections } from '@/types/user/UserDeatilsSections';
@@ -27,19 +28,17 @@ export const SkillsList = memo(({ skills, userLogin }: SkillsListProps) => {
         <AlertMessage
           width={128}
           height={128}
-          textSize={14}
+          textSize={Platform.OS === 'ios' ? 14 : 18}
           className="gap-6"
           alertIcon={NoItemIllustartion}
           message={emptySkillsMessage}
         />
       }
-      className="ios:my-auto flex-1 flex-grow pt-4 "
+      className="flex-1 flex-grow pt-4 "
+      contentContainerClassName="android:py-auto items-center flex-grow"
       estimatedItemSize={50}
-      style={{
+      contentContainerStyle={{
         paddingHorizontal: 20,
-        flexGrow: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
       }}
       keyExtractor={(item) => item.id?.toString() ?? ''}
       renderItem={({ item }) => (

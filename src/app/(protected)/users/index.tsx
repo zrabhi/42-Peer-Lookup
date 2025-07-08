@@ -7,18 +7,19 @@ import { Search } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
 import {
   Keyboard,
-  Platform,
   SafeAreaView,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 
+import { ErrorOccurredIllustration } from '@/components/icons/ErrorOccurredIllustration';
 import { PaginatedUsersList } from '@/components/PaginatedUsersList';
+import { AlertMessage } from '@/components/ui/AlertMessage';
 import { FadeInView } from '@/components/ui/FadeInView';
 import { useDebouncedValue } from '@/hooks/UseDebouncedValue';
 
 export default function HomeScreen() {
-  const { data, isLoading } = useGetCurrentUser();
+  const { data, isLoading, error } = useGetCurrentUser();
   const { setAuthenticatedUser } = useAuth();
 
   const [searchedUser, setSearchedUser] = useState<string>('');
@@ -27,6 +28,16 @@ export default function HomeScreen() {
   useEffect(() => {
     if (data) setAuthenticatedUser(data);
   }, [data, setAuthenticatedUser]);
+
+  if (error) {
+    return (
+      <AlertMessage
+        isError
+        message="Oops! Something went wrong."
+        alertIcon={ErrorOccurredIllustration}
+      />
+    );
+  }
   // scroll fucntion to hide or show the searchBar or the tab bar based on the Scroll Y
   /* const handleOnScroll = Animated.event(
     [{ nativeEvent: { contentOffset: { y: scrollY } } }],
@@ -51,12 +62,10 @@ export default function HomeScreen() {
   if (isLoading) return <Loading />;
 
   return (
-    <SafeAreaView className={`ios:px-6 flex-1 bg-peach`}>
+    <SafeAreaView className="android:pt-20 ios:px-6 flex-1 bg-peach">
       <TouchableWithoutFeedback className="flex-1" onPress={handleOnPress}>
         <FadeInView className="justify-between gap-5">
-          <UserHeader
-            className={`${Platform.OS === 'android' ? 'px-5 pt-14' : 'p-5'}`}
-          />
+          <UserHeader className="ios:p-5 android:px-6" />
           <View className="px-6">
             <Input
               inputIcon={Search}

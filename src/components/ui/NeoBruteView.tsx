@@ -16,7 +16,7 @@ interface NeoBruteViewProps extends ViewProps {
 }
 
 export const NeoBruteView = memo(
-  ({ children, style, className }: NeoBruteViewProps) => {
+  ({ children, style, className, ...rest }: NeoBruteViewProps) => {
     const viewClassName = useMemo(
       () => twMerge('border-[2px] border-black bg-white rounded-lg', className),
       [className]
@@ -38,7 +38,7 @@ export const NeoBruteView = memo(
     );
 
     return (
-      <View className={viewClassName} style={viewStyle}>
+      <View className={viewClassName} style={viewStyle} {...rest}>
         {children}
       </View>
     );

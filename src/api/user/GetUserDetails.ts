@@ -8,7 +8,7 @@ import { getUserCoalision } from './GetUserCoalision';
 
 export const useGetUserDetails = (userId: string | null) => {
   const queryKey = [apiUrls.userDetails, userId];
-  const { data, isLoading } = useQuery<UserDetails>({
+  const { data, isLoading, error } = useQuery<UserDetails>({
     queryKey,
     queryFn: async () => {
       const response = await client.get(
@@ -21,6 +21,7 @@ export const useGetUserDetails = (userId: string | null) => {
 
   return {
     data,
+    error,
     isLoading,
   };
 };
