@@ -35,6 +35,7 @@ export const MarksList = memo(({ marks, userLogin }: MarksListProps) => {
       }
       className="ios:py-auto flex-1 pt-4"
       estimatedItemSize={50}
+      contentContainerClassName="android:py-auto items-center flex-grow"
       contentContainerStyle={{ paddingHorizontal: 20 }}
       keyExtractor={(item) => item.id?.toString() ?? ''}
       renderItem={({ item }) => {

@@ -66,7 +66,9 @@ export const PaginatedUsersList = ({ searchedUser }: UsersListProps) => {
           onRefresh={invalidate}
         />
       }
-      estimatedItemSize={150}
+      contentContainerClassName="android:py-auto ios:my-auto items-center flex-grow"
+      estimatedItemSize={220}
+      onEndReachedThreshold={0.5}
       onEndReached={loadMore}
       ListFooterComponent={
         isFetchingNextPage ? (

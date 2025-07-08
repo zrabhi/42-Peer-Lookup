@@ -1,3 +1,4 @@
+import { Text } from '@components/ui/Text';
 import * as Haptics from 'expo-haptics';
 import React, {
   type ComponentProps,
@@ -5,13 +6,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import {
-  ActivityIndicator,
-  Platform,
-  Pressable,
-  Text,
-  View,
-} from 'react-native';
+import { ActivityIndicator, Platform, Pressable, View } from 'react-native';
 import { tv } from 'tailwind-variants';
 
 type buttonSize = 'sm' | 'md' | 'lg';
@@ -75,9 +70,9 @@ const ButtonVariant = tv({
     },
     isIcon: {
       true: {
-        pressable: 'h-12 w-12 border-2',
+        pressable: 'ios:h-12 ios:w-12 android:w-14 android:h-14 border-2',
         label: 'hidden',
-        shadow: 'h-12 w-12',
+        shadow: 'ios:h-12 ios:w-12 android:w-14 android:h-14',
       },
     },
     variant: {
@@ -85,7 +80,7 @@ const ButtonVariant = tv({
         pressable: 'border-black bg-primary-250',
       },
       Secondary: {
-        pressable: 'bg-primary-300', // the bg-colors are still not defined in Colors.js
+        pressable: 'bg-primary-green-200', // the bg-colors are still not defined in Colors.js
       },
       Tertiary: {
         pressable: 'bg-tertiary-200 border-gray-300', // the bg-colors are still not defined in Colors.js
@@ -99,18 +94,18 @@ const ButtonVariant = tv({
     },
     size: {
       sm: {
-        pressable: 'h-8 w-1/3',
-        shadow: 'h-8 w-1/3 ',
+        pressable: 'ios:h-8 android:h-12  w-1/3',
+        shadow: 'ios:h-8 android:h-12  h-8 w-1/3 ',
         label: 'text-xs',
       },
       md: {
-        pressable: 'h-10 w-1/2',
-        shadow: 'h-10 w-1/2',
+        pressable: 'ios:h-10 android:h-14 w-1/2',
+        shadow: 'android:h-14 ios:h-10 w-1/2',
         label: 'text-sm',
       },
       lg: {
-        pressable: 'h-16 w-full',
-        shadow: 'h-16 w-full',
+        pressable: 'ios:h-16 android:h-20 w-full',
+        shadow: 'android:h-20 ios:h-16 w-full',
         label: 'font-bold',
       },
     },
@@ -173,7 +168,10 @@ export const Button = ({
         ) : (
           <>
             {label && (
-              <Text className={styles.label({ className: labelClassName })}>
+              <Text
+                textSize={Platform.OS === 'android' ? 14 : 12}
+                className={styles.label({ className: labelClassName })}
+              >
                 {label}
               </Text>
             )}

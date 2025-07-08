@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import type { TextProps, TextStyle } from 'react-native';
-import { StyleSheet, Text as NNText } from 'react-native';
+import { Platform, StyleSheet, Text as NNText } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import { twMerge } from 'tailwind-merge';
 
@@ -27,7 +27,10 @@ export const Text = ({
     () =>
       StyleSheet.flatten([
         {
-          fontSize: moderateScale(textSize),
+          fontSize: moderateScale(
+            textSize,
+            Platform.OS === 'android' ? 0.8 : 0.3
+          ),
         },
 
         style,
@@ -35,7 +38,12 @@ export const Text = ({
     [style, textSize]
   );
   return (
-    <NNText className={textStyle} style={nStyle} {...rest}>
+    <NNText
+      allowFontScaling={false}
+      className={textStyle}
+      style={nStyle}
+      {...rest}
+    >
       {tx ?? children}
     </NNText>
   );

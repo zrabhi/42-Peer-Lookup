@@ -5,7 +5,7 @@ import { type AuthTokenResponse } from '@/types/AuthTokenResponse';
 import { Env } from '@/utils/Env';
 import { AUTH_KEY, getItem, removeItem } from '@/utils/Storage';
 
-import { useGetAccessToken } from './auth/GetAccessToken';
+import { getAccessTokenMutationFn } from './auth/GetAccessTokenMutationFn';
 import { AccessTokenGranType } from './types/AcessTokenGrantTYpe';
 
 export const client = axios.create({
@@ -27,19 +27,66 @@ client.interceptors.request.use(async (config) => {
 client.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const { getAccessToken } = useGetAccessToken();
-    if (error?.message === 'Token expired' || error.response?.status === 401) {
+    const requestConfig = error.config;
+
+    if (error?.response?.status === 401 && !requestConfig._retry) {
+      requestConfig._retry = true;
+
       const tokens = await getItem<AuthTokenResponse>(AUTH_KEY);
-      if (!tokens || !tokens.access_token || !tokens.refresh_token) {
+
+      if (!tokens || !tokens?.refresh_token) {
+        await removeItem(AUTH_KEY);
+        router.replace('/(auth)');
+        return Promise.reject(error);
+      }
+
+      try {
+        console.log('Refreshing token...', tokens.access_token);
+
+        const refreshedToken = await getAccessTokenMutationFn({
+          refreshToken: tokens.refresh_token,
+          grantType: AccessTokenGranType.REFRESH_TOKEN,
+        });
+
+        requestConfig.headers.Authorization = `Bearer ${refreshedToken.access_token}`;
+        console.log('the token Refreshed succefully');
+        return client(requestConfig);
+      } catch (refreshError) {
+        await removeItem(AUTH_KEY);
+        router.replace('/(auth)');
+        return Promise.reject(refreshError);
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+/* client.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const requestConfig = error.config;
+
+    if (error?.message === 'Token expired' || error.response?.status === 401) {
+      requestConfig._retry = true;
+      const tokens = await getItem<AuthTokenResponse>(AUTH_KEY);
+
+      if (!tokens || !tokens.refresh_token) {
         await removeItem(AUTH_KEY);
         router.replace('/(auth)');
       }
       console.log('refreshing token  ..........');
-      await getAccessToken({
+
+      const refreshedToken = await getAccessTokenMutationFn({
         refreshToken: tokens.refresh_token,
         grantType: AccessTokenGranType.REFRESH_TOKEN,
       });
+
+      requestConfig.headers.Authorization = `Bearer ${refreshedToken.access_token}`;
+
+      return client(requestConfig);
     }
     return Promise.reject(error);
   }
 );
+*/

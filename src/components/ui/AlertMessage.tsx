@@ -1,12 +1,16 @@
 import { Text } from '@components/ui/Text';
-import { type ElementType, memo, useMemo } from 'react';
+import { router } from 'expo-router';
+import { type ElementType, memo, useCallback, useMemo } from 'react';
 import { View } from 'react-native';
 import { type SvgProps } from 'react-native-svg';
 import { twMerge } from 'tailwind-merge';
+
+import { Button } from './Button';
 interface EmptyListProps extends SvgProps {
   className?: string;
   message?: string;
   textSize?: number;
+  isError?: boolean;
   alertIcon: ElementType;
 }
 
@@ -15,6 +19,7 @@ export const AlertMessage = memo(
     alertIcon: AlertIcon,
     className,
     message,
+    isError = false,
     textSize = 20,
     ...rest
   }: EmptyListProps) => {
@@ -27,12 +32,27 @@ export const AlertMessage = memo(
       [className]
     );
 
+    const handleOnPress = useCallback(
+      () => router.replace('/(protected)/users'),
+      []
+    );
+
     return (
       <View className={style}>
         <AlertIcon {...rest} />
-        <Text textSize={textSize} className="text-center  font-bold ">
+        <Text textSize={textSize} className="text-center font-bold ">
           {message}
         </Text>
+        {isError && (
+          <View className="w-full px-10  ">
+            <Button
+              label="Go to Home page"
+              variant="Secondary"
+              size="lg"
+              onPress={handleOnPress}
+            />
+          </View>
+        )}
       </View>
     );
   }

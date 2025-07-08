@@ -3,6 +3,7 @@ import {
   CircleCheckBig,
   CircleDashed,
   ClockFading,
+  PauseCircle,
   XCircle,
 } from 'lucide-react-native';
 
@@ -32,5 +33,10 @@ export const markStateMetadata: Record<markStatus, Metadata> = {
     Icon: (validated = false) => (validated ? CircleCheckBig : XCircle),
     color: (validated = false) =>
       validated ? Colors.primary.green[200] : Colors.primary.orange[50],
+  },
+  [markStatus.WATING_TO_START]: {
+    Icon: () => PauseCircle,
+    color: () => Colors.primary[100],
+    description: '',
   },
 };

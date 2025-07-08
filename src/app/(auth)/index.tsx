@@ -8,7 +8,7 @@ import { Env } from '@utils/Env';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { router } from 'expo-router';
 import React, { memo, useCallback, useEffect } from 'react';
-import { Dimensions, SafeAreaView, View } from 'react-native';
+import {  SafeAreaView, View } from 'react-native';
 
 import { AccessTokenGranType } from '@/api/types/AcessTokenGrantTYpe';
 import { ScribbleLine } from '@/components/icons/ScribblleLine';
@@ -21,34 +21,30 @@ const discovery = {
 };
 
 const AuthenticationHeader = memo(() => {
-  const screenWidth = Dimensions.get('window').width;
   return (
-    <View className="items-center justify-center gap-6 pt-28 ">
+    <View className="w-full items-center justify-center gap-6 pt-28 ">
       <BounceWrapper bounceHeight={9}>
         <FortyTwoLogo />
       </BounceWrapper>
-      <ScribbleLine width={screenWidth} />
+      <View className="w-full">
+        <ScribbleLine width="100%" />
+      </View>
       <Text textSize={26} className="font-bold text-black">
         Welcome!
       </Text>
-      <View className="">
-        <Text
-          textSize={16}
-          className="text- pt-1 text-center font-medium text-black"
-        >
-          Discover your
-          <Text>
-            {' '}
-            <Text
-              textSize={17}
-              className="font-semibold text-primary-orange-100"
-            >
-              peers
-            </Text>
-          </Text>{' '}
-          and view their profiles.
-        </Text>
-      </View>
+      <Text
+        textSize={16}
+        className="android:px-4 ios:px-1 pt-1 text-center font-medium text-black"
+      >
+        Discover your
+        <Text>
+          {' '}
+          <Text textSize={17} className="font-semibold text-primary-orange-100">
+            peers
+          </Text>
+        </Text>{' '}
+        and view their profiles.
+      </Text>
     </View>
   );
 });
@@ -73,8 +69,8 @@ export default function AuthScreen() {
         code: response.params.code,
         grantType: AccessTokenGranType.AUTORIZATION_CODE,
       });
-      openToaster(ToastType.SUCCESS, 'You’re all set 🎉');
-      router.push('/(screens)/users');
+      openToaster(ToastType.SUCCESS, 'Login successful! Welcome 🕹️');
+      router.replace('/(protected)/users');
     }
   }, [response, getAccessToken]);
 
@@ -87,9 +83,9 @@ export default function AuthScreen() {
   }, [promptAsync]);
 
   return (
-    <SafeAreaView className="flex-1 items-center  justify-between bg-peach ">
+    <SafeAreaView className="android:py-16 w-full flex-1 items-center  justify-between bg-peach ">
       <AuthenticationHeader />
-      <View className="w-full px-10 pb-6">
+      <View className="w-full  px-10 pb-6">
         <Button
           isLoading={isPending || !request}
           label="Login with "

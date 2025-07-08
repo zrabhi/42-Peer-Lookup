@@ -15,8 +15,10 @@ import { useLocalSearchParams } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Linking, Platform, View } from 'react-native';
 
+import { ErrorOccurredIllustration } from '@/components/icons/ErrorOccurredIllustration';
 import { MarksList } from '@/components/MarksList';
 import { SkillsList } from '@/components/SkillsList';
+import { AlertMessage } from '@/components/ui/AlertMessage';
 import { UserStats } from '@/components/UserStats';
 import { useUserCursus } from '@/hooks/UseUserCursus';
 import { ToastType } from '@/types/ToastType';
@@ -29,7 +31,7 @@ export default function UserDetails() {
 
   const { id } = useLocalSearchParams<{ id: string }>();
 
-  const { data, isLoading } = useGetUserDetails(id);
+  const { data, isLoading, error } = useGetUserDetails(id);
 
   const cursus = useUserCursus(data?.cursus_users);
 
@@ -49,6 +51,14 @@ export default function UserDetails() {
 
   if (!data) return null;
 
+  if (error) {
+    return (
+      <AlertMessage
+        message="Oops! Something went wrong."
+        alertIcon={ErrorOccurredIllustration}
+      />
+    );
+  }
   return (
     <ProtectedRoutes>
       <FadeInView slideFrom="right" className="flex-1 bg-peach">

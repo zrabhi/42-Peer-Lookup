@@ -29,7 +29,7 @@ export const MarkCard = memo(
         >
           <Icon size={28} color={color} />
           <Text textSize={9} className="text-center font-semibold">
-            {status.replace(/_/g, '')}
+            {status.replace(/_/g, ' ')}
           </Text>
         </NeoBruteView>
 
