@@ -79,14 +79,19 @@ yarn start
 ⚙️ Babel + tsconfig.json – customized build config
 
 ## 📁 Project Structure
+
 42-look-up/
 ├── assets/
 ├── components/
-├── app/
+├── domains/
 ├── env.js          # Validates env vars with zod
 ├── .env            # Your local environment variables
 ├── .eslintrc.js    # ESLint config
 ├── .prettierrc     # Prettier config
 ├── babel.config.js
 ├── tsconfig.json
+├── app/
 └── ...
+
+## 💬 Contact
+Feel free to reach out if you have any questions or suggestions - Issue.
