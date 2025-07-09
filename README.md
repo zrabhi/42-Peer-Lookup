@@ -49,3 +49,44 @@ PACKAGE=com.your.package.name
 API_URL=https://your.api.url
 EXPO_ACCOUNT_OWNER=your-expo-username
 EAS_PROJECT_ID=your-eas-project-id
+```
+
+##  🛠️ Setup
+
+ 1. Clone the repository
+git clone https://github.com/yourusername/42-look-up.git
+
+ 2. Install dependencies
+yarn install
+
+ 3. Add your .env file
+touch .env
+ (Fill it using the structure above)
+
+ 4. Start the project
+yarn start
+
+##  🧹 Developer Tooling
+ This project includes modern tooling for a great DX:
+
+✅ TypeScript – static typing
+🧼 ESLint – linting with custom rules
+
+💅 Prettier – auto formatting
+
+🧪 Commitlint + Husky – commit message linting and pre-commit checks
+
+⚙️ Babel + tsconfig.json – customized build config
+
+## 📁 Project Structure
+42-look-up/
+├── assets/
+├── components/
+├── app/
+├── env.js          # Validates env vars with zod
+├── .env            # Your local environment variables
+├── .eslintrc.js    # ESLint config
+├── .prettierrc     # Prettier config
+├── babel.config.js
+├── tsconfig.json
+└── ...
