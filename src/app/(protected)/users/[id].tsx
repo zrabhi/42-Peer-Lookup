@@ -54,6 +54,7 @@ export default function UserDetails() {
   if (error) {
     return (
       <AlertMessage
+        isError
         message="Oops! Something went wrong."
         alertIcon={ErrorOccurredIllustration}
       />

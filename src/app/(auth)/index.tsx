@@ -8,7 +8,7 @@ import { Env } from '@utils/Env';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { router } from 'expo-router';
 import React, { memo, useCallback, useEffect } from 'react';
-import {  SafeAreaView, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 
 import { AccessTokenGranType } from '@/api/types/AcessTokenGrantTYpe';
 import { ScribbleLine } from '@/components/icons/ScribblleLine';
@@ -57,7 +57,8 @@ export default function AuthScreen() {
       clientId: Env.CLIENT_UID,
       scopes: ['public', 'profile'],
       redirectUri: makeRedirectUri({
-        scheme: '42peerlookup',
+        native: Env.REDIRECT_URL,
+        scheme: Env.SCHEME,
       }),
     },
     discovery

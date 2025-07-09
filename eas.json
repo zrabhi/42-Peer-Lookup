@@ -1,0 +1,27 @@
+{
+  "cli": {
+    "version": ">= 3.8.1"
+  },
+  "build": {
+    "development": {
+      "distribution": "internal",
+      "developmentClient": true,
+      "yarn": "1.22.22",
+"android": {
+        "image": "latest"
+      }
+    },
+    "production": {
+      "channel": "production",
+      "distribution": "internal",
+      "yarn": "1.22.22",
+      "ios": {
+        "image": "latest"
+      },
+
+      "android": {
+        "image": "latest"
+      }
+    }
+  }
+}

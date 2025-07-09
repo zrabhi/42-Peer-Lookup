@@ -21,7 +21,7 @@ export const getAccessTokenMutationFn = async ({
 
   if (grantType === AccessTokenGranType.AUTORIZATION_CODE && code) {
     formBody.append('code', code);
-    formBody.append('redirect_uri', apiUrls.redirectUrl);
+    formBody.append('redirect_uri', Env.REDIRECT_URL);
   } else if (grantType === AccessTokenGranType.REFRESH_TOKEN && refreshToken) {
     formBody.append('refresh_token', refreshToken);
   } else {
