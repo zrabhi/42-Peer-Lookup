@@ -29,3 +29,23 @@
 | Error View | Network Issue | Not Found |
 |------------|----------------|-----------|
 | ![](./screenshots/Error.jpeg) | ![](./screenshots/NoInternet.png) | ![](./screenshots/NotFound.jpeg) |
+
+
+## ⚙️ Environment Variables
+
+The project uses strict validation for environment variables via `zod`.
+
+Create a `.env` file at the root of your project with the following structure:
+
+```env
+NAME=42-look-up
+SCHEME=your-app-scheme
+CLIENT_SECRET=your-client-secret
+REDIRECT_URL=your-redirect-uri
+CLIENT_UID=your-client-uid
+FORTY_TWO_CDN_URL=Forty-two cdn
+BUNDLE_ID=com.your.bundle.id
+PACKAGE=com.your.package.name
+API_URL=https://your.api.url
+EXPO_ACCOUNT_OWNER=your-expo-username
+EAS_PROJECT_ID=your-eas-project-id
