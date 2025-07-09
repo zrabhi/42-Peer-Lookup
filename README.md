@@ -13,3 +13,19 @@
 - 🧪 Type-safe environment variable validation with `zod`
 - 🚀 Built with React Native and Expo
 
+## 📸 Screenshots
+|       Login        |
+|--------------------|
+| ![](./screenshots/Login.png) |
+
+| Profile - Marks | Profile - Skills | Profile - Achievements |
+|-----------------|------------------|-------------------------|
+| ![](./screenshots/UserProfileMarks.jpeg) | ![](./screenshots/UserDetailsSkills.jpeg) | ![](./screenshots/UserProfileAchievements.jpeg) |
+
+| Settings | Users List | Users List + Search |
+|----------|------------|---------------------|
+| ![](./screenshots/Settings.jpeg) | ![](./screenshots/UsersList.jpeg) | ![](./screenshots/UsersListSearch.jpeg) |
+
+| Error View | Network Issue | Not Found |
+|------------|----------------|-----------|
+| ![](./screenshots/Error.jpeg) | ![](./screenshots/NoInternet.png) | ![](./screenshots/NotFound.jpeg) |
