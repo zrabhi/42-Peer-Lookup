@@ -1,11 +1,11 @@
 import { Text } from '@components/ui/Text';
+import { Env } from '@utils/Env';
 import { memo } from 'react';
 import { View } from 'react-native';
 
-import { apiUrls } from '@/api/Common';
-
 import { Image } from './ui/Image';
 import { NeoBruteView } from './ui/NeoBruteView';
+
 interface AchievementCardProps {
   image: string | null;
   name: string | null;
@@ -20,7 +20,9 @@ export const AchievementCard = memo(
         <NeoBruteView className="h-full w-28 items-center justify-center gap-2 rounded-xl px-2 py-4 ">
           <Image
             style={{ height: 26, width: 26 }}
-            imageSource={apiUrls.fortyTwoCdn + image.replace(/^\/uploads/, '')}
+            imageSource={
+              Env.FORTY_TWO_CDN_URL + image.replace(/^\/uploads/, '')
+            }
           />
           <Text textSize={9} className="font-semibold">
             {kind}

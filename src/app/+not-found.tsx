@@ -7,6 +7,7 @@ export default function NotFoundScreen() {
   return (
     <AlertMessage
       className="px-4"
+      isError
       alertIcon={OfflineIllustration}
       message="Opss.. this screen doesn t exist"
     />

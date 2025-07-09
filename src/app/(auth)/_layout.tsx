@@ -7,8 +7,6 @@ import { useAuth } from '@/utils/auth/AuthProvider';
 export default function AuthLayout() {
   const { isAuthenticated } = useAuth();
 
-  console.log('in AuthLayout layout !!!', isAuthenticated);
-
   if (isAuthenticated) return <Redirect href={AppRoutes.users} />;
 
   return (

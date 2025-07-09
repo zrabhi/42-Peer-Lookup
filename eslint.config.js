@@ -18,6 +18,7 @@ export default [
       'android/**',
       'babel.config.js',
       'metro.config.js',
+      'env.js',
       'jest.config.js',
       'native.config.js',
       'src/utils/Env.js'

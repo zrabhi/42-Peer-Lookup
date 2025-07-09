@@ -1,25 +1,27 @@
+import { ClientEnv, Env } from './env';
+
 const path = require('path');
 
 require('dotenv').config({
-  path: path.resolve(__dirname, '.env')
-}); 
-
+  path: path.resolve(__dirname, '.env'),
+});
 
 export default {
   expo: {
-    name: '42-peer-lookup',
-    slug: '42-peer-lookup',
+    name: Env.NAME,
+    slug: 'swiftycompanion',
+    owner: Env.EXPO_ACCOUNT_OWNER,
     version: '0.0.1',
     orientation: 'portrait',
     icon: './assets/images/icon.png',
-    scheme: '42peerlookup',
+    scheme: Env.SCHEME,
     userInterfaceStyle: 'automatic',
     newArchEnabled: true,
     ios: {
       supportsTablet: true,
       icon: './assets/images/icon.png',
       backgroundColor: '#FFEFDE',
-      bundleIdentifier: 'com.42peerlookup.ma',
+      bundleIdentifier: Env.BUNDLE_ID,
     },
     android: {
       adaptiveIcon: {
@@ -27,7 +29,7 @@ export default {
         backgroundColor: '#FFEFDE',
       },
       edgeToEdgeEnabled: true,
-      package: 'com.42peerlookup.ma',
+      package: Env.PACKAGE,
     },
     web: {
       bundler: 'metro',
@@ -40,8 +42,7 @@ export default {
         'expo-splash-screen',
         {
           image: './assets/images/splash-screen.png',
-          imageWidth: 200,
-          resizeMode: 'contain',
+          resizeMode: 'cover',
           backgroundColor: '#FFEFDE',
         },
       ],
@@ -50,9 +51,10 @@ export default {
       typedRoutes: true,
     },
     extra: {
-      CLIENT_UID: process.env.CLIENT_UID,
-      CLIENT_SECRET : process.env.CLIENT_SECRET,
-      API_URL: process.env.API_URL
+      ...ClientEnv,
+      eas: {
+        projectId: Env.EAS_PROJECT_ID,
+      },
     },
   },
 };
