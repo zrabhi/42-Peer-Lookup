@@ -3,7 +3,9 @@ import {
   CircleCheckBig,
   CircleDashed,
   ClockFading,
+  HelpCircle,
   PauseCircle,
+  Users,
   XCircle,
 } from 'lucide-react-native';
 
@@ -38,5 +40,15 @@ export const markStateMetadata: Record<markStatus, Metadata> = {
     Icon: () => PauseCircle,
     color: () => Colors.primary[100],
     description: '',
+  },
+  [markStatus.CREATING_GROUP]: {
+    description: 'This project is currently creating a group.',
+    Icon: () => Users,
+    color: () => '#FFD166',
+  },
+  [markStatus.UNKNOWN]: {
+    description: 'Unknown status',
+    Icon: () => HelpCircle,
+    color: () => '#81ECEC',
   },
 };

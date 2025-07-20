@@ -13,7 +13,7 @@ interface SkillsCardProps {
 }
 
 export const SkillsCard = memo(({ name, level }: SkillsCardProps) => {
-  const meta = skillsStateMetadata[name];
+  const meta = skillsStateMetadata[name] ?? skillsStateMetadata.unknown;
   const Icon = meta.Icon();
   const color = meta.color();
 

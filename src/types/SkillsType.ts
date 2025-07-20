@@ -1,0 +1,17 @@
+export enum SkillsType {
+  COMPANY_EXPERIENCE = 'Company experience',
+  RIGOR = 'Rigor',
+  NETWORK_SYSTEM_ADMINISTRATION = 'Network & system administration',
+  GROUP_INTERPERSONAL = 'Group & interpersonal',
+  WEB = 'Web',
+  OBJECT_ORIENTED_PROGRAMMING = 'Object-oriented programming',
+  IMPERATIVE_PROGRAMMING = 'Imperative programming',
+  UNIX = 'Unix',
+  ALGORITHMS_AI = 'Algorithms & AI',
+  GRAPHICS = 'Graphics',
+  ADAPTATION_CREATIVITY = 'Adaptation & creativity',
+  TECHNOLOGY_INTEGRATION = 'Technology integration',
+  SECURITY = 'Security',
+  DB_DATA = 'DB & Data',
+  UNKNOWN = 'unknown',
+}

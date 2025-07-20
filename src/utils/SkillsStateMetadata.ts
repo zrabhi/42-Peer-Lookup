@@ -3,6 +3,7 @@ import {
   Briefcase,
   Code,
   Globe,
+  HelpCircle,
   Image,
   Network,
   ScanLine,
@@ -12,46 +13,68 @@ import {
 } from 'lucide-react-native';
 
 import { type Metadata } from '@/types/Metadata';
+import { SkillsType } from '@/types/SkillsType';
 
-export const skillsStateMetadata: Record<string, Metadata> = {
-  'Company experience': {
+export const skillsStateMetadata: Record<SkillsType, Metadata> = {
+  [SkillsType.COMPANY_EXPERIENCE]: {
     Icon: () => Briefcase,
     color: () => '#FF7A5C',
   },
-  Rigor: {
+  [SkillsType.RIGOR]: {
     Icon: () => Brain,
     color: () => '#B5D2AD',
   },
-  'Network & system administration': {
+  [SkillsType.NETWORK_SYSTEM_ADMINISTRATION]: {
     Icon: () => Network,
     color: () => '#7FBC8C',
   },
-  'Group & interpersonal': {
+  [SkillsType.GROUP_INTERPERSONAL]: {
     Icon: () => Users,
     color: () => '#FFD166',
   },
-  Web: {
+  [SkillsType.WEB]: {
     Icon: () => Globe,
     color: () => '#F3A683',
   },
-  'Object-oriented programming': {
+  [SkillsType.OBJECT_ORIENTED_PROGRAMMING]: {
     Icon: () => Code,
     color: () => '#A29BFE',
   },
-  'Imperative programming': {
+  [SkillsType.IMPERATIVE_PROGRAMMING]: {
     Icon: () => Settings,
     color: () => '#81ECEC',
   },
-  Unix: {
+  [SkillsType.UNIX]: {
     Icon: () => TerminalSquare,
     color: () => '#636E72',
   },
-  'Algorithms & AI': {
+  [SkillsType.ALGORITHMS_AI]: {
     Icon: () => ScanLine,
     color: () => '#F8B195',
   },
-  Graphics: {
+  [SkillsType.GRAPHICS]: {
     Icon: () => Image,
     color: () => '#FFB6B9',
+  },
+  [SkillsType.ADAPTATION_CREATIVITY]: {
+    Icon: () => HelpCircle,
+    color: () => '#F6CD61',
+  },
+  [SkillsType.TECHNOLOGY_INTEGRATION]: {
+    Icon: () => Globe,
+    color: () => '#6C5B7B',
+  },
+  [SkillsType.SECURITY]: {
+    Icon: () => Settings,
+    color: () => '#355C7D',
+  },
+  [SkillsType.DB_DATA]: {
+    Icon: () => TerminalSquare,
+    color: () => '#2A363B',
+  },
+  [SkillsType.UNKNOWN]: {
+    description: 'Unknown status',
+    Icon: () => HelpCircle,
+    color: () => '#81ECEC',
   },
 };
