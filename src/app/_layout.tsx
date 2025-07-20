@@ -71,6 +71,8 @@ const AppProviders = ({ children }: { children: ReactNode }) => {
     if (fontsLoaded) SplashScreen.hideAsync();
   }, [fontsLoaded]);
 
+  if (!fontsLoaded) return null;
+
   return (
     <GestureHandlerRootView className="flex-1">
       <ApiProvider>

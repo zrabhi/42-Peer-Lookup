@@ -60,6 +60,7 @@ export default function UserDetails() {
       />
     );
   }
+
   return (
     <ProtectedRoutes>
       <FadeInView slideFrom="right" className="flex-1 bg-peach">

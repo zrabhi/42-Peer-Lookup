@@ -4,6 +4,8 @@ export enum markStatus {
   SEARCHING_A_GROUP = 'searching_a_group',
   WAITING_FOR_CORRESTION = 'waiting_for_correction',
   WATING_TO_START = 'waiting_to_start',
+  CREATING_GROUP = 'creating_group',
+  UNKNOWN = 'unknown',
 }
 
 export interface Project {
