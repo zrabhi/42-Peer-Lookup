@@ -37,6 +37,7 @@ export const getAccessTokenMutationFn = async ({
       },
     }
   );
+
   if (response.status === 200) {
     await setItem(AUTH_KEY, response.data);
   }
